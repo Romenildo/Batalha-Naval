@@ -6,6 +6,22 @@
 .container{
     height: 100vh;
     width: 100vw;
+
+    background: linear-gradient(45deg, rgb(10, 48, 151),rgb(93, 187, 190),rgb(182, 230, 245),#fff);
+    background-size: 300% 300%;
+    animation: colors 8s ease infinite;
+}
+
+@keyframes colors{
+    0%{
+        background-position:0% 50% ;
+    }
+    50%{
+        background-position:100% 50% ;
+    }
+    100%{
+        background-position:0% 50% ;
+    }
 }
 
 header{
@@ -19,18 +35,47 @@ header{
     text-align: center;
     font-family: "Trebuchet MS", Verdana, sans-serif;
     font-size: 70px;
-    text-shadow: 2px 4px 5px rgb(107, 236, 208);
+    text-shadow: 3px 5px 3px rgb(56, 160, 245);
     color: rgb(77, 75, 75);
 }
 main{
-    background-color: green;
+
     height: 600px;
     display: flex;
+    align-items: center;
+}
+.tela-inicial{
+    margin-left:auto;
+    margin-right: auto;
+    width: 800px;
+    height: 100%;
+    
+}
+
+.btn-jogar{
+    background-color: white;
+    border: 3px solid rgb(151, 151, 151);
+    border-radius: 50px;
+    height: 100px;
+    margin: 60px 40px;
+}
+.btn-jogar:hover{
+    box-shadow: 10px 5px 10px rgb(56, 160, 245);
+    cursor: pointer;
+}
+.btn-texto{
+    text-align: center;
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    font-size: 40px;
+    font-weight: bolder;
+    padding-top: 30px;
+
 }
 
 .tabuleiroJogador{
     background-color: rgb(219, 62, 62);
     width: 50vw;
+    display: none;
 }
 .letras{
     background-color: darkgoldenrod;
@@ -80,6 +125,7 @@ td:hover{
 .tabuleiroMaquina{
     background-color: rgb(150, 150, 150);
     width: 50vw;
+    display: none;
 }
 
 
