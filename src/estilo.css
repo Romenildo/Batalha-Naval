@@ -39,12 +39,12 @@ header{
     color: rgb(77, 75, 75);
 }
 main{
-
     height: 600px;
     display: flex;
     align-items: center;
 }
 .tela-inicial{
+    z-index: 1;
     margin-left:auto;
     margin-right: auto;
     width: 800px;
@@ -58,6 +58,7 @@ main{
     border-radius: 50px;
     height: 100px;
     margin: 60px 40px;
+    box-shadow: 3px 2px 8px rgb(105, 105, 105);
 }
 .btn-jogar:hover{
     box-shadow: 10px 5px 10px rgb(56, 160, 245);
@@ -69,6 +70,7 @@ main{
     font-size: 40px;
     font-weight: bolder;
     padding-top: 30px;
+    color: rgb(77, 75, 75);
 
 }
 
@@ -140,4 +142,65 @@ footer{
     text-align: center;
     padding-top: 5px;
     font-size: 13px;
+}
+
+
+.navio{
+    animation: navio1load 46s infinite;
+}
+.navio2{
+    margin-right: 20px;
+    animation: navio2load 52s infinite;
+}
+.parte-ponta-cima {
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 30px solid #949396;
+  }
+.parte-central{
+    width: 50px;
+    height: 80px;
+    background-color: #949396;
+}
+.parte-ponta-baixo {
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-top: 30px solid #949396;
+  }
+
+  @keyframes navio1load{
+      0%{
+        transform:translate(0px) rotate(-15deg);
+      }
+      32%{
+        transform:translate(1250px, 270px) rotate(-45deg);
+      }
+      50%{
+          transform: translate(500px, -500px) scale(1.2) rotate(45deg);
+      }
+      75%{
+        transform:translate(-800px, -600);
+      }
+      100%{
+        transform:translate(0px) scale(1.0) ;
+      }
+      
+  }
+  @keyframes navio2load{
+    0%{
+      transform:translate(0px) rotate(15deg);
+    }
+    25%{
+      transform:translate(-1250px, 200px) rotate(90deg);
+    }
+    50%{
+        transform: translate(-100px, -600px) scale(1.2) rotate(-45deg);
+    }
+    75%{
+      transform:translate(-800px, -600) rotate(180deg);
+    }
+    100%{
+      transform:translate(0px) scale(1.0) ;
+    }
+    
 }

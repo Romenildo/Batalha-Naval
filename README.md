@@ -5,3 +5,6 @@ Adicionado a base e controle das divs
 
 ## versão 2
 ![](https://github.com/Romenildo/Batalha-Naval/blob/master/imgs/v2-telaInicio.gif)
+
+### versao 2.1
+![](https://github.com/Romenildo/Batalha-Naval/blob/master/imgs/v2.1-telaInicio.gif)
