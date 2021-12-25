@@ -86,9 +86,11 @@ main{
     width: 800px;
     height: 550px;
     border-radius: 10px;
+
+    display: none;
     
 }
-.logo-ranking{
+.logo-telas{
     height: 90px;
     width: 400px;
     margin-left: 30px;
@@ -97,7 +99,7 @@ main{
     text-shadow: 1px 2px 4px rgb(56, 160, 245);
 
 }
-.texto-ranking{
+.texto-logo-telas{
     font-family: "Trebuchet MS", Verdana, sans-serif;
     font-size: 50px;
     font-weight: bolder;
@@ -137,7 +139,6 @@ main{
     box-shadow:3px 5px 3px rgb(138, 143, 148);
     color: rgb(66, 65, 65);
 }
-
 .btn-voltar:hover{
     margin-left: 337px;
     width: 95px;
@@ -146,7 +147,37 @@ main{
     box-shadow: 3px 5px 3px rgb(56, 160, 245);
 }
 
+/*Tela de Regras*/
 
+.tela-regras{
+    background-color: white;
+    z-index: 1;
+    margin-left:auto;
+    margin-right: auto;
+    width: 800px;
+    height: 550px;
+    border-radius: 10px;
+    overflow-y: scroll;
+    
+}
+
+.titulo-regras{
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    font-size: 30px;
+    font-weight: bolder;
+    padding-top: 10px;
+    padding-left: 10px;
+    color: rgb(95, 93, 93);
+    line-height: 70px;
+}
+
+.texto-regras{
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    font-size: 16px;
+    padding-left: 20px;
+    color: rgb(95, 93, 93);
+    line-height: 25px;
+}
 
 .tabuleiroJogador{
     background-color: rgb(219, 62, 62);

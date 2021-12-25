@@ -13,3 +13,6 @@
    
 Tela Ranking
 ![](https://github.com/Romenildo/Batalha-Naval/blob/master/imgs/v2-telaRanking.PNG)
+   
+Tela Regras
+![](https://github.com/Romenildo/Batalha-Naval/blob/master/imgs/v2-telaRegras.gif)
