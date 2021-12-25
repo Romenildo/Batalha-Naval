@@ -10,3 +10,6 @@
 #### versao 2.1
  Adcionado animacão dos navios em css no background
 ![](https://github.com/Romenildo/Batalha-Naval/blob/master/imgs/v2.1-telaInicio.gif)
+   
+Tela Ranking
+![](https://github.com/Romenildo/Batalha-Naval/blob/master/imgs/v2-telaRanking.png)

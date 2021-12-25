@@ -43,12 +43,15 @@ main{
     display: flex;
     align-items: center;
 }
+
+/*Tela Principal com os botoes de jogar/ranking/regras*/
 .tela-inicial{
     z-index: 1;
     margin-left:auto;
     margin-right: auto;
     width: 800px;
     height: 100%;
+    display: none;
     
 }
 
@@ -73,6 +76,77 @@ main{
     color: rgb(77, 75, 75);
 
 }
+
+/*Tela de Ranking*/
+.tela-ranking{
+    background-color: white;
+    z-index: 1;
+    margin-left:auto;
+    margin-right: auto;
+    width: 800px;
+    height: 550px;
+    border-radius: 10px;
+    
+}
+.logo-ranking{
+    height: 90px;
+    width: 400px;
+    margin-left: 30px;
+    border-bottom: 5px inset rgba(128, 128, 128, 0.562);
+    border-radius: 5px;
+    text-shadow: 1px 2px 4px rgb(56, 160, 245);
+
+}
+.texto-ranking{
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    font-size: 50px;
+    font-weight: bolder;
+    padding-top: 30px;
+    padding-left: 10px;
+    color: rgb(77, 75, 75);
+}
+
+.posicoes-ranking{
+    height: 50px;
+    margin: 20px 40px;
+    border-bottom: 2px inset rgba(128, 128, 128, 0.562);
+    border-radius: 5px;
+}
+
+.ranking-pos{
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    font-size: 25px;
+    font-weight: bolder;
+    padding-top: 20px;
+    padding-left: 10px;
+    color: rgb(77, 75, 75);
+}
+
+.btn-voltar{
+    height: 45px;
+    width: 90px;
+    background-color: white;
+    border-radius: 10px;
+    border:2px inset rgba(128, 128, 128, 0.562);
+
+    margin-left: 340px;
+    margin-top: 10px;
+
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    font-size: 19px;
+    box-shadow:3px 5px 3px rgb(138, 143, 148);
+    color: rgb(66, 65, 65);
+}
+
+.btn-voltar:hover{
+    margin-left: 337px;
+    width: 95px;
+    height: 50px;
+    cursor: pointer;
+    box-shadow: 3px 5px 3px rgb(56, 160, 245);
+}
+
+
 
 .tabuleiroJogador{
     background-color: rgb(219, 62, 62);
