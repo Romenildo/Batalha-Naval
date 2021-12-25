@@ -12,4 +12,4 @@
 ![](https://github.com/Romenildo/Batalha-Naval/blob/master/imgs/v2.1-telaInicio.gif)
    
 Tela Ranking
-![](https://github.com/Romenildo/Batalha-Naval/blob/master/imgs/v2-telaRanking.png)
+![](https://github.com/Romenildo/Batalha-Naval/blob/master/imgs/v2-telaRanking.PNG)
