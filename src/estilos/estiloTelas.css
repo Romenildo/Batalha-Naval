@@ -84,6 +84,7 @@ main{
     margin-right: auto;
     width: 800px;
     height: 100%;
+    display: none;
 }
 .input-nome{
     height: 50px;

@@ -1,0 +1,139 @@
+
+.tela-preparacao{
+    z-index: 1;
+    margin-left:auto;
+    margin-right: auto;
+    width: 1300px;
+    height: 600px;
+}
+.tabuleiros{
+    height: 476px;
+    display: flex;
+}
+.tabuleiro-jogador{
+    background-color: rgb(246, 248, 250);
+    height: 466px;
+    width: 650px;
+    border:4px ridge rgba(128, 128, 128, 0.562);
+}
+.tabuleiro-maquina{
+    height: 376px;
+    width: 550px;
+    padding: 50px 50px;
+
+}
+.msg-maquina{
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    font-size: 80px;
+    text-shadow: 3px 5px 3px rgba(93, 222, 226, 0.281);
+    color: rgb(95, 95, 95);
+    margin-left: 30px;
+    margin-top: 60px;
+}
+
+
+/*Parte do botao reset alert e iniciar*/
+.pos-tabuleiro{
+    display: flex;
+    height: 35px;
+    justify-content: space-between;
+    margin: 0px 30px;
+    margin-bottom: 4px;
+}
+.btn-pos-tabuleiro{
+    height: 32px;
+    width: 90px;
+    background-color: white;
+    border-radius: 10px;
+    border:2px inset rgba(128, 128, 128, 0.562);
+
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    font-size: 19px;
+    box-shadow:3px 5px 3px rgb(138, 143, 148);
+    color: rgb(58, 58, 58);
+}
+.btn-pos-tabuleiro:hover{
+    height: 33px;
+    width: 92px;
+    cursor: pointer;
+    box-shadow: 3px 5px 3px rgb(56, 160, 245);
+}
+
+.alert{
+    border: 1px solid rgba(241, 6, 6, 0.81);
+    background-color: rgba(220, 17, 1, 0.16);
+    box-shadow: 0px 0px 2px #ff0303;
+    margin-top: 2px;
+    height: 27px;
+    width: 400px;
+    padding-top: 5px;
+    border-radius: 10px;
+    color: #000000;
+    font-weight: bolder;
+    text-align: center;
+    transition:0.5s;
+    cursor:pointer;
+    animation: pisca 3s infinite;
+  }
+  @keyframes pisca{
+    0%{
+        background-color: rgba(245, 32, 17, 0.63);
+    }
+    50%{
+        background-color: rgba(220, 17, 1, 0.33);
+    }
+    100%{
+        background-color: rgba(245, 32, 17, 0.63);
+    }
+  }
+
+
+/* uLTIMA LINHA DAS EMBARCACOES*/
+.embarcacoes{
+    width: 1300px;
+    height: 85px;
+    display: flex;
+}
+.tipo-embarcacao{
+    background-color: rgb(255, 255, 255);
+    width: 325px;
+    border: 2px ridge rgba(146, 145, 145, 0.562);
+    border-radius: 20px;
+    margin: 0px 10px;
+}
+.tipo-embarcacao:hover{
+    height: 86px;
+    width: 326px;
+    cursor: pointer;
+    box-shadow: 3px 5px 3px rgb(56, 160, 245);
+}
+.nome-navio{
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: center;
+}
+.estilo-navio{
+    text-align: center;
+}
+
+.quantidade-navios{ 
+    position: relative;
+    right: 32px;
+    bottom: 30px;
+    margin-right: 20px;
+    font-weight: bolder;
+    font-size: 40px;
+}
+.navios-input-campo{
+    display: flex;
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    font-size: 20px;
+    margin-left: 37px;
+    margin-top: 8px;
+}
+.pos-navio-input{
+    width: 30px;
+    height: 24px;
+    border-radius: 3px;
+}

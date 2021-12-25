@@ -19,3 +19,6 @@ Tela Regras
 
 Tela após Jogar para escolher o tamanho dos tabuleiros
 ![](https://github.com/Romenildo/Batalha-Naval/blob/master/imgs/v2-telaJogar.gif)
+   
+Tela para escolher as posicoes das embarcações(incompleto)
+![](https://github.com/Romenildo/Batalha-Naval/blob/master/imgs/v2-telaEscolher.gif)
