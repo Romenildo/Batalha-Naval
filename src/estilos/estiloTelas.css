@@ -46,15 +46,15 @@ main{
 
 /*Tela Principal com os botoes de jogar/ranking/regras*/
 .tela-inicial{
+    z-index: 1;
     margin-left:auto;
     margin-right: auto;
     width: 800px;
     height: 100%;
-    display: block; 
+    display: none; 
 }
 
 .btn-jogar{
-    z-index: 1;
     background-color: white;
     border: 3px solid rgb(151, 151, 151);
     border-radius: 50px;
@@ -249,18 +249,32 @@ main{
     line-height: 42px;
 }
 table{
-    background-color: dodgerblue;
     position: relative;
-    border-collapse: collapse;
-    border-spacing: 10;
+    top: 37px;
     width: 600px;
-    align-items: center;
     height: 430px;
-    margin: 70px 30px 30px 70px;
+}
+td {
+    height: 30px;
+    width: 50px;
+    background-color: #1E88E5;
+    cursor: crosshair; 
 }
 tr, td {
-    padding: 10px 20px;
-    border: 4px solid #000;
+    border-collapse: collapse;
+    border: 1px white solid;
+}
+tr:before {
+	content: attr(linha);
+    margin-left: 25px;
+    font-size: 25px;
+}
+
+tr:first-child td:before {	
+	content: attr(coluna);
+	position: relative;
+    bottom: 40px;
+    font-size: 25px;
 }
 
 td:hover{
@@ -346,5 +360,4 @@ footer{
     100%{
       transform:translate(0px) scale(1.0) ;
     }
-    
-}
+  }
