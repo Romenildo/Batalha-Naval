@@ -5,10 +5,13 @@
     margin-right: auto;
     width: 1300px;
     height: 600px;
+    display: none;
 }
+
 .tabuleiros{
     height: 476px;
     display: flex;
+
 }
 .tabuleiro-jogador{
     background-color: rgb(246, 248, 250);
@@ -20,7 +23,6 @@
     height: 376px;
     width: 550px;
     padding: 50px 50px;
-
 }
 .msg-maquina{
     font-family: "Trebuchet MS", Verdana, sans-serif;

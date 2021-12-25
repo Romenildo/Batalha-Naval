@@ -11,29 +11,29 @@
 <body>
     <div class="container">
        <header>
-            <h1 class="logo">Batalha Naval</h1>
+            <h1 class="logo" id="logo">Batalha Naval</h1>
        </header>
        <main>
            <div class="navio">
                <div class="parte-ponta-cima"></div>
-               <div class="parte-central"></div>
+               <div class="parte-central" ></div>
                <div class="parte-ponta-baixo"></div>
            </div>
            
-           <div class="tela-inicial">
+           <div class="tela-inicial" id="telaInicial">
                 <div class="btn-jogar">
-                    <p class="btn-texto">JOGAR</p>
+                    <p class="btn-texto" onclick="mostrarTelaJogar()">JOGAR</p>
                 </div>
                 <div class="btn-jogar">
-                    <p class="btn-texto">RANKING</p>
+                    <p class="btn-texto" onclick="mostrarTelaRanking()">RANKING</p>
                 </div>
                 <div class="btn-jogar">
-                    <p class="btn-texto">REGRAS</p>
+                    <p class="btn-texto" onclick="mostrarTelaRegras()">REGRAS</p>
                 </div>
 
            </div>
 
-           <div class="tela-ranking">
+           <div class="tela-ranking" id="telaRanking">
                <div class="logo-telas">
                    <p class="texto-logo-telas">Ranking</p>
                </div>
@@ -62,10 +62,10 @@
                     5. NOME __________________ 1000points (00/00/000)
                 </p>
             </div>
-                <button class="btn-voltar">Voltar</button>
+                <button class="btn-voltar" onclick="voltarTelaInicial()">Voltar</button>
            </div>
 
-           <div class="tela-regras">
+           <div class="tela-regras" id="telaRegras">
                <div class="logo-telas">
                    <p class="texto-logo-telas">Regras</p>
                </div>
@@ -96,28 +96,28 @@
    ab vel quisquam id ducimus optio? Ducimus neque asperiores optio enim reiciendis iusto tempore?
                 </pre>
             
-            <button class="btn-voltar">Voltar</button>
+            <button class="btn-voltar" onclick="voltarTelaInicial()" >Voltar</button>
             <br>
             <br>
 
            </div>
 
-           <div class="tela-jogar">
+           <div class="tela-jogar" id="telaJogar">
 
             <input type="text" class="input-nome" placeholder="Seu nome ...">
                
             <div class="btn-jogar">
-                <p class="btn-texto">PEQUENO 10 X 10</p>
+                <p class="btn-texto" onclick="mostrarTelaPreparacao()">PEQUENO 10 X 10</p>
             </div>
             <div class="btn-jogar">
-                <p class="btn-texto">GRANDE 15 X 15</p>
+                <p class="btn-texto" onclick="mostrarTelaPreparacao()">GRANDE 15 X 15</p>
             </div>
 
-            <button class="btn-voltar">Voltar</button>
+            <button class="btn-voltar" onclick="voltarTelaInicial()" >Voltar</button>
 
            </div>
 
-           <div class="tela-preparacao">
+           <div class="tela-preparacao" id="telaPreparacao">
                 <div class="tabuleiros">
                     <section class="tabuleiro-jogador"></section>
                     <section class="tabuleiro-maquina">
@@ -127,7 +127,7 @@
                 <div class="pos-tabuleiro">
                     <button class="btn-pos-tabuleiro">Reset</button>
                     <p class="alert">Alert!! Posicao Invalida</p>
-                    <button class="btn-pos-tabuleiro">Iniciar</button>
+                    <button class="btn-pos-tabuleiro" onclick="voltarTelaInicial()">Iniciar</button>
                 </div>
                 <div class="embarcacoes">
                     <div class="tipo-embarcacao">
@@ -190,5 +190,6 @@
     </div>
     
 
+    <script src="scrypts/scryptTela.js"></script>
 </body>
 </html>

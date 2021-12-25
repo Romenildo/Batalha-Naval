@@ -22,3 +22,7 @@ Tela após Jogar para escolher o tamanho dos tabuleiros
    
 Tela para escolher as posicoes das embarcações(incompleto)
 ![](https://github.com/Romenildo/Batalha-Naval/blob/master/imgs/v2-telaEscolher.gif)
+
+## Versão 3
+Implementação das funcoes em JavaScrypt para alterar entre as Telas
+![](https://github.com/Romenildo/Batalha-Naval/blob/master/imgs/v3.gif)

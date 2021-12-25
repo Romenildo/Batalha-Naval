@@ -46,15 +46,15 @@ main{
 
 /*Tela Principal com os botoes de jogar/ranking/regras*/
 .tela-inicial{
-    z-index: 1;
     margin-left:auto;
     margin-right: auto;
     width: 800px;
     height: 100%;
-    display: none; 
+    display: block; 
 }
 
 .btn-jogar{
+    z-index: 1;
     background-color: white;
     border: 3px solid rgb(151, 151, 151);
     border-radius: 50px;
@@ -320,7 +320,7 @@ footer{
         transform:translate(1250px, 270px) rotate(-45deg);
       }
       50%{
-          transform: translate(500px, -500px) scale(1.2) rotate(45deg);
+          transform: translate(500px, -450px) scale(1.2) rotate(45deg);
       }
       75%{
         transform:translate(-800px, -600);
