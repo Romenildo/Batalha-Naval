@@ -27,5 +27,5 @@ Tela para escolher as posicoes das embarcações(incompleto)
 Implementação das funcoes em JavaScrypt para alterar entre as Telas
 ![](https://github.com/Romenildo/Batalha-Naval/blob/master/imgs/v3.gif)
    
-Adcicionado ciação da tabela de forma dinamica com JS
+Adcicionado criação da tabela de forma dinamica com JS
 ![](https://github.com/Romenildo/Batalha-Naval/blob/master/imgs/v3-tabela.PNG)
