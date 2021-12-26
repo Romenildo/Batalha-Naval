@@ -107,7 +107,7 @@
             <input type="text" class="input-nome" placeholder="Seu nome ...">
                
             <div class="btn-jogar">
-                <p class="btn-texto" onclick="mostrarTelaPreparacao()">PEQUENO 10 X 10</p>
+                <p class="btn-texto" onclick="mostrarTelaPreparacao() ">PEQUENO 10 X 10</p>
             </div>
             <div class="btn-jogar">
                 <p class="btn-texto" onclick="mostrarTelaPreparacao()">GRANDE 15 X 15</p>
@@ -132,26 +132,30 @@
                     <button class="btn-pos-tabuleiro" onclick="voltarTelaInicial()">Iniciar</button>
                 </div>
                 <div class="embarcacoes">
-                    <div class="tipo-embarcacao">
-                        <p class="nome-navio">Porta-Avioes</p>
+                    <div class="tipo-embarcacao" >
+                        <p class="nome-navio">Porta-Aviao</p>
                         <p class="estilo-navio">██ ██ ██ ██ ██</p>
-                        <div class="navios-input-campo">
+                        <div class="navios-input-campo" >
                             <p class="quantidade-navios">x1</p>
 
-                            <input class="pos-navio-input" type="text" placeholder="A1">
+                            <input class="pos-navio-input" id="campoPortaAviao1" type="text" placeholder="A1">
                             <pre> - </pre>
-                            <input class="pos-navio-input" type="text" placeholder="A5">
+                            <input class="pos-navio-input" id="campoPortaAviao2" type="text" placeholder="A5">
+                        
+                            <button class="btn-set" onclick="adicionaPortaAviao(1)">set</button>
                         </div>
                     </div>
                     <div class="tipo-embarcacao">
-                        <p class="nome-navio">navio-Tanque</p>
+                        <p class="nome-navio">Navio-Tanque</p>
                         <p class="estilo-navio">██ ██ ██ ██</p>
                         <div class="navios-input-campo">
                             <p class="quantidade-navios">x2</p>
 
-                            <input class="pos-navio-input" type="text" placeholder="A1">
+                            <input class="pos-navio-input" id="campoNavioTanque1" type="text" placeholder="A1">
                             <pre> - </pre>
-                            <input class="pos-navio-input" type="text" placeholder="A4">
+                            <input class="pos-navio-input" id="campoNavioTanque2"type="text" placeholder="A4">
+                            
+                            <button class="btn-set" onclick="adicionaPortaAviao(2)">set</button>
                         </div>
                     </div>
                     <div class="tipo-embarcacao">
@@ -160,20 +164,24 @@
                         <div class="navios-input-campo">
                             <p class="quantidade-navios">x3</p>
 
-                            <input class="pos-navio-input" type="text" placeholder="A1">
+                            <input class="pos-navio-input" id="campoContratorpedeiros1" type="text" placeholder="A1">
                             <pre> - </pre>
-                            <input class="pos-navio-input" type="text" placeholder="A3">
+                            <input class="pos-navio-input" id="campoContratorpedeiros2" type="text" placeholder="A3">
+                            <button class="btn-set" onclick="adicionaPortaAviao(3)">set</button>
+                        
                         </div>
                     </div>
                     <div class="tipo-embarcacao">
-                        <p class="nome-navio" >Submarinos</p>
+                        <p class="nome-navio" >Submarino</p>
                         <p class="estilo-navio">██ ██</p>
                         <div class="navios-input-campo">
                             <p class="quantidade-navios">x4</p>
 
-                            <input class="pos-navio-input" type="text" placeholder="A1">
+                            <input class="pos-navio-input" id="campoSubmarino1" type="text" placeholder="A1">
                             <pre> - </pre>
-                            <input class="pos-navio-input" type="text" placeholder="A2">
+                            <input class="pos-navio-input" id="campoSubmarino2" type="text" placeholder="A2">
+                            <button class="btn-set" onclick="adicionaPortaAviao(4)">set</button>
+                        
                         </div>
                     </div>
                 </div>
