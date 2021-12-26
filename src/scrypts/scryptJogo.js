@@ -71,6 +71,7 @@ const adicionaPortaAviao= (tipo)=>{
 
     }else if(verificaPosicaoDisponivel(posInicial, posFinal, tipo, 10)==false){
         //fazer verificacao
+
         sequencia = gerarSequencia(posInicial, posFinal,10)
          //fazer verificacao se é aceitavel a posicao
         for(let pos of sequencia){
@@ -78,6 +79,7 @@ const adicionaPortaAviao= (tipo)=>{
         }
         posicoesOcupadas.push(sequencia)
         setAlert(0)
+    
     }
 }
 
@@ -95,33 +97,23 @@ const gerarSequencia = (posInicial, posFinal, tamanhoTabela) => {
     tamanhoTabela==10?letras=letras10:letras=letras15
 
     let resultado=[];
- 
+    
     if(posInicial[0] == posFinal[0]){
         //horizontal
-        for(let l of letras){
-            if(l == posInicial[0]){
-                for(let i = posInicial[1]; i<=posFinal[1]; i++){
-                    resultado.push(l+i)
-                }
-            }
+        for(let i = posInicial[1]; i<=parseInt(posFinal[1]); i++){
+            resultado.push(posInicial[0]+i)
         }
-    }else{
-        //vertical
-        for(let i = posInicial[1]; i<=posFinal[1]; i++){
-            for(let l in letras){
-                if(letras[l] == posInicial[0]){
-                    let x = l;
-                    while(letras[x]!=posFinal[0]){
-                        resultado.push(letras[x]+i)
-                        x++; 
-                    }
-                    resultado.push(letras[x]+i)
-                }
-            }
-        }
+        return resultado;
     }
-    
-    return resultado;
+    if(posInicial[1]==posFinal[1]){
+        //vertical
+        for(let i = letras.indexOf(posInicial[0]);i <= letras.indexOf(posFinal[0]);i++){
+            resultado.push(letras[i]+posInicial[1])
+        }
+        return resultado;
+    }
+
+    setAlert(1,"ERRO!!! Posicao dos parametros Invalida")
 }
 
 //verificar se a posicao passada é valida
@@ -147,14 +139,11 @@ const verificaPosicaoDisponivel=(posInicial, posFinal,tipo,tamanhoTabela)=>{
         setAlert(1,"ERRO!!! Parametro maior que o tamanho da Tabela")
         return true
     }
-
-    alert(tabela.indexOf(posInicial[0]) >= tabela.indexOf(posFinal[0]))
     //verificacao se o 1 parametro é maior que o segundo(j1 a1))
-    if(posInicial[1]>posFinal[1] && tabela.indexOf(posInicial[0]) >= tabela.indexOf(posFinal[0])){//falta fazer ou letra maior j e a
+    if(tabela.indexOf(posInicial[0]) > tabela.indexOf(posFinal[0])){
         setAlert(1, "ERRO!!! Inicio maior ou igual ao Final")
         return true
     }
     //verificacao de tipo da embarcacao 
-
     return false
 }
