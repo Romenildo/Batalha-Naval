@@ -1,3 +1,6 @@
+
+let posicoesOcupadas = []
+
 //criacao da tabela com html e js
 const criarTabela = (tipo)=>{
     let linhas;
@@ -70,6 +73,7 @@ const adicionaPortaAviao= (tipo)=>{
         for(let pos of sequencia){
              document.getElementById(pos).style.backgroundColor = "#000"
         }
+        posicoesOcupadas.push(sequencia)
         setAlert(0)
     }
 }
@@ -78,9 +82,15 @@ const adicionaPortaAviao= (tipo)=>{
 //Recebe a posciao inicial A1 e final A5 depois de filtrada e gera um array: A1 A2 A3 A4 A5
 
 const gerarSequencia = (posInicial, posFinal) => {
+
     posInicial = posInicial.split('')
     posFinal = posFinal.split('')
+    //Caso valor seja maior qu e9 ex: A10 A12
+    posFinal[2]==undefined?posFinal[1]=posFinal[1]:posFinal[1]+=posFinal[2]
+    posInicial[2]==undefined?posInicial[1]=posInicial[1]:posInicial[1]+=posInicial[2]
+
     const letras = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O"]
+
 
     let resultado=[];
  
