@@ -1,5 +1,7 @@
 
 let posicoesOcupadas = []
+const letras10 = ["A","B","C","D","E","F","G","H","I","J"]
+const letras15 = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O"]
 
 //criacao da tabela com html e js
 const criarTabela = (tipo)=>{
@@ -29,11 +31,12 @@ const criarTabela = (tipo)=>{
 
 criarTabela(10)
 
-const setAlert = (ativo)=>{
+const setAlert = (ativo, mensagem = "")=>{
     if(ativo == 0){
         document.getElementById('alerta').style.display='none'
     }else{
         document.getElementById('alerta').style.display='block'
+        document.getElementById('alerta').innerHTML = mensagem
     }
 }
 //adicionar as embarcacoes
@@ -64,11 +67,11 @@ const adicionaPortaAviao= (tipo)=>{
 
     if(posInicial=="" || posFinal==""){
         //se nao tiver nada no campo
-        setAlert(1)
+        setAlert(1, "ERRO!!! Campo das posições vazio")
 
-    }else{
+    }else if(verificaPosicaoDisponivel(posInicial, posFinal, tipo, 10)==false){
         //fazer verificacao
-        sequencia = gerarSequencia(posInicial, posFinal)
+        sequencia = gerarSequencia(posInicial, posFinal,10)
          //fazer verificacao se é aceitavel a posicao
         for(let pos of sequencia){
              document.getElementById(pos).style.backgroundColor = "#000"
@@ -81,16 +84,15 @@ const adicionaPortaAviao= (tipo)=>{
 
 //Recebe a posciao inicial A1 e final A5 depois de filtrada e gera um array: A1 A2 A3 A4 A5
 
-const gerarSequencia = (posInicial, posFinal) => {
-
+const gerarSequencia = (posInicial, posFinal, tamanhoTabela) => {
+    let letras = []
     posInicial = posInicial.split('')
     posFinal = posFinal.split('')
     //Caso valor seja maior qu e9 ex: A10 A12
     posFinal[2]==undefined?posFinal[1]=posFinal[1]:posFinal[1]+=posFinal[2]
     posInicial[2]==undefined?posInicial[1]=posInicial[1]:posInicial[1]+=posInicial[2]
 
-    const letras = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O"]
-
+    tamanhoTabela==10?letras=letras10:letras=letras15
 
     let resultado=[];
  
@@ -100,7 +102,6 @@ const gerarSequencia = (posInicial, posFinal) => {
             if(l == posInicial[0]){
                 for(let i = posInicial[1]; i<=posFinal[1]; i++){
                     resultado.push(l+i)
-                    
                 }
             }
         }
@@ -121,4 +122,39 @@ const gerarSequencia = (posInicial, posFinal) => {
     }
     
     return resultado;
+}
+
+//verificar se a posicao passada é valida
+const verificaPosicaoDisponivel=(posInicial, posFinal,tipo,tamanhoTabela)=>{
+    let tabela = []
+    posInicial = posInicial.split('')
+    posFinal = posFinal.split('')
+    //Caso valor seja maior qu e9 ex: A10 A12
+    posFinal[2]==undefined?posFinal[1]=posFinal[1]:posFinal[1]+=posFinal[2]
+    posInicial[2]==undefined?posInicial[1]=posInicial[1]:posInicial[1]+=posInicial[2]
+    //dps fazer uma funcao para tirar essa repeticao de codigo(coloca pra fazer no posinicial dps no posFinal numa funcao so)
+
+    tamanhoTabela==10?tabela=letras10:tabela=letras15
+
+    //se os dois forem iguais
+    if(posInicial.toString() == posFinal.toString()){
+        setAlert(1,"ERRO!!! As posicoes nao podem estar iguais")
+        return true
+    }
+    //verificar se o valor passado esta dentro do tamanho da tabela
+    if(posInicial[1]>tamanhoTabela || posFinal[1]>tamanhoTabela || tabela.includes(posInicial[0])!=true || tabela.includes(posFinal[0])!=true){
+        //verifica se ta na dentro dos parametros da  tabela
+        setAlert(1,"ERRO!!! Parametro maior que o tamanho da Tabela")
+        return true
+    }
+
+    alert(tabela.indexOf(posInicial[0]) >= tabela.indexOf(posFinal[0]))
+    //verificacao se o 1 parametro é maior que o segundo(j1 a1))
+    if(posInicial[1]>posFinal[1] && tabela.indexOf(posInicial[0]) >= tabela.indexOf(posFinal[0])){//falta fazer ou letra maior j e a
+        setAlert(1, "ERRO!!! Inicio maior ou igual ao Final")
+        return true
+    }
+    //verificacao de tipo da embarcacao 
+
+    return false
 }
