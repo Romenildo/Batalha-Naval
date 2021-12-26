@@ -1,4 +1,6 @@
 
+
+//criacao da tabela com html e js
 let linhas;
 let colunas;
 
@@ -26,6 +28,8 @@ const criarTabela = (tipo)=>{
 
 criarTabela(10)
 
+
+//adicionar as embarcacoes
 const adicionaPortaAviao= (tipo)=>{
     let posInicial;
     let posFinal; 
@@ -68,14 +72,32 @@ const gerarSequencia = (posInicial, posFinal) => {
     const letras = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O"]
 
     let resultado=[];
-    //somente horizontal
-    for(let l of letras){
-        if(l == posInicial[0]){
-            for(let i = posInicial[1]; i<=posFinal[1]; i++){
-                resultado.push(l+i)
-                
+ 
+    if(posInicial[0] == posFinal[0]){
+        //horizontal
+        for(let l of letras){
+            if(l == posInicial[0]){
+                for(let i = posInicial[1]; i<=posFinal[1]; i++){
+                    resultado.push(l+i)
+                    
+                }
+            }
+        }
+    }else{
+        //vertical
+        for(let i = posInicial[1]; i<=posFinal[1]; i++){
+            for(let l in letras){
+                if(letras[l] == posInicial[0]){
+                    let x = l;
+                    while(letras[x]!=posFinal[0]){
+                        resultado.push(letras[x]+i)
+                        x++; 
+                    }
+                    resultado.push(letras[x]+i)
+                }
             }
         }
     }
+    
     return resultado;
 }
