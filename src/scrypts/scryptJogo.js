@@ -1,10 +1,8 @@
-
-
 //criacao da tabela com html e js
-let linhas;
-let colunas;
-
 const criarTabela = (tipo)=>{
+    let linhas;
+    let colunas;
+
     if(tipo == 10){
         linhas = ["A","B","C","D","E","F","G","H","I","J"]
         colunas = ["1","2","3","4","5","6","7","8","9","10"]
@@ -28,16 +26,19 @@ const criarTabela = (tipo)=>{
 
 criarTabela(10)
 
-
+const setAlert = (ativo)=>{
+    if(ativo == 0){
+        document.getElementById('alerta').style.display='none'
+    }else{
+        document.getElementById('alerta').style.display='block'
+    }
+}
 //adicionar as embarcacoes
 const adicionaPortaAviao= (tipo)=>{
     let posInicial;
     let posFinal; 
     let sequencia = []
-    
-    if(posInicial=="" || posFinal==""){
-        //Alerta erro
-    }
+
     switch(tipo){
         case 1:
             //portaAviao
@@ -58,13 +59,23 @@ const adicionaPortaAviao= (tipo)=>{
             break
     }
 
-    sequencia = gerarSequencia(posInicial, posFinal)
-     //fazer verificacao se é aceitavel a posicao
-    for(let pos of sequencia){
-         document.getElementById(pos).style.backgroundColor = "#000"
-    }
+    if(posInicial=="" || posFinal==""){
+        //se nao tiver nada no campo
+        setAlert(1)
 
+    }else{
+        //fazer verificacao
+        sequencia = gerarSequencia(posInicial, posFinal)
+         //fazer verificacao se é aceitavel a posicao
+        for(let pos of sequencia){
+             document.getElementById(pos).style.backgroundColor = "#000"
+        }
+        setAlert(0)
+    }
 }
+
+
+//Recebe a posciao inicial A1 e final A5 depois de filtrada e gera um array: A1 A2 A3 A4 A5
 
 const gerarSequencia = (posInicial, posFinal) => {
     posInicial = posInicial.split('')
