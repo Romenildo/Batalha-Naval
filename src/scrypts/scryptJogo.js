@@ -43,6 +43,7 @@ const setAlert = (ativo, mensagem = "")=>{
 const adicionaPortaAviao= (tipo)=>{
     let posInicial;
     let posFinal; 
+    let tamanhoEmbarcacao;
     let sequencia = []
 
     switch(tipo){
@@ -50,18 +51,22 @@ const adicionaPortaAviao= (tipo)=>{
             //portaAviao
             posInicial = document.getElementById('campoPortaAviao1').value.toUpperCase()
             posFinal = document.getElementById('campoPortaAviao2').value.toUpperCase()
+            tamanhoEmbarcacao = 5
             break
         case 2:
             posInicial = document.getElementById('campoNavioTanque1').value.toUpperCase()
             posFinal = document.getElementById('campoNavioTanque2').value.toUpperCase()
+            tamanhoEmbarcacao = 4
             break
         case 3:
             posInicial = document.getElementById('campoContratorpedeiros1').value.toUpperCase()
             posFinal = document.getElementById('campoContratorpedeiros2').value.toUpperCase()
+            tamanhoEmbarcacao = 3
             break
         case 4:
             posInicial = document.getElementById('campoSubmarino1').value.toUpperCase()
             posFinal = document.getElementById('campoSubmarino2').value.toUpperCase()
+            tamanhoEmbarcacao = 2
             break
     }
 
@@ -69,7 +74,7 @@ const adicionaPortaAviao= (tipo)=>{
         //se nao tiver nada no campo
         setAlert(1, "ERRO!!! Campo das posições vazio")
 
-    }else if(verificaPosicaoDisponivel(posInicial, posFinal, tipo, 10)==false){
+    }else if(verificaPosicaoDisponivel(posInicial, posFinal,tamanhoEmbarcacao, 10)==false){
         //fazer verificacao
 
         sequencia = gerarSequencia(posInicial, posFinal,10)
@@ -118,7 +123,7 @@ const gerarSequencia = (posInicial, posFinal, tamanhoTabela) => {
 }
 
 //verificar se a posicao passada é valida
-const verificaPosicaoDisponivel=(posInicial, posFinal,tipo,tamanhoTabela)=>{
+const verificaPosicaoDisponivel=(posInicial, posFinal,tamanhoEmbarcacao,tamanhoTabela)=>{
     let tabela = []
     let posicoes = []
     posicoes = gerarSequencia(posInicial,posFinal,10)
@@ -157,9 +162,13 @@ const verificaPosicaoDisponivel=(posInicial, posFinal,tipo,tamanhoTabela)=>{
     })
     if(sim == true){
         setAlert(1, "ERRO!!! Posicao ja esta sendo ocupado")
-            return true
+        return true
     }
-    
-    //verificacao de tipo da embarcacao 
+    //verificacao de tipo da embarcacao (criar um porta aviao no lugar de um submarino)
+    if(posicoes.length != tamanhoEmbarcacao){
+        setAlert(1, "ERRO!!! Tamanho da Embarcacao invalida")
+        return true;
+    }
+
     return false
 }
