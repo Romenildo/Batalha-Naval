@@ -1,5 +1,5 @@
 
-let posicoesOcupadas = ["CU"]
+let posicoesOcupadas = []
 const letras10 = ["A","B","C","D","E","F","G","H","I","J"]
 const letras15 = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O"]
 
@@ -74,7 +74,7 @@ const adicionaPortaAviao= (tipo)=>{
         //se nao tiver nada no campo
         setAlert(1, "ERRO!!! Campo das posições vazio")
 
-    }else if(verificaPosicaoDisponivel(posInicial, posFinal,tamanhoEmbarcacao, 10)==false){
+    }else if(verificaPosicaoDisponivel(posInicial, posFinal,tamanhoEmbarcacao, 10)==false && verificaQtdEmbarcacoes(tipo)==false){
         //fazer verificacao
 
         sequencia = gerarSequencia(posInicial, posFinal,10)
@@ -172,3 +172,46 @@ const verificaPosicaoDisponivel=(posInicial, posFinal,tamanhoEmbarcacao,tamanhoT
 
     return false
 }
+
+//alterar quantidade disponivel de navios
+const qtdEmbarcacoes = ["x0", "x1", "x2", "x3", "x4"]
+
+let portaAviao = 1
+let navioTanque = 2;
+let contratorpedeiro = 3;
+let submarino = 4;
+
+let qtd_portaAviao = document.getElementById('qtd-portaAviao')
+let qtd_navioTanque = document.getElementById('qtd-navioTanque')
+let qtd_contratorpedeiro = document.getElementById('qtd-contratorpedeiro')
+let qtd_submarino = document.getElementById('qtd-submarino')
+
+qtd_portaAviao.innerHTML= qtdEmbarcacoes[portaAviao]
+qtd_navioTanque.innerHTML= qtdEmbarcacoes[navioTanque]
+qtd_contratorpedeiro.innerHTML= qtdEmbarcacoes[contratorpedeiro]
+qtd_submarino.innerHTML= qtdEmbarcacoes[submarino]
+
+const verificaQtdEmbarcacoes= (tipo)=>{
+    
+    if(tipo == 1 && portaAviao > 0){
+        qtd_portaAviao.innerHTML = qtdEmbarcacoes[--portaAviao]
+        return false
+    }
+    if(tipo == 2 && navioTanque > 0){
+        qtd_navioTanque.innerHTML = qtdEmbarcacoes[--navioTanque]
+        return false
+    }
+    if(tipo == 3 && contratorpedeiro > 0){
+        qtd_contratorpedeiro.innerHTML = qtdEmbarcacoes[--contratorpedeiro]
+        return false
+    }
+    if(tipo == 4 && submarino > 0){
+        qtd_submarino.innerHTML = qtdEmbarcacoes[--submarino]
+        return false
+    }
+
+    setAlert(1,"ERRO!!! Quantidade da Embarcacao alcancada")
+    return true
+}
+//botao reset
+//botao iniciar

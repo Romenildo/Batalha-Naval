@@ -35,13 +35,3 @@ const voltarTelaInicial = () =>{
     telaPreparacao.style.display = "none"
     telaInicial.style.display = "block"
 }
-
-const amendoin = '<h1 id = "A1" class = "funcionou_'+ "poucha"+'"> oloco meu </h1> '
-
-let criarTabela2 = ""
-
-criarTabela2 += amendoin
-criarTabela2 += '<h2 class = "funcioou'+"2"+'"> funcionou god</h2>'
-
-let amendoin2 = '<h1 class = "funcionou_'+ "poucha"+'"> oloco meu </h1> <h2 class = "funcioou"> funcionou god</h2>'
-
