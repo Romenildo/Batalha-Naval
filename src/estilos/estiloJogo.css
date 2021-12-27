@@ -76,9 +76,9 @@
     text-align: center;
     transition:0.5s;
     cursor:pointer;
-    animation: pisca 3s infinite;
+    animation: piscaVermelho 3s infinite;
   }
-  @keyframes pisca{
+  @keyframes piscaVermelho{
     0%{
         background-color: rgba(245, 32, 17, 0.63);
     }
@@ -87,6 +87,17 @@
     }
     100%{
         background-color: rgba(245, 32, 17, 0.63);
+    }
+  }
+  @keyframes piscaAmarelo{
+    0%{
+        background-color: rgba(241, 245, 8, 0.63);
+    }
+    50%{
+        background-color: rgba(163, 165, 18, 0.33);
+    }
+    100%{
+        background-color: rgba(241, 245, 8, 0.63);
     }
   }
 

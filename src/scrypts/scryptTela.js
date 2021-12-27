@@ -35,3 +35,21 @@ const voltarTelaInicial = () =>{
     telaPreparacao.style.display = "none"
     telaInicial.style.display = "block"
 }
+
+const setAlert = (ativo, mensagem = "")=>{
+    let alerta = document.getElementById('alerta')
+    if(ativo==2){
+        alerta.style.animation = "piscaAmarelo 2s infinite"
+        alerta.style.border = "1px solid rgba(241, 245, 8, 0.63)"
+    }
+    if(ativo == 1){
+        alerta.style.animation = "piscaVermelho 3s infinite"
+        alerta.style.border = "1px solid rgba(241, 6, 6, 0.81)"
+    }
+    if(ativo == 0){
+        alerta.style.display='none'
+    }else{
+        alerta.style.display='block'
+        alerta.innerHTML = mensagem
+    }
+}

@@ -31,14 +31,6 @@ const criarTabela = (tipo)=>{
 
 criarTabela(10)
 
-const setAlert = (ativo, mensagem = "")=>{
-    if(ativo == 0){
-        document.getElementById('alerta').style.display='none'
-    }else{
-        document.getElementById('alerta').style.display='block'
-        document.getElementById('alerta').innerHTML = mensagem
-    }
-}
 //adicionar as embarcacoes
 const adicionaPortaAviao= (tipo)=>{
     let posInicial;
@@ -69,7 +61,6 @@ const adicionaPortaAviao= (tipo)=>{
             tamanhoEmbarcacao = 2
             break
     }
-
     if(posInicial=="" || posFinal==""){
         //se nao tiver nada no campo
         setAlert(1, "ERRO!!! Campo das posições vazio")
@@ -84,7 +75,12 @@ const adicionaPortaAviao= (tipo)=>{
         }
         
         sequencia.forEach((valor)=>posicoesOcupadas.push(valor))
-        setAlert(0)
+        if(totalEmbarcacoes == 0){
+            setAlert(2, "Tudo pronto para Iniciar a partida")
+        }else{
+            setAlert(0)
+        }
+        
     
     }
 }
@@ -180,6 +176,7 @@ let portaAviao = 1
 let navioTanque = 2;
 let contratorpedeiro = 3;
 let submarino = 4;
+let totalEmbarcacoes = 10;
 
 let qtd_portaAviao = document.getElementById('qtd-portaAviao')
 let qtd_navioTanque = document.getElementById('qtd-navioTanque')
@@ -191,24 +188,30 @@ qtd_navioTanque.innerHTML= qtdEmbarcacoes[navioTanque]
 qtd_contratorpedeiro.innerHTML= qtdEmbarcacoes[contratorpedeiro]
 qtd_submarino.innerHTML= qtdEmbarcacoes[submarino]
 
+
+
 const verificaQtdEmbarcacoes= (tipo)=>{
-    
     if(tipo == 1 && portaAviao > 0){
         qtd_portaAviao.innerHTML = qtdEmbarcacoes[--portaAviao]
+        totalEmbarcacoes--;
         return false
     }
     if(tipo == 2 && navioTanque > 0){
         qtd_navioTanque.innerHTML = qtdEmbarcacoes[--navioTanque]
+        totalEmbarcacoes--;
         return false
     }
     if(tipo == 3 && contratorpedeiro > 0){
         qtd_contratorpedeiro.innerHTML = qtdEmbarcacoes[--contratorpedeiro]
+        totalEmbarcacoes--;
         return false
     }
     if(tipo == 4 && submarino > 0){
         qtd_submarino.innerHTML = qtdEmbarcacoes[--submarino]
+        totalEmbarcacoes--
         return false
     }
+    
     setAlert(1,"ERRO!!! Quantidade da Embarcacao alcancada")
     return true
 }
@@ -222,6 +225,17 @@ const resetEmbarcacoes = () =>{
         document.getElementById(pos).style.backgroundColor = "#1E88E5"
    }
     posicoesOcupadas = []
+    setAlert(0)
 }
 
 //botao iniciar
+
+const iniciarPartida= () =>{
+    
+    if(totalEmbarcacoes > 0){
+        setAlert(1,"ERRO!!! Todas as Embarcacoes devem ser colocadas")
+    }else{
+        setAlert(0)
+        alert("partida Iniciada")
+    }
+}
