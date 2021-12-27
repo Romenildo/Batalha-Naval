@@ -1,5 +1,5 @@
 
-let posicoesOcupadas = []
+let posicoesOcupadas = ["CU"]
 const letras10 = ["A","B","C","D","E","F","G","H","I","J"]
 const letras15 = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O"]
 
@@ -77,7 +77,8 @@ const adicionaPortaAviao= (tipo)=>{
         for(let pos of sequencia){
              document.getElementById(pos).style.backgroundColor = "#000"
         }
-        posicoesOcupadas.push(sequencia)
+        
+        sequencia.forEach((valor)=>posicoesOcupadas.push(valor))
         setAlert(0)
     
     }
@@ -119,6 +120,8 @@ const gerarSequencia = (posInicial, posFinal, tamanhoTabela) => {
 //verificar se a posicao passada é valida
 const verificaPosicaoDisponivel=(posInicial, posFinal,tipo,tamanhoTabela)=>{
     let tabela = []
+    let posicoes = []
+    posicoes = gerarSequencia(posInicial,posFinal,10)
     posInicial = posInicial.split('')
     posFinal = posFinal.split('')
     //Caso valor seja maior qu e9 ex: A10 A12
@@ -144,6 +147,19 @@ const verificaPosicaoDisponivel=(posInicial, posFinal,tipo,tamanhoTabela)=>{
         setAlert(1, "ERRO!!! Inicio maior ou igual ao Final")
         return true
     }
+    //verificar se o local esta disponivel
+    //consertar ganbiarra****************
+    let sim = false;
+    posicoes.forEach((valor)=>{
+	    if(posicoesOcupadas.includes(valor)){
+            sim = true;
+        }
+    })
+    if(sim == true){
+        setAlert(1, "ERRO!!! Posicao ja esta sendo ocupado")
+            return true
+    }
+    
     //verificacao de tipo da embarcacao 
     return false
 }
