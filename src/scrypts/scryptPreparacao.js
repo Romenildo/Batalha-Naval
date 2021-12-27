@@ -209,9 +209,19 @@ const verificaQtdEmbarcacoes= (tipo)=>{
         qtd_submarino.innerHTML = qtdEmbarcacoes[--submarino]
         return false
     }
-
     setAlert(1,"ERRO!!! Quantidade da Embarcacao alcancada")
     return true
 }
 //botao reset
+const resetEmbarcacoes = () =>{
+    qtd_portaAviao.innerHTML= qtdEmbarcacoes[1]
+    qtd_navioTanque.innerHTML= qtdEmbarcacoes[2]
+    qtd_contratorpedeiro.innerHTML= qtdEmbarcacoes[3]
+    qtd_submarino.innerHTML= qtdEmbarcacoes[4]
+    for(let pos of posicoesOcupadas){
+        document.getElementById(pos).style.backgroundColor = "#1E88E5"
+   }
+    posicoesOcupadas = []
+}
+
 //botao iniciar
