@@ -4,7 +4,7 @@
 }
 
 .container{
-    height: 100vh;
+    height: 723px;
     width: 100vw;
 
     background: linear-gradient(45deg, rgb(10, 48, 151),rgb(93, 187, 190),rgb(182, 230, 245),#fff);
@@ -278,7 +278,7 @@ tr:first-child td:before {
 }
 
 td:hover{
-    background-color: brown;
+    background-color: rgb(46, 59, 240);
 }
 
 
@@ -295,6 +295,7 @@ footer{
     margin-left: 20%;
     border-top: 5px inset rgba(128, 128, 128, 0.562);
     border-radius: 5px;
+
 }
 .rodape{
     text-align: center;

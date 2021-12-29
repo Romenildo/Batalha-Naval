@@ -1,4 +1,5 @@
 
+
 let posicoesOcupadas = []
 let linhas;
 let colunas;
@@ -6,6 +7,7 @@ let tamanhoTabela;
 
 //criacao da tabela com html e js (tamnhos 10 ou 15)
 const criarTabela = (tamanho)=>{
+   
     tamanhoTabela = tamanho;
 
     if(tamanhoTabela == 10){
@@ -14,6 +16,11 @@ const criarTabela = (tamanho)=>{
     }else{
         linhas = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O"]
         colunas = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"]
+        document.getElementById('container').style.height = "800px"
+        document.getElementById('tabuleiro-jogador').style.height = "542px"
+        document.getElementById('foo').style.marginTop = "87px"
+        document.getElementById('tabuleiros').style.height = "550px"
+        
     }
 
     let tabela = '<table>'
@@ -28,13 +35,14 @@ const criarTabela = (tamanho)=>{
     document.getElementById('tabuleiro-jogador').innerHTML = tabela
 }
 
-criarTabela(10)
+criarTabela(15)
+
+
 
 //adicionar as embarcacoes
 const adicionaEmbarcacao= (tipoEmbarcacao)=>{
     //pega [1] posInicial [2] posFinal [3] tamanhoEmbarcacao
     let dados =  pegarDadosCampo(tipoEmbarcacao)
-
     let posInicial= dados[0];
     let posFinal = dados[1]; 
     let tamanhoEmbarcacao= dados[2];
