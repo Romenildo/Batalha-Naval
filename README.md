@@ -29,3 +29,7 @@ Implementação das funcoes em JavaScrypt para alterar entre as Telas
    
 Adcicionado criação da tabela de forma dinamica com JS
 ![](https://github.com/Romenildo/Batalha-Naval/blob/master/imgs/v3-tabela.PNG)
+
+adicionado mudanças para suportar tabela 15x15
+![](https://github.com/Romenildo/Batalha-Naval/blob/master/imgs/v3-15x15.PNG)
+

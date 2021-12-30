@@ -35,8 +35,6 @@ const criarTabela = (tamanho)=>{
     document.getElementById('tabuleiro-jogador').innerHTML = tabela
 }
 
-criarTabela(15)
-
 
 
 //adicionar as embarcacoes
