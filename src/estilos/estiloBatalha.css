@@ -1,0 +1,153 @@
+
+
+.tela-Batalha{
+    z-index: 1;
+    margin-left:auto;
+    margin-right: auto;
+    width: 1400px;
+    height: 600px;
+    display: block;
+
+}
+
+.descricao-batalha{
+    display: inline-flex;
+    margin-left: 100px;
+}
+
+.texto-desc{
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(78, 77, 77);
+}
+.texto-desc:nth-child(2){
+    margin-left: 550px;
+}
+
+.cronometro-div{
+    display: inline-flex;
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    font-size: 15px;
+    color: rgb(78, 77, 77);
+    margin-left: 270px;
+}
+.cronometro{
+    height: 17px;
+    width: 65px;
+    background-color: rgb(184, 224, 245);
+    border-radius: 8px;
+    border:2px inset rgba(155, 238, 227, 0.562);
+
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    font-size: 18px;
+    box-shadow:3px 5px 3px rgb(138, 143, 148);
+    color: rgb(85, 83, 83);
+    padding-left: 20px;
+}
+
+.tabuleiros-batalha{
+    height: 476px;
+    display: flex;
+}
+.tabuleiro-jogo{
+    background-color: rgb(246, 248, 250);
+    height: 466px;
+    width: 650px;
+    margin: 0px 20px;
+    border:4px ridge rgba(128, 128, 128, 0.562);
+}
+
+.panel-controle {
+    height: 100px;
+    display: inline-flex;
+    margin-top: 5px;
+}
+
+.panel-controle-jogadores{
+    display: inline-flex;
+    width: 637px;
+    margin-left: 40px;
+    
+}
+
+.botoes-tiros{
+    display:block;
+    width: 80px;
+
+}
+.btn-tiros{
+    height: 27px;
+    width: 70px;
+    background-color: rgb(170, 223, 248);
+    border-radius: 10px;
+    border:2px inset rgba(128, 128, 128, 0.562);
+
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    font-size: 12px;
+    box-shadow:3px 5px 3px rgb(138, 143, 148);
+    color: rgb(7, 7, 7);
+    font-weight: 550;
+    margin: 10px 0px;
+}
+
+.btn-tiros:last-child{
+    background-color: rgb(241, 86, 86);
+}
+
+.btn-tiros:hover{
+    height: 29px;
+    width: 72px;
+    cursor: pointer;
+    box-shadow: 3px 5px 3px rgb(56, 160, 245);
+}
+.btn-tiros:last-child:hover{
+    height: 29px;
+    width: 72px;
+    cursor: pointer;
+    box-shadow: 3px 5px 3px rgb(233, 60, 60);
+}
+
+.panel-restantes{
+    width: 450px;
+    height: 91px;
+    background-color: white;
+    border:2px inset rgba(128, 128, 128, 0.562);
+    border-radius: 10px;
+
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+  
+    box-shadow:3px 5px 3px rgb(138, 143, 148);
+    color: rgb(34, 34, 34);
+    padding: 0px 0px 0px 20px;
+
+}
+
+.naviosRestantes{
+    line-height: 30px;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgb(39, 39, 39);
+    font-size: 19px;
+}
+
+.textoRestantes{
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    font-size: 15px;
+    color: rgb(70, 68, 68);
+}
+
+.panel-points{
+    height: 72px;
+    width: 80px;
+    margin-left: 10px;
+    background-color: white;
+    border:2px inset rgba(128, 128, 128, 0.562);
+    border-radius: 10px;
+    padding: 10px;
+
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    font-size: 22px;
+    box-shadow:3px 5px 3px rgb(138, 143, 148);
+    color: rgb(66, 66, 66);
+
+}

@@ -33,3 +33,6 @@ Adcicionado criação da tabela de forma dinamica com JS
 adicionado mudanças para suportar tabela 15x15
 ![](https://github.com/Romenildo/Batalha-Naval/blob/master/imgs/v3-15x15.PNG)
 
+Design tela de batalha 10x10
+![](https://github.com/Romenildo/Batalha-Naval/blob/master/imgs/v3-tabelaBatalha.PNG)
+

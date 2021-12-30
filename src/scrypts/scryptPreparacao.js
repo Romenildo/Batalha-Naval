@@ -6,7 +6,7 @@ let colunas;
 let tamanhoTabela;
 
 //criacao da tabela com html e js (tamnhos 10 ou 15)
-const criarTabela = (tamanho)=>{
+const criarTabela = (tamanho, local)=>{
    
     tamanhoTabela = tamanho;
 
@@ -32,7 +32,16 @@ const criarTabela = (tamanho)=>{
          tabela+= '</tr>'
     }
     tabela+= '</table>'
-    document.getElementById('tabuleiro-jogador').innerHTML = tabela
+    if(local == 1){
+        document.getElementById('tabuleiro-jogador').innerHTML = tabela
+    }
+    if(local == 2){
+        document.getElementById('tabuleiroBatalha-jogador').innerHTML = tabela
+    }
+    if(local == 3){
+        document.getElementById('tabuleiroBatalha-Maquina').innerHTML = tabela
+    }
+    
 }
 
 
