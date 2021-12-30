@@ -49,13 +49,15 @@
 .tabuleiros-batalha{
     height: 476px;
     display: flex;
+    margin-bottom: 5px;
 }
 .tabuleiro-jogo{
-    background-color: rgb(246, 248, 250);
     height: 466px;
     width: 650px;
-    margin: 0px 20px;
-    border:4px ridge rgba(128, 128, 128, 0.562);
+    margin: 0px 25px;
+}
+.tabuleiro-jogo:nth-child(1){
+    margin-left: 80px;
 }
 
 .panel-controle {

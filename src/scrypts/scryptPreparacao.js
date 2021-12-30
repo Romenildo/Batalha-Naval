@@ -20,7 +20,12 @@ const criarTabela = (tamanho, local)=>{
         document.getElementById('tabuleiro-jogador').style.height = "542px"
         document.getElementById('foo').style.marginTop = "87px"
         document.getElementById('tabuleiros').style.height = "550px"
+
+        document.getElementById('tabuleiroBatalha').style.height = "545px"
+        document.getElementById('tabuleiroBatalha1').style.height = "542px"
+        document.getElementById('tabuleiroBatalha2').style.height = "542px"
         
+
     }
 
     let tabela = '<table>'
@@ -36,10 +41,10 @@ const criarTabela = (tamanho, local)=>{
         document.getElementById('tabuleiro-jogador').innerHTML = tabela
     }
     if(local == 2){
-        document.getElementById('tabuleiroBatalha-jogador').innerHTML = tabela
+        document.getElementById('tabuleiroBatalha1').innerHTML = tabela
     }
     if(local == 3){
-        document.getElementById('tabuleiroBatalha-Maquina').innerHTML = tabela
+        document.getElementById('tabuleiroBatalha2').innerHTML = tabela
     }
     
 }
