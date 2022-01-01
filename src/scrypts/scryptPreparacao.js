@@ -32,7 +32,7 @@ const criarTabela = (tamanho, local)=>{
     for(let i = 0; i< tamanhoTabela; i++){
         tabela+= '<tr linha="'+linhas[i]+'">'
         for(let j = 0; j<tamanhoTabela; j++){
-             tabela+= '<td coluna="'+colunas[j]+'" title="'+linhas[i]+colunas[j]+' livre"id="'+linhas[i]+colunas[j]+'"></td>'
+             tabela+= '<td coluna="'+colunas[j]+'" title="'+linhas[i]+colunas[j]+' livre"id="'+linhas[i]+colunas[j]+'" onclick="marcarCelula(this)"></td>'
          }
          tabela+= '</tr>'
     }

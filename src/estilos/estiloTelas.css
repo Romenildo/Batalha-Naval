@@ -255,10 +255,17 @@ table{
     height: 430px;
 }
 td {
-    height: 30px;
+    height: 32px;
     width: 50px;
     background-color: #1E88E5;
     cursor: crosshair; 
+
+    color: red;
+    font-size: 25px;
+    font-weight: 900;
+    text-shadow: 2px 2px 3px red;
+    text-align: 10px;
+
 }
 tr, td {
     border-collapse: collapse;
@@ -271,6 +278,9 @@ tr:before {
 }
 
 tr:first-child td:before {	
+    color: black;
+    text-shadow: 0px 0px 0px black;
+    font-weight: lighter;
 	content: attr(coluna);
 	position: relative;
     bottom: 40px;
