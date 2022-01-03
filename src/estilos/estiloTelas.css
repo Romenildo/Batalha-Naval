@@ -253,6 +253,7 @@ table{
     top: 37px;
     width: 600px;
     height: 430px;
+
 }
 td {
     height: 32px;
@@ -264,7 +265,7 @@ td {
     font-size: 25px;
     font-weight: 900;
     text-shadow: 2px 2px 3px red;
-    text-align: 10px;
+    text-indent: 15px;
 
 }
 tr, td {
