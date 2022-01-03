@@ -7,6 +7,7 @@ let marcacoes = 0;
 let posicoesAtaque = [0,0,0]
 let tiroEspecial = false
 let qtdTiroEspecial = 1
+document.getElementById("qtdTirosEspeciais").innerHTML = qtdTiroEspecial
 
 posicoesOcupadas = ["A1", "A2", "A3"]
 
@@ -15,9 +16,17 @@ const marcarCelula = (div) =>{
     if(tiroEspecial == true && qtdTiroEspecial == 1){
         //ativar tiro especial
         document.getElementById(id).innerHTML = "O"
+        let sequenciaBombaEspecial = posicoesBombaEspecial(id)
+        pintaCelulas(sequenciaBombaEspecial, 'red')
+
+        qtdTiroEspecial--
+        document.getElementById("qtdTirosEspeciais").innerHTML = "0"
+        efeitoTiroEspecial(0)
+
 
 
     }else{
+        efeitoTiroEspecial(0)
         document.getElementById(id).innerHTML = "X"
 
         //somar os 3 cliques das bombas
@@ -75,4 +84,24 @@ const efeitoTiroEspecial = (ativo)=>{
         container.style.backgroundSize = "300% 300%"
     }
     
+}
+
+const posicoesBombaEspecial= (id)=>{
+    linhas = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O"]
+
+    let separados = id.split("")
+    let posicoesBomba = []
+
+    for(let i = 0; i< linhas.length; i++){
+        if(linhas[i]==separados[0]){
+            for(let j = i-1; j<i+2;j++){
+                for(let k = separados[1]-1;k<parseInt(separados[1])+2;k++){
+                    posicoesBomba.push(linhas[j]+k)
+                }
+
+            }
+            break
+        }
+    }
+    return posicoesBomba;
 }
