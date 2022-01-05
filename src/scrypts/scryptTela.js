@@ -19,8 +19,10 @@ const mostrarTelaRegras = () =>{
 }
 
 const mostrarTelaRanking = ()=>{
+    mostrarRanking()
     telaInicial.style.display = "none"
     telaRanking.style.display = "block"
+    
 }
 
 const mostrarTelaPreparacao = () =>{
@@ -59,3 +61,10 @@ const setAlert = (ativo, mensagem = "")=>{
         alerta.innerHTML = mensagem
     }
 }
+
+const mostrarRanking = () =>{
+    alert(text)
+    //variavel ta no arquivo txt
+    
+}
+
