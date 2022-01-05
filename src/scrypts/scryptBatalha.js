@@ -1,7 +1,10 @@
 
-criarTabela(10,2)
-criarTabela(10,3)
 
+const iniciarBatalha=()=>{
+    mostrarTelaBatalha()
+    criarTabela(10,2)
+    criarTabela(10,3)
+}
 
 let marcacoes = 0;
 let posicoesAtaque = [0,0,0]
@@ -9,7 +12,14 @@ let tiroEspecial = false
 let qtdTiroEspecial = 1
 document.getElementById("qtdTirosEspeciais").innerHTML = qtdTiroEspecial
 
-posicoesOcupadas = ["A1", "A2", "A3"]
+let pontosJogador = 0
+const pontos_jogador = document.getElementById("pontosJogador")
+pontos_jogador.innerHTML = pontosJogador
+
+const qtdTirosNormais = 3
+const tiros_Normais = document.getElementById("qtdTirosNormais")
+tiros_Normais.innerHTML = qtdTirosNormais
+
 
 const marcarCelula = (div) =>{
     let id = div.id
@@ -17,15 +27,28 @@ const marcarCelula = (div) =>{
         //ativar tiro especial
         document.getElementById(id).innerHTML = "O"
         let sequenciaBombaEspecial = posicoesBombaEspecial(id)
-        pintaCelulas(sequenciaBombaEspecial, 'red')
 
-        qtdTiroEspecial--
-        document.getElementById("qtdTirosEspeciais").innerHTML = "0"
+        for(let i = 0; i<sequenciaBombaEspecial.length; i++){
+        
+           if(sequenciaBombaEspecial[i]!= "00"){
+                if(posicoesOcupadas.includes(sequenciaBombaEspecial[i])){
+                    
+                    //encontrou navio
+                    document.getElementById(sequenciaBombaEspecial[i]).style.backgroundColor = "black"
+                    pontos_jogador.innerHTML = pontosJogador += 500
+                }else{
+                    document.getElementById(sequenciaBombaEspecial[i]).style.backgroundColor = "red"
+                }
+                document.getElementById(sequenciaBombaEspecial[i]).innerHTML = ""
+           }
+
+        }
+        
+        document.getElementById("qtdTirosEspeciais").innerHTML = --qtdTiroEspecial
         efeitoTiroEspecial(0)
 
-
-
     }else{
+        //tiro normal
         efeitoTiroEspecial(0)
         document.getElementById(id).innerHTML = "X"
 
@@ -39,6 +62,7 @@ const marcarCelula = (div) =>{
                 }
             })
             marcacoes--
+            tiros_Normais.innerHTML = qtdTirosNormais - marcacoes
         }else{
             for(let i = 0; i<3;i++){
                 if(posicoesAtaque[i]==0){
@@ -47,6 +71,8 @@ const marcarCelula = (div) =>{
                 }
             }
             marcacoes++
+            
+            tiros_Normais.innerHTML = qtdTirosNormais - marcacoes
         }
         
         if(marcacoes == 3){
@@ -55,6 +81,7 @@ const marcarCelula = (div) =>{
                 if(posicoesOcupadas.includes(posicoesAtaque[i])){
                     //encontrou navio
                     document.getElementById(posicoesAtaque[i]).style.backgroundColor = "black"
+                    pontos_jogador.innerHTML = pontosJogador += 500
                 }else{
                     document.getElementById(posicoesAtaque[i]).style.backgroundColor = "red"
                 }
@@ -63,6 +90,7 @@ const marcarCelula = (div) =>{
             }
             //resetar
             marcacoes = 0;
+            tiros_Normais.innerHTML = qtdTirosNormais - marcacoes
             for(let i = 0; i<3;i++){
                 posicoesAtaque[i] = 0
             }
@@ -87,9 +115,14 @@ const efeitoTiroEspecial = (ativo)=>{
 }
 
 const posicoesBombaEspecial= (id)=>{
-    linhas = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O"]
 
-    let separados = id.split("")
+    //sequencia ao redor da explosao
+    //           X  X  X  X
+    //           X  O  O  X
+    //           X  X  X  X
+    linhas = ["0","A","B","C","D","E","F","G","H","I","J","0"]//somente com tamanho 10x10
+
+    let separados =gerarPosicao(id)
     let posicoesBomba = []
 
     for(let i = 0; i< linhas.length; i++){
@@ -103,5 +136,22 @@ const posicoesBombaEspecial= (id)=>{
             break
         }
     }
+    posicoesBomba = filtrarPosicoesBombaEspecial(posicoesBomba)
     return posicoesBomba;
+}
+
+const filtrarPosicoesBombaEspecial = (sequencia)=>{
+    //caso a bomba esteja em um dos cantos do tabueiro, acender somente os que estao dentro do tabuleiro
+
+    const posicoesFiltrada = sequencia.map((e)=>
+    {
+        let separados = gerarPosicao(e)
+        //fazer a troca para o tabuleiro 15
+        if(separados[0] == 0 || separados[0] == 11 || separados[1]== 0 || separados[1] == 11){
+            return "00"
+        }
+        return e 
+    })
+
+    return posicoesFiltrada
 }

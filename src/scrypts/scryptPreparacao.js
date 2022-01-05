@@ -38,12 +38,15 @@ const criarTabela = (tamanho, local)=>{
     }
     tabela+= '</table>'
     if(local == 1){
+        //tela preparacao
         document.getElementById('tabuleiro-jogador').innerHTML = tabela
     }
     if(local == 2){
+        //tela batalha parte jgoador
         document.getElementById('tabuleiroBatalha1').innerHTML = tabela
     }
     if(local == 3){
+        //tela batalha parte maquina
         document.getElementById('tabuleiroBatalha2').innerHTML = tabela
     }
     
@@ -172,7 +175,7 @@ const iniciarPartida= () =>{
         setAlert(1,"ERRO!!! Todas as Embarcacoes devem ser colocadas")
     }else{
         setAlert(0)
-        alert("partida Iniciada")
+        iniciarBatalha()
     }
 }
 

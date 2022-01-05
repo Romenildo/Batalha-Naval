@@ -108,10 +108,10 @@
             <input type="text" class="input-nome" placeholder="Seu nome ...">
                
             <div class="btn-jogar">
-                <p class="btn-texto" onclick="mostrarTelaPreparacao(); criarTabela(10) ">PEQUENO 10 X 10</p>
+                <p class="btn-texto" onclick="mostrarTelaPreparacao(); criarTabela(10,1) ">PEQUENO 10 X 10</p>
             </div>
             <div class="btn-jogar">
-                <p class="btn-texto" onclick="mostrarTelaPreparacao(); criarTabela(15)">GRANDE 15 X 15</p>
+                <p class="btn-texto" onclick="mostrarTelaPreparacao(); criarTabela(15,1)">GRANDE 15 X 15</p>
             </div>
 
             <button class="btn-voltar" onclick="voltarTelaInicial()" >Voltar</button>
@@ -188,7 +188,7 @@
                 </div>
            </div>
 
-           <div class="tela-Batalha">
+           <div class="tela-Batalha" id = "telaBatalha">
                <div class="descricao-batalha">
                    <p class="texto-desc">SEU CAMPO DE JOGO</p>
                    <p class="texto-desc">CAMPO DO ADVERSÁRIO</p>
@@ -210,7 +210,7 @@
             <div class="panel-controle">
                 <div class="panel-controle-jogadores">
                     <div class="botoes-tiros">
-                        <button class="btn-tiros" onclick="efeitoTiroEspecial(0)">Tiro 3x</button>
+                        <button class="btn-tiros" onclick="efeitoTiroEspecial(0)">Tiro <span id="qtdTirosNormais"></span>x</button>
                         <button class="btn-tiros" onclick="efeitoTiroEspecial(1)">Tiro Esp <span id="qtdTirosEspeciais">0</span>x</button>
                     </div>
                     <div class="panel-restantes">
@@ -220,8 +220,8 @@
                     </div>
     
                     <div class="panel-points">
-                        <p>POINTS</p>
-                        <p>00000</p>
+                        <p>PONTOS</p>
+                        <p id="pontosJogador" style="text-align: center;"></p>
                     </div>
                 </div>
 

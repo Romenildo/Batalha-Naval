@@ -5,6 +5,7 @@ const telaRegras = document.getElementById('telaRegras')
 const telaRanking = document.getElementById('telaRanking')
 const telaJogar = document.getElementById('telaJogar')
 const telaPreparacao = document.getElementById('telaPreparacao')
+const telaBatalha = document.getElementById('telaBatalha')
 
 
 const mostrarTelaJogar = ()=>{
@@ -25,6 +26,11 @@ const mostrarTelaRanking = ()=>{
 const mostrarTelaPreparacao = () =>{
     telaJogar.style.display = "none"
     telaPreparacao.style.display = "block"
+}
+const mostrarTelaBatalha = () =>{
+    document.getElementById('tabuleiro-jogador').innerHTML = ""
+    telaPreparacao.style.display = "none"
+    telaBatalha.style.display = "block"
 }
 
 
