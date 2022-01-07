@@ -318,7 +318,7 @@ footer{
 .navio{
     animation: navio1load 46s infinite;
 }
-.navio2{
+.navio:last-child{
     margin-right: 20px;
     animation: navio2load 52s infinite;
 }

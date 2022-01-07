@@ -16,16 +16,7 @@ const criarTabela = (tamanho, local)=>{
     }else{
         linhas = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O"]
         colunas = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"]
-        document.getElementById('container').style.height = "800px"
-        document.getElementById('tabuleiro-jogador').style.height = "542px"
-        document.getElementById('foo').style.marginTop = "87px"
-        document.getElementById('tabuleiros').style.height = "550px"
-
-        document.getElementById('tabuleiroBatalha').style.height = "545px"
-        document.getElementById('tabuleiroBatalha1').style.height = "542px"
-        document.getElementById('tabuleiroBatalha2').style.height = "542px"
-        
-
+        reformularTelaPara15x15()
     }
 
     let tabela = '<table>'
@@ -51,6 +42,7 @@ const criarTabela = (tamanho, local)=>{
     }
     
 }
+
 
 
 
@@ -166,11 +158,15 @@ const resetEmbarcacoes = () =>{
     posicoesOcupadas = []
     setAlert(0)
 }
+//botao voltar
+const voltarEscolherTamanho = () =>{
+    resetEmbarcacoes()
+    voltarTelaEscolherTamanho()
+}
 
 //botao iniciar
 
 const iniciarPartida= () =>{
-    iniciarBatalha()
     if(totalEmbarcacoes > 0){
         setAlert(1,"ERRO!!! Todas as Embarcacoes devem ser colocadas")
     }else{

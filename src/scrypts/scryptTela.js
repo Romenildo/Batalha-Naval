@@ -29,6 +29,11 @@ const mostrarTelaPreparacao = () =>{
     telaJogar.style.display = "none"
     telaPreparacao.style.display = "block"
 }
+
+const voltarTelaEscolherTamanho = () =>{
+    telaPreparacao.style.display = "none"
+    telaJogar.style.display = "block"
+}
 const mostrarTelaBatalha = () =>{
     document.getElementById('tabuleiro-jogador').innerHTML = ""
     telaPreparacao.style.display = "none"
@@ -68,3 +73,15 @@ const mostrarRanking = () =>{
     
 }
 
+//reformular a tela para suportar o novo tamanho da tabela 15x15
+const reformularTelaPara15x15 = ()=>{
+    document.getElementById('container').style.height = "830px"
+    document.getElementById('tabuleiro-jogador').style.height = "572px"
+    document.getElementById('foo').style.marginTop = "115px"
+    document.getElementById('tabuleiros').style.height = "580px"
+
+    document.getElementById('tabuleiroBatalha').style.height = "545px"
+    document.getElementById('tabuleiroBatalha1').style.height = "542px"
+    document.getElementById('tabuleiroBatalha2').style.height = "542px"
+        
+}
