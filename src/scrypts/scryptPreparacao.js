@@ -23,7 +23,7 @@ const criarTabela = (tamanho, local)=>{
     for(let i = 0; i< tamanhoTabela; i++){
         tabela+= '<tr linha="'+linhas[i]+'">'
         for(let j = 0; j<tamanhoTabela; j++){
-             tabela+= '<td coluna="'+colunas[j]+'" title="'+linhas[i]+colunas[j]+' livre"id="'+linhas[i]+colunas[j]+'" onclick="marcarCelula(this)"></td>'
+             tabela+= '<td coluna="'+colunas[j]+'" title="Local: '+linhas[i]+colunas[j]+'"id="'+linhas[i]+colunas[j]+'" onclick="marcarCelula(this)"></td>'
          }
          tabela+= '</tr>'
     }
@@ -167,6 +167,7 @@ const voltarEscolherTamanho = () =>{
 //botao iniciar
 
 const iniciarPartida= () =>{
+    iniciarBatalha()
     if(totalEmbarcacoes > 0){
         setAlert(1,"ERRO!!! Todas as Embarcacoes devem ser colocadas")
     }else{

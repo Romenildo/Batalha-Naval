@@ -18,19 +18,7 @@
     height: 466px;
     width: 650px;
     border:4px ridge rgba(128, 128, 128, 0.562);
-}
-.tabuleiro-maquina{
-    height: 376px;
-    width: 550px;
-    padding: 50px 50px;
-}
-.msg-maquina{
-    font-family: "Trebuchet MS", Verdana, sans-serif;
-    font-size: 80px;
-    text-shadow: 3px 5px 3px rgba(93, 222, 226, 0.281);
-    color: rgb(95, 95, 95);
-    margin-left: 30px;
-    margin-top: 60px;
+    margin:auto;
 }
 
 

@@ -26,6 +26,8 @@
 }
 
 .cronometro-div{
+    position: absolute;
+    right: 45px;
     display: inline-flex;
     font-family: "Trebuchet MS", Verdana, sans-serif;
     font-size: 15px;

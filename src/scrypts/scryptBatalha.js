@@ -99,6 +99,13 @@ const iniciarBatalha=()=>{
     iniciarFuncoesBatalha = true
     criarTabela(tamanhoTabela,2)
     criarTabela(tamanhoTabela,3)
+    window.clearInterval(cronometro_timer);
+    if(tamanhoTabela == 10){
+        cronometro(19)
+    }else{
+        cronometro(29)
+    }
+    
 
     //iniciar timer
 }
@@ -115,14 +122,15 @@ const resetarMarcas = ()=>{
 }
 
 const efeitoTiroEspecial = (ativo)=>{
-    const container = document.getElementById('container')
-    if(ativo == 1){
+        const container = document.getElementById('container')
+    if(ativo == 1 && qtdTiroEspecial > 0){
         tiroEspecial = true
         colocarGradient("linear-gradient(45deg, rgb(243, 90, 19),rgb(238, 14, 14),rgb(236, 225, 120),#fff)")
     }else{
         tiroEspecial = false
         colocarGradient("linear-gradient(45deg, rgb(10, 48, 151),rgb(93, 187, 190),rgb(182, 230, 245),#fff)")
     }
+    
 }
 
 const colocarGradient=(cor)=>{

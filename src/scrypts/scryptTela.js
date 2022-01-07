@@ -1,3 +1,5 @@
+let nomeUsuarioAtual;
+var cronometro_timer;
 
 //Navegacao das divs ao clicar nos botoes
 const telaInicial = document.getElementById('telaInicial')
@@ -25,14 +27,23 @@ const mostrarTelaRanking = ()=>{
     
 }
 
-const mostrarTelaPreparacao = () =>{
-    telaJogar.style.display = "none"
-    telaPreparacao.style.display = "block"
+
+const mostrarTelaPreparacao = (tamanhoTabela) =>{
+    nomeUsuarioAtual = document.getElementById("nomeUsuario").value
+    if(nomeUsuarioAtual == ""){
+        setAlert(1, "ERRO!! Digite o nome do usuario.")
+    }else{
+        criarTabela(tamanhoTabela,1)
+        telaJogar.style.display = "none"
+        telaPreparacao.style.display = "block"
+        setAlert(0)
+    }
 }
 
 const voltarTelaEscolherTamanho = () =>{
     telaPreparacao.style.display = "none"
     telaJogar.style.display = "block"
+    reformularTelaParaNormal()
 }
 const mostrarTelaBatalha = () =>{
     document.getElementById('tabuleiro-jogador').innerHTML = ""
@@ -47,6 +58,7 @@ const voltarTelaInicial = () =>{
     telaJogar.style.display = "none"
     telaPreparacao.style.display = "none"
     telaInicial.style.display = "block"
+    reformularTelaParaNormal()
 }
 
 const setAlert = (ativo, mensagem = "")=>{
@@ -67,6 +79,17 @@ const setAlert = (ativo, mensagem = "")=>{
     }
 }
 
+const cronometro = (tempo) =>{
+    var seg = 59;
+	var min = tempo;
+	cronometro_timer = window.setInterval(function() {
+		if (seg == 0) { min--; seg = 59; }
+		if (seg < 10) document.getElementById("segundos").innerHTML = "0" + seg ; else document.getElementById("segundos").innerHTML = seg ;
+		if (min < 10) document.getElementById("minutos").innerHTML = "0" + min ; else document.getElementById("minutos").innerHTML = min ;		
+		seg--;
+	},1000);
+}
+
 const mostrarRanking = () =>{
     alert(text)
     //variavel ta no arquivo txt
@@ -80,8 +103,33 @@ const reformularTelaPara15x15 = ()=>{
     document.getElementById('foo').style.marginTop = "115px"
     document.getElementById('tabuleiros').style.height = "580px"
 
-    document.getElementById('tabuleiroBatalha').style.height = "545px"
-    document.getElementById('tabuleiroBatalha1').style.height = "542px"
-    document.getElementById('tabuleiroBatalha2').style.height = "542px"
+    document.getElementById('tabuleiroBatalha').style.height = "575px"
+    document.getElementById('tabuleiroBatalha1').style.height = "572px"
+    document.getElementById('tabuleiroBatalha2').style.height = "572px"
         
 }
+const reformularTelaParaNormal = ()=>{
+    document.getElementById('container').style.height = "723px"
+    document.getElementById('tabuleiro-jogador').style.height = "472px"
+    document.getElementById('foo').style.marginTop = "0px"
+    document.getElementById('tabuleiros').style.height = "476px"
+
+    document.getElementById('tabuleiroBatalha').style.height = "466px"
+    document.getElementById('tabuleiroBatalha1').style.height = "466px"
+    document.getElementById('tabuleiroBatalha2').style.height = "466px"
+        
+}
+
+
+
+/*
+function mudarCor(local) {
+    let r = Math.random() * 255;
+    let g = Math.random() * 255;
+    let b = Math.random() * 255;
+    let opacidade = 1.0
+
+    document.getElementById(local).style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${opacidade})`
+ }
+
+ */

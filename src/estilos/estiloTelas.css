@@ -248,30 +248,32 @@ main{
     width: 15px;
     line-height: 42px;
 }
+
 table{
     position: relative;
     top: 37px;
     width: 600px;
     height: 430px;
-
+    max-width: 600px;
 }
 td {
-    height: 32px;
-    width: 50px;
     background-color: #1E88E5;
     cursor: crosshair; 
 
+    height: 32px;
+
+    max-width: 40px;
     color: red;
     font-size: 25px;
     font-weight: 900;
     text-shadow: 2px 2px 3px red;
     text-indent: 15px;
-
 }
 tr, td {
     border-collapse: collapse;
     border: 1px white solid;
 }
+
 tr:before {
 	content: attr(linha);
     margin-left: 25px;
@@ -280,7 +282,7 @@ tr:before {
 
 tr:first-child td:before {	
     color: black;
-    text-shadow: 0px 0px 0px black;
+    text-shadow: none;
     font-weight: lighter;
 	content: attr(coluna);
 	position: relative;

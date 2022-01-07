@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Batalha Naval</title>
     <link rel="stylesheet" type="text/css" href="estilos/estiloTelas.css">
-    <link rel="stylesheet" type="text/css" href="estilos/estiloJogo.css">
+    <link rel="stylesheet" type="text/css" href="estilos/estiloPreparacao.css">
     <link rel="stylesheet" type="text/css" href="estilos/estiloBatalha.css">
 </head>
 <body>
@@ -15,7 +15,7 @@
             <h1 class="logo" id="logo">Batalha Naval</h1>
        </header>
        <main>
-           <div class="navio">
+           <div class="navio" >
                <div class="parte-ponta-cima"></div>
                <div class="parte-central" ></div>
                <div class="parte-ponta-baixo"></div>
@@ -106,13 +106,14 @@
 
            <div class="tela-jogar" id="telaJogar">
 
-            <input type="text" class="input-nome" placeholder="Seu nome ...">
+            <input type="text" class="input-nome" placeholder="Seu nome ..." id = "nomeUsuario">
+            <p class="alert" id="alerta" style = "margin: 20px 0px -35px 215px;"></p>
                
             <div class="btn-jogar">
-                <p class="btn-texto" onclick="mostrarTelaPreparacao(); criarTabela(10,1) ">PEQUENO 10 X 10</p>
+                <p class="btn-texto" onclick="mostrarTelaPreparacao(10); ">PEQUENO 10 X 10</p>
             </div>
             <div class="btn-jogar">
-                <p class="btn-texto" onclick="mostrarTelaPreparacao(); criarTabela(15,1)">GRANDE 15 X 15</p>
+                <p class="btn-texto" onclick="mostrarTelaPreparacao(15);">GRANDE 15 X 15</p>
             </div>
 
             <button class="btn-voltar" onclick="voltarTelaInicial()" >Voltar</button>
@@ -121,13 +122,12 @@
 
            <div class="tela-preparacao" id="telaPreparacao">
                 <div class="tabuleiros" id="tabuleiros">
-                    <section class="tabuleiro-jogador" id="tabuleiro-jogador">
-                        
+                    <section class="tabuleiro-jogador" id="tabuleiro-jogador"> 
                     </section>
                 </div>
+                <button class="btn-pos-tabuleiro" style="position: absolute; left: 220px" onclick="resetEmbarcacoes()">Reset</button>
                 <div class="pos-tabuleiro">
                     <button class="btn-pos-tabuleiro" onclick="voltarTelaEscolherTamanho()">Voltar</button>
-                    <button class="btn-pos-tabuleiro" style="margin-right: 950px;" onclick="resetEmbarcacoes()">Reset</button>
                     <p class="alert" id="alerta" ></p>
                     <button class="btn-pos-tabuleiro" onclick="iniciarPartida()">Iniciar</button>
                 </div>
@@ -189,11 +189,11 @@
 
            <div class="tela-Batalha" id = "telaBatalha">
                <div class="descricao-batalha">
-                   <p class="texto-desc">SEU CAMPO DE JOGO</p>
-                   <p class="texto-desc">CAMPO DO ADVERSÁRIO</p>
+                   <p class="texto-desc">CAMPO DO ADVERSARIO</p>
+                   <p class="texto-desc">SEU CAMPO DE EMBARCACOES</p>
                    <div class="cronometro-div">
                     <p style="margin: 3px 5px 0px 0px;">TEMPO:</p>
-                    <P class="cronometro">19:23</P>
+                    <P class="cronometro" id = "cronometro"><span id="minutos"></span>:<span id = "segundos"></span></P>
                    </div>
                    
                </div>
