@@ -7,6 +7,7 @@ let iniciarFuncoesBatalha = false
 let qtdTiroEspecial = 1
 let pontosJogador = 0
 const qtdTirosNormais = 3
+let posicoesExplodidas = [];
 
 
 const tiros_especiais = document.getElementById("qtdTirosEspeciais")
@@ -18,12 +19,18 @@ pontos_jogador.innerHTML = pontosJogador
 const tiros_Normais = document.getElementById("qtdTirosNormais")
 tiros_Normais.innerHTML = qtdTirosNormais
 
+
+
 const marcarCelula = (div) =>{
     if(iniciarFuncoesBatalha==false){
         return 
     }
 
     let id = div.id
+    //caso clicar na celula ja vermelha explodida
+    if(posicoesExplodidas.includes(id)){
+        return
+    }
     
     if(tiroEspecial == true && qtdTiroEspecial > 0){
         //ativar tiro especial
@@ -36,12 +43,14 @@ const marcarCelula = (div) =>{
     }else{
         //tiro normal
         efeitoTiroEspecial(0)
-        document.getElementById(id).innerHTML = "X"
+        document.getElementById(id).style.background= "radial-gradient(red, #1E88E5,#1E88E5)"
+        
 
         //somar os 3 cliques das bombas
         if(posicoesMarcas.includes(id)){
             //caso clicar no mesmo novamente
-            document.getElementById(id).innerHTML = ""
+            document.getElementById(id).style.background= "radial-gradient(#1E88E5, #1E88E5)"
+
             posicoesMarcas.forEach((nome, indice)=>{
                 if(nome == id){
                     posicoesMarcas[indice] = 0
@@ -62,6 +71,9 @@ const marcarCelula = (div) =>{
         
         if(contadorMarcas == qtdTirosNormais){
             pintarCelulasTiro(posicoesMarcas)
+            for(let n = 0; n < 3; n++){
+                posicoesExplodidas.push(posicoesMarcas[n])
+            }
             //resetar
             resetarMarcas()
         }
@@ -160,10 +172,11 @@ const pintarCelulasTiro = (sequencia) =>{
         if(sequencia[i]!= "00"){
              if(posicoesOcupadas.includes(sequencia[i])){
                  //encontrou navio
-                 document.getElementById(sequencia[i]).style.backgroundColor = "black"
+                 document.getElementById(sequencia[i]).style.background= "radial-gradient(#000, #000)"
+                 
                  pontos_jogador.innerHTML = pontosJogador += 500
              }else{
-                 document.getElementById(sequencia[i]).style.backgroundColor = "red"
+                document.getElementById(sequencia[i]).style.background= "radial-gradient(red, red)"
              }
              document.getElementById(sequencia[i]).innerHTML = ""
         }

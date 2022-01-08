@@ -244,7 +244,7 @@ const pegarDadosCampo = (tipoEmbarcacao) =>{
 
 const pintaCelulas = (sequencia, cor) =>{
     for(let pos of sequencia){
-        document.getElementById(pos).style.backgroundColor = cor
+        document.getElementById(pos).style.background= "radial-gradient("+cor+","+ cor+")"
    }
 }
 

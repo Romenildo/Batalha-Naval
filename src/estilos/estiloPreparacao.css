@@ -15,8 +15,8 @@
 }
 .tabuleiro-jogador{
     background-color: rgb(246, 248, 250);
-    height: 466px;
-    width: 650px;
+    height: 479px;
+    width: 670px;
     border:4px ridge rgba(128, 128, 128, 0.562);
     margin:auto;
 }
