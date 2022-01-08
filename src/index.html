@@ -39,29 +39,29 @@
                    <p class="texto-logo-telas">Ranking</p>
                </div>
                <div class="posicoes-ranking">
-                   <p class="ranking-pos">
+                   <p class="ranking-pos" id="rankingPosicao">
+
+                   </p>
+               </div>
+               <div class="posicoes-ranking">
+
+                   <p class="ranking-pos" id="rankingPosicao">
+
+                   </p>
+               </div>
+               <div class="posicoes-ranking">
+                   <p class="ranking-pos"  id="rankingPosicao">
                     
-                       1. NOME __________________ 1000points (00/00/000)
                    </p>
                </div>
                <div class="posicoes-ranking">
-                   <p class="ranking-pos">
-                    2. NOME __________________ 1000points (00/00/000)
-                   </p>
-               </div>
-               <div class="posicoes-ranking">
-                   <p class="ranking-pos">
-                    3. NOME __________________ 1000points (00/00/000)
-                   </p>
-               </div>
-               <div class="posicoes-ranking">
-                <p class="ranking-pos">
-                    4. NOME __________________ 1000points (00/00/000)
+                <p class="ranking-pos" id="rankingPosicao">
+                    
                 </p>
             </div>
             <div class="posicoes-ranking">
-                <p class="ranking-pos">
-                    5. NOME __________________ 1000points (00/00/000)
+                <p class="ranking-pos" id="rankingPosicao">
+                    
                 </p>
             </div>
                 <button class="btn-voltar" onclick="voltarTelaInicial()">Voltar</button>
@@ -107,7 +107,7 @@
            <div class="tela-jogar" id="telaJogar">
 
             <input type="text" class="input-nome" placeholder="Seu nome ..." id = "nomeUsuario">
-            <p class="alert" id="alerta" style = "margin: 20px 0px -35px 215px;"></p>
+            <p class="alert" id="alertaJogar" style = "margin: 20px 0px -35px 215px;"></p>
                
             <div class="btn-jogar">
                 <p class="btn-texto" onclick="mostrarTelaPreparacao(10); ">PEQUENO 10 X 10</p>
@@ -254,7 +254,7 @@
        </footer>
        
     </div>
-    <script src="/src/dados/ranking.txt"></script>
+    <script src="/src/dados/rankingDados.js"></script>
     <script src="scrypts/scryptTela.js"></script>
     <script src="scrypts/scryptPreparacao.js"></script>
     <script src="scrypts/scryptBatalha.js"></script>

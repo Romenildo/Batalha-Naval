@@ -266,9 +266,6 @@ tr, td {
     border-collapse: collapse;
     border: 1px white solid;
 }
-tr:{
-
-}
 
 tr:before {
 	content: attr(linha);

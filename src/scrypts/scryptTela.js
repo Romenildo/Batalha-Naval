@@ -21,23 +21,27 @@ const mostrarTelaRegras = () =>{
 }
 
 const mostrarTelaRanking = ()=>{
-    mostrarRanking()
+    adicionarPosicoesRanking ()
     telaInicial.style.display = "none"
     telaRanking.style.display = "block"
-    
 }
 
 
 const mostrarTelaPreparacao = (tamanhoTabela) =>{
     nomeUsuarioAtual = document.getElementById("nomeUsuario").value
     if(nomeUsuarioAtual == ""){
-        setAlert(1, "ERRO!! Digite o nome do usuario.")
-    }else{
-        criarTabela(tamanhoTabela,1)
-        telaJogar.style.display = "none"
-        telaPreparacao.style.display = "block"
-        setAlert(0)
+        setAlert(1, "ERRO!! Digite o nome do usuario.",0)
+        return
     }
+    if(nomeUsuarioAtual.length>15){
+        setAlert(1, "ERRO!! Nome deve ser menor que 15 caracteres",0)
+        return
+    }
+    criarTabela(tamanhoTabela,1)
+    telaJogar.style.display = "none"
+    telaPreparacao.style.display = "block"
+    setAlert(0)
+    
 }
 
 const voltarTelaEscolherTamanho = () =>{
@@ -61,8 +65,9 @@ const voltarTelaInicial = () =>{
     reformularTelaParaNormal()
 }
 
-const setAlert = (ativo, mensagem = "")=>{
+const setAlert = (ativo, mensagem = "", pos = 1)=>{
     let alerta = document.getElementById('alerta')
+    if(pos == 0){alerta = document.getElementById('alertaJogar')}
     if(ativo==2){
         alerta.style.animation = "piscaAmarelo 2s infinite"
         alerta.style.border = "1px solid rgba(241, 245, 8, 0.63)"
@@ -88,12 +93,6 @@ const cronometro = (tempo) =>{
 		if (min < 10) document.getElementById("minutos").innerHTML = "0" + min ; else document.getElementById("minutos").innerHTML = min ;		
 		seg--;
 	},1000);
-}
-
-const mostrarRanking = () =>{
-    alert(text)
-    //variavel ta no arquivo txt
-    
 }
 
 //reformular a tela para suportar o novo tamanho da tabela 15x15
@@ -133,3 +132,15 @@ function mudarCor(local) {
  }
 
  */
+
+ const adicionarPosicoesRanking = () =>{
+     //atualizar os dados ao finalizar o jogo
+    let camposRanking = document.getElementsByClassName("ranking-pos")
+
+    for(let i = 0; i<camposRanking.length;i++){
+        camposRanking[i].innerHTML =
+        `${i+1}. ${rankingDados[i].nome}  <center style="margin: -27px 0px 0px 320px;"> ${ rankingDados[i].pontos} pontos (${rankingDados[i].data} | ${rankingDados[i].hora}) </center>`
+
+    }
+ }
+ 
