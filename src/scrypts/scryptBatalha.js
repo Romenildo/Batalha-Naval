@@ -37,6 +37,7 @@ const marcarCelula = (div) =>{
         let sequenciaBombaEspecial = posicoesBombaEspecial(id)
 
         pintarCelulasTiro(sequenciaBombaEspecial)
+        adicionarPosicoesExplodidas(sequenciaBombaEspecial)
         tiros_especiais.innerHTML = --qtdTiroEspecial
         efeitoTiroEspecial(0)
         
@@ -71,9 +72,7 @@ const marcarCelula = (div) =>{
         
         if(contadorMarcas == qtdTirosNormais){
             pintarCelulasTiro(posicoesMarcas)
-            for(let n = 0; n < 3; n++){
-                posicoesExplodidas.push(posicoesMarcas[n])
-            }
+            adicionarPosicoesExplodidas(posicoesMarcas)
             //resetar
             resetarMarcas()
         }
@@ -181,4 +180,10 @@ const pintarCelulasTiro = (sequencia) =>{
              document.getElementById(sequencia[i]).innerHTML = ""
         }
      }
+}
+
+const adicionarPosicoesExplodidas = (posicoes)=>{
+    for(let n = 0; n < posicoes.length; n++){
+        posicoesExplodidas.push(posicoes[n])
+    }
 }
