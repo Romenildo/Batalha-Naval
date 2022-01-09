@@ -5,6 +5,13 @@ let linhas;
 let colunas;
 let tamanhoTabela;
 
+let Embarcacoes = {
+    porta_aviao: [],
+    navio_tanque : [],
+    contra_torpedeiro : [],
+    submarino_ : []
+}
+
 //criacao da tabela com html e js (tamnhos 10 ou 15)
 const criarTabela = (tamanho, local)=>{
    
@@ -43,9 +50,6 @@ const criarTabela = (tamanho, local)=>{
     
 }
 
-
-
-
 //adicionar as embarcacoes
 const adicionaEmbarcacao= (tipoEmbarcacao)=>{
     //pega [1] posInicial [2] posFinal [3] tamanhoEmbarcacao
@@ -63,7 +67,7 @@ const adicionaEmbarcacao= (tipoEmbarcacao)=>{
         let sequencia = gerarSequencia(posInicial, posFinal,10)
 
         pintaCelulas(sequencia, "#000")
-
+        adicionaEmbarcacaoNaLista(sequencia)
         sequencia.forEach((valor)=>posicoesOcupadas.push(valor))
 
         //todas as embarcacoes foram colocadas na tabela
@@ -156,6 +160,10 @@ const resetEmbarcacoes = () =>{
     pintaCelulas(posicoesOcupadas, "#1E88E5")
 
     posicoesOcupadas = []
+    Embarcacoes.porta_aviao = []
+    Embarcacoes.navio_tanque = []
+    Embarcacoes.contra_torpedeiro = []
+    Embarcacoes.submarino_ = []
     setAlert(0)
 }
 //botao voltar
@@ -294,4 +302,22 @@ const verificaTamanhoValido = (posicoes, tamanhoEmbarcacao)=>{
     }
     return false
 
+}
+
+const adicionaEmbarcacaoNaLista = (embarcacao) => {
+
+    switch(embarcacao.length){
+        case 5:
+            Embarcacoes.porta_aviao.push(embarcacao)
+            break
+        case 4:
+            Embarcacoes.navio_tanque.push(embarcacao)
+            break
+        case 3:
+            Embarcacoes.contra_torpedeiro.push(embarcacao)
+            break
+        case 2:
+            Embarcacoes.submarino_.push(embarcacao)
+            break;
+    }
 }

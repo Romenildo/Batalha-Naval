@@ -20,6 +20,11 @@ const tiros_Normais = document.getElementById("qtdTirosNormais")
 tiros_Normais.innerHTML = qtdTirosNormais
 
 
+// quantidade das embarcacoes restantes na batalha
+const qtdPortaAviaoBatalha = document.getElementById("qtdPortaAviao")
+const qtdNavioTanqueBatalha = document.getElementById("qtdNavioTanque")
+const qtdContratorpedeiroBatalha = document.getElementById("qtdContratorpedeiro")
+const qtdSubmarinoBatalha = document.getElementById("qtdSubmarino")
 
 const marcarCelula = (div) =>{
     if(iniciarFuncoesBatalha==false){
@@ -38,6 +43,7 @@ const marcarCelula = (div) =>{
 
         pintarCelulasTiro(sequenciaBombaEspecial)
         adicionarPosicoesExplodidas(sequenciaBombaEspecial)
+        verificarTipoCelula(sequenciaBombaEspecial)
         tiros_especiais.innerHTML = --qtdTiroEspecial
         efeitoTiroEspecial(0)
         
@@ -46,7 +52,6 @@ const marcarCelula = (div) =>{
         efeitoTiroEspecial(0)
         document.getElementById(id).style.background= "radial-gradient(red, #1E88E5,#1E88E5)"
         
-
         //somar os 3 cliques das bombas
         if(posicoesMarcas.includes(id)){
             //caso clicar no mesmo novamente
@@ -70,13 +75,41 @@ const marcarCelula = (div) =>{
             tiros_Normais.innerHTML = qtdTirosNormais - contadorMarcas
         }
         
+        //atirar nos 3
         if(contadorMarcas == qtdTirosNormais){
             pintarCelulasTiro(posicoesMarcas)
+
+            verificarTipoCelula(posicoesMarcas)
+            
             adicionarPosicoesExplodidas(posicoesMarcas)
             //resetar
             resetarMarcas()
         }
     }
+}
+
+const verificarTipoCelula = (sequencia) =>{
+     //verificar qual tipo da embarcacao é a celula
+    for(let i = 0; i < sequencia.length; i++){
+        removerCelulaDaEmbarcacao(sequencia[i], Embarcacoes.porta_aviao)
+        removerCelulaDaEmbarcacao(sequencia[i], Embarcacoes.navio_tanque)
+        removerCelulaDaEmbarcacao(sequencia[i], Embarcacoes.contra_torpedeiro)
+        removerCelulaDaEmbarcacao(sequencia[i], Embarcacoes.submarino_)
+    }
+    
+
+}
+const removerCelulaDaEmbarcacao = (celula, Embarcacao) =>{
+    
+    for(let i = 0; i < Embarcacao.length; i++){
+        for(let j = 0; j<Embarcacao[i].length; j++){
+            if(Embarcacao[i][j] == celula){
+                Embarcacao[i][j] = "0"
+                return
+            }
+        }
+    }
+
 }
 
 const posicoesBombaEspecial= (id)=>{
@@ -116,12 +149,19 @@ const iniciarBatalha=()=>{
     }else{
         cronometro(29)
     }
-    
+    adicionarQtdEmbarcacoesBatalha()
 
-    //iniciar timer
 }
 
 
+
+const adicionarQtdEmbarcacoesBatalha = ()=>{
+    qtdPortaAviaoBatalha.innerHTML = Embarcacoes.porta_aviao.length
+    qtdNavioTanqueBatalha.innerHTML = Embarcacoes.navio_tanque.length
+    qtdContratorpedeiroBatalha.innerHTML = Embarcacoes.contra_torpedeiro.length
+    qtdSubmarinoBatalha.innerHTML = Embarcacoes.submarino_.length
+    
+}
 //FUNCOES ADICIONAIS
 
 const resetarMarcas = ()=>{
