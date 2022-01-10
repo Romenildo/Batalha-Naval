@@ -175,7 +175,6 @@ const voltarEscolherTamanho = () =>{
 //botao iniciar
 
 const iniciarPartida= () =>{
-    iniciarBatalha()
     if(totalEmbarcacoes > 0){
         setAlert(1,"ERRO!!! Todas as Embarcacoes devem ser colocadas")
     }else{
