@@ -281,8 +281,48 @@ const diminuirEmbarcacaoNaBatalha = (tamanho) =>{
 const verificarFinalizarPartida = ()=>{
     let embarcacoesRestantes = portaAviaoRestante+ navioTanqueRestante + contratorpedeiroRestante + submarinoRestante
     if(embarcacoesRestantes <= 0){
-        alert("YOU WIN")
+        adicionarUsuarioAoRanking()
+        alert(`Parabens!!! ${nomeUsuarioAtual} Você ganhou  a batalha!`)
+        voltarTelaInicial()
+        resetarJogo()
         return
     }
     //fazzer a finaliacao com cronometro tbm
+}
+
+
+const adicionarUsuarioAoRanking = () =>{
+
+    let pontosFinal = pontosJogador
+    let nomeFinal = nomeUsuarioAtual
+    let data = new Date();
+
+    let dataFinal = data.getDate() + "/" + (data.getMonth()+1) + "/" +data.getFullYear()
+    let horaFinal = data.getHours() + ":" + data.getMinutes()
+
+    let usuarioFinal = {
+        posicao: 0,
+        nome : nomeFinal,
+        pontos : pontosFinal,
+        data: dataFinal,
+        hora: horaFinal,
+        tempoRestante : "15:00"
+    }
+    for(let i = 0; i<5;i++){
+        if(rankingDados[i].pontos<= usuarioFinal.pontos){
+            usuarioFinal.posicao = i+1
+            rankingDados.splice(i,0,usuarioFinal)
+            return
+        }
+
+    }
+}
+
+const resetarJogo = () =>{
+    pintaCelulas(posicoesExplodidas, "#1E88E5")
+    posicoesExplodidas= []
+    posicoesExplodidasUsadas = []
+    
+    resetEmbarcacoes()
+    resetarMarcas();
 }

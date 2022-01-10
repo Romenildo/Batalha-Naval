@@ -63,6 +63,7 @@ const voltarTelaInicial = () =>{
     telaPreparacao.style.display = "none"
     telaInicial.style.display = "block"
     reformularTelaParaNormal()
+    resetarE
 }
 
 const setAlert = (ativo, mensagem = "", pos = 1)=>{
