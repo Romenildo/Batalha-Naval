@@ -368,3 +368,28 @@ footer{
       transform:translate(0px) scale(1.0) ;
     }
   }
+
+
+
+
+  /*Estido da tela de regras imagens */
+
+img {
+    width: 250px;
+    height: 250px;
+}
+.img_tamanho {
+    width: 330px;
+    height: 330px;
+}
+.img_embarcacoes {
+    margin-left: -50px;
+    width: 750px;
+    height: 100px;
+}
+
+.img_embarcacaoHV {
+    margin-left: 130px;
+    width: 350px;
+    height: 250px;
+}

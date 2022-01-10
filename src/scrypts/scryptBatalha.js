@@ -277,15 +277,20 @@ const diminuirEmbarcacaoNaBatalha = (tamanho) =>{
      
 }
 
+
+
 //finalizar partida
 const verificarFinalizarPartida = ()=>{
     let embarcacoesRestantes = portaAviaoRestante+ navioTanqueRestante + contratorpedeiroRestante + submarinoRestante
     if(embarcacoesRestantes <= 0){
-        adicionarUsuarioAoRanking()
-        alert(`Parabens!!! ${nomeUsuarioAtual} Você ganhou  a batalha!`)
-        voltarTelaInicial()
-        resetarJogo()
-        return
+        setTimeout(function(){
+            alert(`Parabens!!! ${nomeUsuarioAtual} Você ganhou  a batalha!`)
+        
+             adicionarUsuarioAoRanking()
+             resetarJogo()
+             return
+        },1000);
+        
     }
     //fazzer a finaliacao com cronometro tbm
 }
@@ -319,10 +324,19 @@ const adicionarUsuarioAoRanking = () =>{
 }
 
 const resetarJogo = () =>{
+    voltarTelaInicial()
     pintaCelulas(posicoesExplodidas, "#1E88E5")
     posicoesExplodidas= []
     posicoesExplodidasUsadas = []
+    qtdTiroEspecial = 1
+    pontosJogador = 0
+    qtdTirosNormais = 3
+    tiroEspecial = false
     
     resetEmbarcacoes()
     resetarMarcas();
+    iniciarFuncoesBatalha = false
+    document.getElementById('tabuleiro-jogador').innerHTML = ""
+    document.getElementById('tabuleiroBatalha1').innerHTML = ""
+    document.getElementById('tabuleiroBatalha2').innerHTML = ""
 }

@@ -61,9 +61,9 @@ const voltarTelaInicial = () =>{
     telaRanking.style.display = "none"
     telaJogar.style.display = "none"
     telaPreparacao.style.display = "none"
+    telaBatalha.style.display = "none"
     telaInicial.style.display = "block"
     reformularTelaParaNormal()
-    resetarE
 }
 
 const setAlert = (ativo, mensagem = "", pos = 1)=>{
@@ -94,6 +94,17 @@ const cronometro = (tempo) =>{
 		if (min < 10) document.getElementById("minutos").innerHTML = "0" + min ; else document.getElementById("minutos").innerHTML = min ;		
 		seg--;
 	},1000);
+
+    //se o tempo acabar
+    if(min < 1 && seg <=1){
+        setTimeout(function(){
+            alert(`Tempo Esgotado!!! ${nomeUsuarioAtual} Você fez ${pontosJogador} pontos!`)
+        
+             adicionarUsuarioAoRanking()
+             resetarJogo()
+             return
+        },1000);
+    }
 }
 
 //reformular a tela para suportar o novo tamanho da tabela 15x15
@@ -144,4 +155,5 @@ function mudarCor(local) {
 
     }
  }
- 
+
+

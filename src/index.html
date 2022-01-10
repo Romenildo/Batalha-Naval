@@ -74,28 +74,58 @@
 
                <p class="titulo-regras">1. Como jogar</p>
                <pre class="texto-regras">
-   Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem quae, consectetur soluta laud 
-   ab vel quisquam id ducimus optio? Ducimus neque asperiores optio enim reiciendis iusto tempore?
+   A Partida consiste em duas etadas:
+   
+ 1. Preparacao: É onde são escolhidas as posicoes das suas embarcacoes aliadas, podendo ser
+ colocadas de varias varias maneiras e seus tipos visto a seguir no topico 4.
+
+ 2. Batalha: A batalha é uma zona de guerra entre você e seu oponente cada um tendo a sua 
+ vez de jogo, podendo escolher entre os dois tipos de forma de atacar(2º topico). 
+ 
+ A cada parte de uma embarcacao inimica destruida é contabilizada um total de +500 pontos, 
+ ao final da destruicao de todas as tropas inimicas ou o final do cronometro, o vencedor
+ será declarado e definido sua posicao no Ranking, onde só os 5 melhores estarão no topo.
                 </pre>
                <p class="titulo-regras">2. Bombas especias</p>
                <pre class="texto-regras">
-   Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem quae, consectetur soluta lauda 
-   ab vel quisquam id ducimus optio? Ducimus neque asperiores optio enim reiciendis iusto tempore?
+    As bombas especiais são compostas por dois tipos:
+    1. Marcarcao de três posicoes              2. Tiro Especial
+    <img src="/src/dados/imgs_jogo/img_tiro3x.png">      <img src="/src/dados/imgs_jogo/img_tiroEsp.png">
+    1. Tiro três posicoes: são contabilizadas 3 marcacoes na tabela do jogo em celulas diferentes, ao
+      selecionar a 3 marca o tiro sai automaticamente e explodindo as 3 marcacoes.
+    2. Tiro Especial: Ao ativar a opcao de tiro especial é ativado o efeito especial e o proximo disparo
+      destruira uma area de 9x9, porem só é permitido um tiro por partida.
                 </pre>
                 <p class="titulo-regras">3. Dificuldades</p>
                 <pre class="texto-regras">
-   Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem quae, consectetur soluta lauda
-   ab vel quisquam id ducimus optio? Ducimus neque asperiores optio enim reiciendis iusto tempore?
+     As partidas são compostas por dois niveis de dificuldade, o que as diferencia são o tamanho da área 
+   do jogo, sendo as seguintes opcoes que são escolhidas antes de iniciar a tela de preparacao:
+
+        Tamanho 10x10 (Normal)                                     Tamanho 15x15 (Difícil)
+    <img src="/src/dados/imgs_jogo/img_campo10x10.png" class="img_tamanho">      <img src="/src/dados/imgs_jogo/img_campo15x15.png" class="img_tamanho">
                </pre>
+
                <p class="titulo-regras">4. Embarcacoes</p>
                <pre class="texto-regras">
-   Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem quae, consectetur soluta laudan
-   ab vel quisquam id ducimus optio? Ducimus neque asperiores optio enim reiciendis iusto tempore?
+     Existem ao todo 4 tipos distintos de embarcacoes disponiveis no jogo sendo elas:
+     <img src="/src/dados/imgs_jogo/img_embarcacoes.png" class="img_embarcacoes"> 
+     Elas possuem uma determinada quantidade padrão sendo elas:
+        - 1x  Porta-Aviao
+        - 2x  Navio-Tanque
+        - 3x  Contratorpedeiro
+        - 4x  Submarino
+     O que as diferencia são o seu comprimento. As embarcacoes podem ser colocadas
+  tanto nas posicoes horizontal quanto vertical, sendo colocadas seu ponto de inicio
+  e final na tela de preparacao.
+  <img src="/src/dados/imgs_jogo/img_embarcacaoHV.png" class="img_embarcacaoHV"> 
                 </pre>
                 <p class="titulo-regras">5. Creditos</p>
                <pre class="texto-regras">
-   Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem quae, consectetur soluta lauda
-   ab vel quisquam id ducimus optio? Ducimus neque asperiores optio enim reiciendis iusto tempore?
+   EM BREVE ...
+
+
+
+   BOM JOGO!!!
                 </pre>
             
             <button class="btn-voltar" onclick="voltarTelaInicial()" >Voltar</button>
@@ -214,8 +244,8 @@
                     </div>
                     <div class="panel-restantes">
                         <pre class="textoRestantes">RESTANTES: </pre>
-                        <pre class="naviosRestantes"><span style="font-weight: normal; text-shadow: none; " id="qtdPortaAviao"></span>x  -██ ██ ██ ██ ██    <span style="font-weight: normal; text-shadow: none;" id="qtdContratorpedeiro"></span>x  -██ ██</pre>
-                        <pre class="naviosRestantes"><span style="font-weight: normal; text-shadow: none; "id="qtdNavioTanque"></span>x  -██ ██ ██ ██       <span style="font-weight: normal; text-shadow: none;" id="qtdSubmarino"></span>x  -██ ██ ██ </pre>
+                        <pre class="naviosRestantes"><span style="font-weight: normal; text-shadow: none; " id="qtdPortaAviao"></span>x  -██ ██ ██ ██ ██    <span style="font-weight: normal; text-shadow: none;" id="qtdContratorpedeiro"></span>x  -██ ██ ██</pre>
+                        <pre class="naviosRestantes"><span style="font-weight: normal; text-shadow: none; "id="qtdNavioTanque"></span>x  -██ ██ ██ ██       <span style="font-weight: normal; text-shadow: none;" id="qtdSubmarino"></span>x  -██ ██ </pre>
                     </div>
     
                     <div class="panel-points" title="Mostra os pontos da partida">
