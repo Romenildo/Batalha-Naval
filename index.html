@@ -239,35 +239,35 @@
             <div class="panel-controle">
                 <div class="panel-controle-jogadores">
                     <div class="botoes-tiros">
-                        <button class="btn-tiros" onclick="efeitoTiroEspecial(0)">Tiro <span id="qtdTirosNormais"></span>x</button>
-                        <button class="btn-tiros" onclick="efeitoTiroEspecial(1)">Tiro Esp <span id="qtdTirosEspeciais">0</span>x</button>
+                        <button class="btn-tiros" onclick="efeitoTiroEspecial(0)">Tiro <span id="qtdTirosNormais_usu"></span>x</button>
+                        <button class="btn-tiros" onclick="efeitoTiroEspecial(1)">Tiro Esp <span id="qtdTirosEspeciais_usu"></span>x</button>
                     </div>
                     <div class="panel-restantes">
-                        <pre class="textoRestantes">RESTANTES: </pre>
-                        <pre class="naviosRestantes"><span style="font-weight: normal; text-shadow: none; " id="qtdPortaAviao"></span>x  -██ ██ ██ ██ ██    <span style="font-weight: normal; text-shadow: none;" id="qtdContratorpedeiro"></span>x  -██ ██ ██</pre>
-                        <pre class="naviosRestantes"><span style="font-weight: normal; text-shadow: none; "id="qtdNavioTanque"></span>x  -██ ██ ██ ██       <span style="font-weight: normal; text-shadow: none;" id="qtdSubmarino"></span>x  -██ ██ </pre>
+                        <pre class="textoRestantes">EMBARCACOES INIMIGAS RESTANTES: </pre>
+                        <pre class="naviosRestantes"><span style="font-weight: normal; text-shadow: none; " id="qtdPortaAviao_ini"></span>x  -██ ██ ██ ██ ██    <span style="font-weight: normal; text-shadow: none;" id="qtdContratorpedeiro_ini"></span>x  -██ ██ ██</pre>
+                        <pre class="naviosRestantes"><span style="font-weight: normal; text-shadow: none; "id="qtdNavioTanque_ini"></span>x  -██ ██ ██ ██       <span style="font-weight: normal; text-shadow: none;" id="qtdSubmarino_ini"></span>x  -██ ██ </pre>
                     </div>
     
                     <div class="panel-points" title="Mostra os pontos da partida">
                         <p>PONTOS</p>
-                        <p id="pontosJogador" style="text-align: center;"></p>
+                        <p id="pontosJogador_usu" style="text-align: center;"></p>
                     </div>
                 </div>
 
                 <div class="panel-controle-jogadores">
                     <div class="botoes-tiros">
-                        <button class="btn-tiros" title="Marca 3x e explode as areas">tiro 3x</button>
-                        <button class="btn-tiros" title="Bomba especial com Area: 3x3">tiro Esp 1x</button>
+                        <button class="btn-tiros" >Tiro <span id="qtdTirosNormais_ini"></span>x</button>
+                        <button class="btn-tiros" >Tiro Esp <span id="qtdTirosEspeciais_ini"></span>x</button>
                     </div>
                     <div class="panel-restantes">
-                        <pre class="textoRestantes">RESTANTES: </pre>
-                        <pre class="naviosRestantes">1x  -██ ██ ██ ██ ██     4x  -██ ██</pre>
-                        <pre class="naviosRestantes">2x  -██ ██ ██ ██        3x  -██ ██ ██ </pre>
+                        <pre class="textoRestantes">SUAS EMBARCACOES RESTANTES: </pre>
+                        <pre class="naviosRestantes"><span style="font-weight: normal; text-shadow: none; " id="qtdPortaAviao_usu"></span>x  -██ ██ ██ ██ ██    <span style="font-weight: normal; text-shadow: none;" id="qtdContratorpedeiro_usu"></span>x  -██ ██ ██</pre>
+                        <pre class="naviosRestantes"><span style="font-weight: normal; text-shadow: none; "id="qtdNavioTanque_usu"></span>x  -██ ██ ██ ██       <span style="font-weight: normal; text-shadow: none;" id="qtdSubmarino_usu"></span>x  -██ ██ </pre>
                     </div>
     
                     <div class="panel-points">
                         <p>POINTS</p>
-                        <p>00000</p>
+                        <p id="pontosJogador_ini" style="text-align: center;"></p>
                     </div>
                 </div>
             </div>
@@ -288,6 +288,7 @@
     <script src="src/scrypts/scryptTela.js"></script>
     <script src="src/scrypts/scryptPreparacao.js"></script>
     <script src="src/scrypts/scryptBatalha.js"></script>
+    <script src="src/scrypts/scryptInimigo.js"></script>
    
 </body>
 </html>

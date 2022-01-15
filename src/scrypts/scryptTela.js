@@ -37,7 +37,7 @@ const mostrarTelaPreparacao = (tamanhoTabela) =>{
         setAlert(1, "ERRO!! Nome deve ser menor que 15 caracteres",0)
         return
     }
-    criarTabela(tamanhoTabela,1)
+    criarTabela(tamanhoTabela,1,"_usu")
     telaJogar.style.display = "none"
     telaPreparacao.style.display = "block"
     setAlert(0)
@@ -98,7 +98,7 @@ const cronometro = (tempo) =>{
     //se o tempo acabar
     if(min < 1 && seg <=1){
         setTimeout(function(){
-            alert(`Tempo Esgotado!!! ${nomeUsuarioAtual} Você fez ${pontosJogador} pontos!`)
+            alert(`Tempo Esgotado!!! ${nomeUsuarioAtual} Você fez ${pontosJogador_usu} pontos!`)
         
              adicionarUsuarioAoRanking()
              resetarJogo()

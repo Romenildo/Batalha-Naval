@@ -1,22 +1,28 @@
-
-
-let posicoesOcupadas = []
+let posicoesOcupadas_usu = []
+let posicoesOcupadas_ini = []
 let linhas;
 let colunas;
 let tamanhoTabela;
 
-let Embarcacoes = {
-    porta_aviao: [],
-    navio_tanque : [],
-    contra_torpedeiro : [],
-    submarino_ : []
-}
+let Embarcacoes = [
+    {//usuario
+        porta_aviao: [],
+        navio_tanque : [],
+        contra_torpedeiro : [],
+        submarino_ : []
+    },
+    {//inimigo
+        porta_aviao: [],
+        navio_tanque : [],
+        contra_torpedeiro : [],
+        submarino_ : []
+    }
+]
 
 //criacao da tabela com html e js (tamnhos 10 ou 15)
-const criarTabela = (tamanho, local)=>{
+const criarTabela = (tamanho, local, _extensao)=>{
    
     tamanhoTabela = tamanho;
-
     if(tamanhoTabela == 10){
         linhas = ["A","B","C","D","E","F","G","H","I","J"]
         colunas = ["1","2","3","4","5","6","7","8","9","10"]
@@ -25,12 +31,16 @@ const criarTabela = (tamanho, local)=>{
         colunas = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"]
         reformularTelaPara15x15()
     }
+    let ativaOnclick = ""
+    if(_extensao == "_ini"){
+        ativaOnclick = 'onclick="marcarCelula(this)"'
+    }
 
     let tabela = '<table>'
     for(let i = 0; i< tamanhoTabela; i++){
         tabela+= '<tr linha="'+linhas[i]+'">'
         for(let j = 0; j<tamanhoTabela; j++){
-             tabela+= '<td coluna="'+colunas[j]+'" title="Local: '+linhas[i]+colunas[j]+'"id="'+linhas[i]+colunas[j]+'" onclick="marcarCelula(this)"></td>'
+             tabela+= '<td coluna="'+colunas[j]+'" title="Local: '+linhas[i]+colunas[j]+'"id="'+linhas[i]+colunas[j]+_extensao+'" '+ativaOnclick+'></td>'
          }
          tabela+= '</tr>'
     }
@@ -40,7 +50,7 @@ const criarTabela = (tamanho, local)=>{
         document.getElementById('tabuleiro-jogador').innerHTML = tabela
     }
     if(local == 2){
-        //tela batalha parte jgoador
+        //tela batalha parte jogador
         document.getElementById('tabuleiroBatalha1').innerHTML = tabela
     }
     if(local == 3){
@@ -62,14 +72,13 @@ const adicionaEmbarcacao= (tipoEmbarcacao)=>{
         //se nao tiver nada no campo
         setAlert(1, "ERRO!!! Campo das posições vazio")
 
-    }else if(verificaPosicaoDisponivel(posInicial, posFinal,tamanhoEmbarcacao, 10)==false && verificaQtdEmbarcacoes(tipoEmbarcacao)==false){
+    }else if(verificaPosicaoDisponivel(posInicial, posFinal,tamanhoEmbarcacao)==false && verificaQtdEmbarcacoes(tipoEmbarcacao)==false){
     
         let sequencia = gerarSequencia(posInicial, posFinal,10)
-
+        
         pintaCelulas(sequencia, "#000")
-        adicionaEmbarcacaoNaLista(sequencia)
-        sequencia.forEach((valor)=>posicoesOcupadas.push(valor))
-
+        adicionaEmbarcacaoNaLista(sequencia, 0)
+        sequencia.forEach((valor)=>posicoesOcupadas_usu.push(valor))
         //todas as embarcacoes foram colocadas na tabela
         totalEmbarcacoes == 0?setAlert(2, "Tudo pronto para Iniciar a partida"):setAlert(0)
     }
@@ -157,13 +166,13 @@ const resetEmbarcacoes = () =>{
     qtd_contratorpedeiro.innerHTML= qtdEmbarcacoes[3]
     qtd_submarino.innerHTML= qtdEmbarcacoes[4]
 
-    pintaCelulas(posicoesOcupadas, "#1E88E5")
+    pintaCelulas(posicoesOcupadas_usu, "#1E88E5")
 
-    posicoesOcupadas = []
-    Embarcacoes.porta_aviao = []
-    Embarcacoes.navio_tanque = []
-    Embarcacoes.contra_torpedeiro = []
-    Embarcacoes.submarino_ = []
+    posicoesOcupadas_usu = []
+    Embarcacoes[0].porta_aviao = []
+    Embarcacoes[0].navio_tanque = []
+    Embarcacoes[0].contra_torpedeiro = []
+    Embarcacoes[0].submarino_ = []
     setAlert(0)
 }
 //botao voltar
@@ -175,6 +184,7 @@ const voltarEscolherTamanho = () =>{
 //botao iniciar
 
 const iniciarPartida= () =>{
+    iniciarBatalha()
     if(totalEmbarcacoes > 0){
         setAlert(1,"ERRO!!! Todas as Embarcacoes devem ser colocadas")
     }else{
@@ -182,10 +192,6 @@ const iniciarPartida= () =>{
         iniciarBatalha()
     }
 }
-
-
-
-
 
 
 //FUNÇÕES QUE NGM LIGA COMO SAO FEITAS
@@ -250,6 +256,7 @@ const pegarDadosCampo = (tipoEmbarcacao) =>{
 }
 
 const pintaCelulas = (sequencia, cor) =>{
+    sequencia = sequencia.map(e => e + "_usu")
     for(let pos of sequencia){
         document.getElementById(pos).style.background= "radial-gradient("+cor+","+ cor+")"
    }
@@ -283,7 +290,7 @@ const verificaParametroMaior= (posInicial, posFinal) =>{
 const verificaLocalDisponivel = (posicoes)=>{
     let encontrou = false;
     posicoes.forEach((XX)=>{
-	    if(posicoesOcupadas.includes(XX)){
+	    if(posicoesOcupadas_usu.includes(XX)){
             encontrou = true;
         }
     })
@@ -303,20 +310,19 @@ const verificaTamanhoValido = (posicoes, tamanhoEmbarcacao)=>{
 
 }
 
-const adicionaEmbarcacaoNaLista = (embarcacao) => {
-
+const adicionaEmbarcacaoNaLista = (embarcacao, extensao) => {
     switch(embarcacao.length){
         case 5:
-            Embarcacoes.porta_aviao.push(embarcacao)
+            Embarcacoes[extensao].porta_aviao.push(embarcacao)
             break
         case 4:
-            Embarcacoes.navio_tanque.push(embarcacao)
+            Embarcacoes[extensao].navio_tanque.push(embarcacao)
             break
         case 3:
-            Embarcacoes.contra_torpedeiro.push(embarcacao)
+            Embarcacoes[extensao].contra_torpedeiro.push(embarcacao)
             break
         case 2:
-            Embarcacoes.submarino_.push(embarcacao)
-            break;
+            Embarcacoes[extensao].submarino_.push(embarcacao)
+            break
     }
 }
