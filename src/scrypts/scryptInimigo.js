@@ -39,11 +39,72 @@ gerar todas as Posicoes Ocupadas do inimigo e as posicoes nos objetos
 de modo aleatorio e inteligente
 */
 
-posicoesOcupadas_ini = ["B1","B2","C1","C2","C3"]
-adicionaEmbarcacaoNaLista(["B1", "B2"],1)
-adicionaEmbarcacaoNaLista(["C1", "C2", "C3"],1)
+const gerarPosicaoAleatoria = (orientacao, tamanhoEmbarcacao) =>{
+   letra = linhas[gerarNumAleatorio(0,tamanhoTabela-1)]
+   numero = colunas[gerarNumAleatorio(0, tamanhoTabela -1)]
+   posInicial = gerarPosicao(letra+numero)
+   
+   return gerarSequenciaInimigo(posInicial,tamanhoEmbarcacao, orientacao);
+}
+
+const gerarSequenciaInimigo =(posInicial, tamanhoEmbarcacao, orientacao)=>{
+   let resultado=[];
+    
+   if(orientacao == 0){
+       //horizontal
+       if(parseInt(posInicial[1]) + tamanhoEmbarcacao < tamanhoTabela-1)return null;
+       for(let i = posInicial[1]; i<=parseInt(posInicial[1])+ tamanhoEmbarcacao; i++){
+           resultado.push(posInicial[0]+i)
+       }
+       return resultado;
+   }
+   if(orientacao == 1){
+       //vertical
+       if(linhas.indexOf(posInicial[0])+ tamanhoEmbarcacao > tamanhoTabela-1)return null;
+       for(let i = linhas.indexOf(posInicial[0]);i <= linhas.indexOf(posInicial[0])+ tamanhoEmbarcacao;i++){
+           resultado.push(linhas[i]+posInicial[1])
+       }
+       return resultado;
+   }
+}
+
+const colocarEmbarcacaoInimiga = () =>{
+
+   let orientacao
+   let sequencia
+   let tamanhoEmbarcacao = 4;
+   let quantidadeEmbarcacao = 1;
+
+   for(;tamanhoEmbarcacao > 0;tamanhoEmbarcacao--){
+      
+      for( i= 0; i < quantidadeEmbarcacao; i ++ ){
+         orientacao = gerarNumAleatorio(0,2);
+         do{
+            sequencia = gerarPosicaoAleatoria(orientacao, tamanhoEmbarcacao);
+         }while(sequencia == null || verificaLocalDisponivel_ini(sequencia))
+        //teste console.log(sequencia)
+         sequencia.forEach((valor)=>posicoesOcupadas_ini.push(valor))
+         adicionaEmbarcacaoNaLista(sequencia,1)
+         sequencia = null;
+      }
+      quantidadeEmbarcacao++;
+   }
+   //teste  console.log(posicoesOcupadas_ini)
+    // testeconsole.log(Embarcacoes[1])
+}
+
+colocarEmbarcacaoInimiga();
+
+
+
+
+
+
+
+
 
 const marcarCelulaInimiga = ()=>{
+    iniciarFuncoesBatalha = false
     //gerar numero com inteligencia
     //gerar as 3 posicoes
     //colocar uma certa % de chance de ativar o tiro especial
@@ -51,6 +112,14 @@ const marcarCelulaInimiga = ()=>{
     pintarCelulasTiro(["A1","A2","A3"],"_usu")
     adicionarPosicoesExplodidas(["A1","A2", "A3"],"_usu")
     verificarSeEmbarcacaoCompleta("_usu")
+
+
+    //gerar delay
+    iniciarFuncoesBatalha = true
+}
+
+function gerarNumAleatorio(inicio, fim) {
+   return Math.floor((Math.random() * fim) + inicio);
 }
 
 

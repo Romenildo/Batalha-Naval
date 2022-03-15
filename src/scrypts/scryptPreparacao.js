@@ -2,7 +2,10 @@ let posicoesOcupadas_usu = []
 let posicoesOcupadas_ini = []
 let linhas;
 let colunas;
-let tamanhoTabela;
+let tamanhoTabela = 10;
+//remover dps
+linhas = ["A","B","C","D","E","F","G","H","I","J"]
+colunas = ["1","2","3","4","5","6","7","8","9","10"]
 
 let Embarcacoes = [
     {//usuario
@@ -300,6 +303,18 @@ const verificaLocalDisponivel = (posicoes)=>{
     }
     return false
 }
+const verificaLocalDisponivel_ini = (posicoes)=>{
+    let encontrou = false;
+    posicoes.forEach((XX)=>{
+	    if(posicoesOcupadas_ini.includes(XX)){
+            encontrou = true;
+        }
+    })
+    if(encontrou == true){
+        return true
+    }
+    return false
+}
 
 const verificaTamanhoValido = (posicoes, tamanhoEmbarcacao)=>{
     if(posicoes.length != tamanhoEmbarcacao){
@@ -311,6 +326,7 @@ const verificaTamanhoValido = (posicoes, tamanhoEmbarcacao)=>{
 }
 
 const adicionaEmbarcacaoNaLista = (embarcacao, extensao) => {
+    //1 inimigo, 0 aliado
     switch(embarcacao.length){
         case 5:
             Embarcacoes[extensao].porta_aviao.push(embarcacao)
