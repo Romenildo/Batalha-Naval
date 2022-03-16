@@ -4,8 +4,8 @@ let linhas;
 let colunas;
 let tamanhoTabela = 10;
 //remover dps
-linhas = ["A","B","C","D","E","F","G","H","I","J"]
-colunas = ["1","2","3","4","5","6","7","8","9","10"]
+//linhas = ["A","B","C","D","E","F","G","H","I","J"]
+//colunas = ["1","2","3","4","5","6","7","8","9","10"]
 
 let Embarcacoes = [
     {//usuario

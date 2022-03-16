@@ -32,6 +32,12 @@ let navioTanqueRestante_ini;
 let contratorpedeiroRestante_ini;
 let submarinoRestante_ini;
 
+let portaAviaoRestante_usu;
+let navioTanqueRestante_usu;
+let contratorpedeiroRestante_usu;
+let submarinoRestante_usu;
+
+
 const marcarCelula = (div) =>{
     if(iniciarFuncoesBatalha==false){
         return 
@@ -133,14 +139,17 @@ const iniciarBatalha=()=>{
     iniciarFuncoesBatalha = true
     criarTabela(tamanhoTabela,2, "_ini")
     criarTabela(tamanhoTabela,3,"_usu")
+
     window.clearInterval(cronometro_timer);
     if(tamanhoTabela == 10){
         cronometro(19)
     }else{
         cronometro(29)
     }
-    adicionarQtdEmbarcacoesBatalha()
+    colocarEmbarcacaoInimiga()
+    instanciarlocaisDisponiveis()
 
+    adicionarQtdEmbarcacoesBatalha()
 }
 
 
@@ -319,6 +328,7 @@ const diminuirEmbarcacaoNaBatalha = (tamanho) =>{
 //finalizar partida
 const verificarFinalizarPartida = ()=>{
     let embarcacoesRestantes = portaAviaoRestante_ini+ navioTanqueRestante_ini + contratorpedeiroRestante_ini + submarinoRestante_ini
+    let embarcacoesRestantesInimigo = portaAviaoRestante_usu+ navioTanqueRestante_usu + contratorpedeiroRestante_usu + submarinoRestante_usu
     if(embarcacoesRestantes <= 0){
         setTimeout(function(){
             alert(`Parabens!!! ${nomeUsuarioAtual} Você ganhou  a batalha!`)
@@ -327,7 +337,11 @@ const verificarFinalizarPartida = ()=>{
              resetarJogo()
              return
         },1000);
-
+    }
+    if(embarcacoesRestantesInimigo <= 0){
+        alert(`A Maquina ganhou!! que pena nao foi dessa vez!`)
+        resetarJogo()
+        return;
     }
     //fazzer a finaliacao com cronometro tbm
 }
@@ -370,6 +384,7 @@ const resetarJogo = () =>{
     qtdTirosNormais_usu = 3
     tiroEspecial_usu = false
     
+    //resetar tudo do inimigo
     resetEmbarcacoes()
     resetarMarcas();
     iniciarFuncoesBatalha = false

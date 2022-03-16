@@ -1,3 +1,4 @@
+
 //inimigo
 let tiroEspecial_ini = false
 
@@ -21,23 +22,6 @@ const qtdNavioTanqueBatalha_usu = document.getElementById("qtdNavioTanque_usu")
 const qtdContratorpedeiroBatalha_usu = document.getElementById("qtdContratorpedeiro_usu")
 const qtdSubmarinoBatalha_usu = document.getElementById("qtdSubmarino_usu")
 
-let portaAviaoRestante_usu;
-let navioTanqueRestante_usu;
-let contratorpedeiroRestante_usu;
-let submarinoRestante_usu;
-
-
-//gerar posicoes do inimigo
-/* 
-porta_aviao: [],
-navio_tanque : [],
-contra_torpedeiro : [],
-submarino_ : []
-
-posicoesOcupadas_ini
-gerar todas as Posicoes Ocupadas do inimigo e as posicoes nos objetos
-de modo aleatorio e inteligente
-*/
 
 const gerarPosicaoAleatoria = (orientacao, tamanhoEmbarcacao) =>{
    letra = linhas[gerarNumAleatorio(0,tamanhoTabela-1)]
@@ -93,38 +77,70 @@ const colocarEmbarcacaoInimiga = () =>{
     // testeconsole.log(Embarcacoes[1])
 }
 
-colocarEmbarcacaoInimiga();
 
 
 
 
 
 
+let posicoesDescobertas = []
+let locaisDisponiveis = []
 
-
+const instanciarlocaisDisponiveis = ( )=>{
+   for(i = 0; i < linhas.length;i++){
+      for(j = 0; j < colunas.length; j++){
+         locaisDisponiveis.push(linhas[i]+ colunas[j])
+      }
+   }
+}
 
 const marcarCelulaInimiga = ()=>{
     iniciarFuncoesBatalha = false
-    //gerar numero com inteligencia
-    //gerar as 3 posicoes
-    //colocar uma certa % de chance de ativar o tiro especial
+    posicoesMarcadas=[]//possicoes dos 3 tiros
 
-    pintarCelulasTiro(["A1","A2","A3"],"_usu")
-    adicionarPosicoesExplodidas(["A1","A2", "A3"],"_usu")
+      //fazer verificacao se tem alguma posicao descaberta
+    for(i = 0 ; i <3; i++){
+      do{
+         valor = gerarNumAleatorio(0, tamanhoTabela*tamanhoTabela)
+         locaisDisponiveis.includes(locaisDisponiveis[valor])? posicao = locaisDisponiveis[valor]: posicao = null
+       }while(posicao == null)
+       
+       posicoesMarcadas[i]=posicao
+       locaisDisponiveis.splice(locaisDisponiveis.indexOf(posicao), 1, null);//verificar se aqui da erro
+    }
+
+   
+    for(i = 0; i < 3; i ++){
+
+      //verificar se o inimio encontrou alguma parte da embarcacao, entao ele pega o restante
+      verificar(Embarcacoes[0][submarino_], 4)
+
+    }
+    console.log("CU")
+    console.log(posicoesDescobertas)
+    pintarCelulasTiro(posicoesMarcadas,"_usu")
+    adicionarPosicoesExplodidas(posicoesMarcadas,"_usu")
     verificarSeEmbarcacaoCompleta("_usu")
 
-
+  
+    //colocar uma certa % de chance de ativar o tiro especial
     //gerar delay
     iniciarFuncoesBatalha = true
+}
+
+const verificar = (Embarcacao, quantidade) =>{
+   for(i = 0; i < tamanho; i++){
+      if(Embarcacao[tamanho].includes(item)){    
+         Embarcacao[tamanho].forEach((valor)=>posicoesDescobertas.push(valor))
+         Embarcacao[tamanho] = Embarcacoes[0][submarino][tamanho].map((e)=>{return "00"})
+         return
+      }
+   }
 }
 
 function gerarNumAleatorio(inicio, fim) {
    return Math.floor((Math.random() * fim) + inicio);
 }
-
-
-
-
 
 
 
