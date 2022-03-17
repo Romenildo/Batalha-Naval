@@ -303,7 +303,26 @@ const verificarPorTipoEmbarcacao = (Embarcacao,tipo) =>{
         }
    }
 }
-
+const diminuirEmbarcacaoNaBatalhaInimigo = (tamanho) =>{
+    console.log(tamanho +"Diminuido")
+    if(tamanho == 5 && portaAviaoRestante_usu > 0){
+       qtdPortaAviaoBatalha_usu.innerHTML = --portaAviaoRestante_usu
+       return
+    }
+    if(tamanho == 4 && navioTanqueRestante_usu > 0){
+       qtdNavioTanqueBatalha_usu.innerHTML = --navioTanqueRestante_usu
+       return
+    }
+    if(tamanho == 3 && contratorpedeiroRestante_usu > 0){
+       qtdContratorpedeiroBatalha_usu.innerHTML = --contratorpedeiroRestante_usu
+       return
+    }
+    if(tamanho == 2 && submarinoRestante_usu > 0){
+       qtdSubmarinoBatalha_usu.innerHTML = --submarinoRestante_usu
+       return
+    }
+    
+ }
 const diminuirEmbarcacaoNaBatalha = (tamanho) =>{
      if(tamanho == 5 && portaAviaoRestante_ini > 0){
         qtdPortaAviaoBatalha_ini.innerHTML = --portaAviaoRestante_ini

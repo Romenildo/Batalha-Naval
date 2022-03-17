@@ -77,12 +77,6 @@ const colocarEmbarcacaoInimiga = () =>{
     // testeconsole.log(Embarcacoes[1])
 }
 
-
-
-
-
-
-
 let posicoesDescobertas = []
 let locaisDisponiveis = []
 
@@ -106,13 +100,12 @@ const marcarCelulaInimiga = ()=>{
       //caso a maquina ja saiba as posicoes de uma ou mais embarcacoes
       let tamanhoDescobertas = posicoesDescobertas.length
       for(qtd =0; qtd < tamanhoDescobertas; qtd++){
-         posicao= posicoesDescobertas.splice(0, 1)
+         posicao= posicoesDescobertas.splice(0, 1).toString()
          posicoesMarcadas[qtd] =posicao
          locaisDisponiveis.splice(locaisDisponiveis.indexOf(posicao.toString()), 1, null);
       }
    }
    qtdTiros = qtd;
-   console.log(qtd)
    for(let i = qtdTiros ; i <3; i++){
       do{
          //gerar uma posicao aceitavel
@@ -125,7 +118,6 @@ const marcarCelulaInimiga = ()=>{
       posicoesDescobertas.splice(posicoesDescobertas.indexOf(posicao), 1);
 
    }
-   console.log(posicoesMarcadas+"   AAA")
     
     for(let pos= 0; pos< 3; pos++){
       verificar(Embarcacoes_ini[0].submarino_, Embarcacoes_ini[0].submarino_.length, posicoesMarcadas[pos])
@@ -133,8 +125,6 @@ const marcarCelulaInimiga = ()=>{
       verificar(Embarcacoes_ini[0].navio_tanque, Embarcacoes_ini[0].navio_tanque.length, posicoesMarcadas[pos])
       verificar(Embarcacoes_ini[0].porta_aviao, Embarcacoes_ini[0].porta_aviao.length, posicoesMarcadas[pos])
     }
-    console.log(posicoesDescobertas)
-    console.log(posicoesMarcadas+"   BBB")
 
     //tranformar para to string as marcadas
     pintarCelulasTiro(posicoesMarcadas,"_usu")
@@ -168,22 +158,3 @@ function gerarNumAleatorio(inicio, fim) {
 
 
 
-const diminuirEmbarcacaoNaBatalhaInimigo = (tamanho) =>{
-    if(tamanho == 5 && portaAviaoRestante_usu > 0){
-       qtdPortaAviaoBatalha_usu.innerHTML = --portaAviaoRestante_usu
-       return
-    }
-    if(tamanho == 4 && navioTanqueRestante_usu > 0){
-       qtdNavioTanqueBatalha_usu.innerHTML = --navioTanqueRestante_usu
-       return
-    }
-    if(tamanho == 3 && contratorpedeiroRestante_usu > 0){
-       qtdContratorpedeiroBatalha_usu.innerHTML = --contratorpedeiroRestante_usu
-       return
-    }
-    if(tamanho == 2 && submarinoRestante_usu > 0){
-       qtdSubmarinoBatalha_usu.innerHTML = --submarinoRestante_usu
-       return
-    }
-    
-}
