@@ -150,6 +150,7 @@ const iniciarBatalha=()=>{
     instanciarlocaisDisponiveis()
 
     adicionarQtdEmbarcacoesBatalha()
+    Embarcacoes_ini = Embarcacoes;
 }
 
 
