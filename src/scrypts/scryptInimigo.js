@@ -33,13 +33,16 @@ const gerarPosicaoAleatoria = (orientacao, tamanhoEmbarcacao) =>{
 
 const gerarSequenciaInimigo =(posInicial, tamanhoEmbarcacao, orientacao)=>{
    let resultado=[];
-    
+    console.log(tamanhoTabela)
+    console.log(linhas)
+    console.log(colunas)
    if(orientacao == 0){
        //horizontal
        if(parseInt(posInicial[1]) + tamanhoEmbarcacao < tamanhoTabela-1)return null;
        for(let i = posInicial[1]; i<=parseInt(posInicial[1])+ tamanhoEmbarcacao; i++){
            resultado.push(posInicial[0]+i)
        }
+       console.log(resultado)
        return resultado;
    }
    if(orientacao == 1){
@@ -48,8 +51,11 @@ const gerarSequenciaInimigo =(posInicial, tamanhoEmbarcacao, orientacao)=>{
        for(let i = linhas.indexOf(posInicial[0]);i <= linhas.indexOf(posInicial[0])+ tamanhoEmbarcacao;i++){
            resultado.push(linhas[i]+posInicial[1])
        }
+       console.log(resultado)
+
        return resultado;
    }
+   
 }
 
 const colocarEmbarcacaoInimiga = () =>{
@@ -77,6 +83,12 @@ const colocarEmbarcacaoInimiga = () =>{
     // testeconsole.log(Embarcacoes[1])
 }
 
+
+
+
+
+
+
 let posicoesDescobertas = []
 let locaisDisponiveis = []
 
@@ -86,15 +98,15 @@ const instanciarlocaisDisponiveis = ( )=>{
          locaisDisponiveis.push(linhas[i]+ colunas[j])
       }
    }
+   Embarcacoes_ini =  JSON.parse(JSON.stringify(Embarcacoes));
  
 }
 
 const marcarCelulaInimiga = ()=>{
     iniciarFuncoesBatalha = false
-    let posicoesMarcadas=[]//possicoes dos 3 tiros
+    let posicoesMarcadas=[]//posicoes dos 3 tiros
     let qtdTiros = 0;
     let qtd=0;
-      //fazer verificacao se tem alguma posicao descaberta
    
    if(posicoesDescobertas.length > 0){
       //caso a maquina ja saiba as posicoes de uma ou mais embarcacoes
@@ -120,13 +132,11 @@ const marcarCelulaInimiga = ()=>{
    }
     
     for(let pos= 0; pos< 3; pos++){
-      verificar(Embarcacoes_ini[0].submarino_, Embarcacoes_ini[0].submarino_.length, posicoesMarcadas[pos])
-      verificar(Embarcacoes_ini[0].contra_torpedeiro, Embarcacoes_ini[0].contra_torpedeiro.length, posicoesMarcadas[pos])
-      verificar(Embarcacoes_ini[0].navio_tanque, Embarcacoes_ini[0].navio_tanque.length, posicoesMarcadas[pos])
-      verificar(Embarcacoes_ini[0].porta_aviao, Embarcacoes_ini[0].porta_aviao.length, posicoesMarcadas[pos])
+      verificarSeTiroAcertouEmbarcacao(Embarcacoes_ini[0].submarino_, Embarcacoes_ini[0].submarino_.length, posicoesMarcadas[pos])
+      verificarSeTiroAcertouEmbarcacao(Embarcacoes_ini[0].contra_torpedeiro, Embarcacoes_ini[0].contra_torpedeiro.length, posicoesMarcadas[pos])
+      verificarSeTiroAcertouEmbarcacao(Embarcacoes_ini[0].navio_tanque, Embarcacoes_ini[0].navio_tanque.length, posicoesMarcadas[pos])
+      verificarSeTiroAcertouEmbarcacao(Embarcacoes_ini[0].porta_aviao, Embarcacoes_ini[0].porta_aviao.length, posicoesMarcadas[pos])
     }
-
-    //tranformar para to string as marcadas
     pintarCelulasTiro(posicoesMarcadas,"_usu")
     adicionarPosicoesExplodidas(posicoesMarcadas,"_usu")
     verificarSeEmbarcacaoCompleta("_usu")
@@ -137,7 +147,7 @@ const marcarCelulaInimiga = ()=>{
     iniciarFuncoesBatalha = true
 }
 
-const verificar = (Embarcacao, quantidade, posicao_tiro) =>{
+const verificarSeTiroAcertouEmbarcacao = (Embarcacao, quantidade, posicao_tiro) =>{
    for(let i = 0; i < quantidade; i++){
       if(Embarcacao[i].includes(posicao_tiro)){    
          Embarcacao[i].forEach((valor)=>valor == posicao_tiro?null:posicoesDescobertas.push(valor))
@@ -153,8 +163,6 @@ const verificar = (Embarcacao, quantidade, posicao_tiro) =>{
 function gerarNumAleatorio(inicio, fim) {
    return Math.floor((Math.random() * fim) + inicio);
 }
-
-
 
 
 

@@ -256,7 +256,8 @@ table{
     max-width: 650px;
 }
 td {
-    background-color: #1E88E5;
+    background: url("../dados/imgs_Embarcacoes/azul.png");
+ 
     cursor: crosshair; 
     height: 32px;
 
@@ -284,7 +285,7 @@ tr:first-child td:before {
 }
 
 td:hover{
-    background-color: rgb(46, 59, 240);
+    background: url("../dados/imgs_Embarcacoes/azul-hover.png");
 }
 
 

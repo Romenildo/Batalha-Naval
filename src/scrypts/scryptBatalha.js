@@ -65,12 +65,12 @@ const marcarCelula = (div) =>{
     }else{
         //tiro normal
         efeitoTiroEspecial(0)
-        document.getElementById(id+"_ini").style.background= "radial-gradient(red, #1E88E5,#1E88E5)"
+        document.getElementById(id+"_ini").style.background= 'url("src/dados/imgs_Embarcacoes/tiroMarcacao.png")'
         
         //somar os 3 cliques das bombas
         if(posicoesMarcas.includes(id)){
             //caso clicar no mesmo novamente
-            document.getElementById(id+"_ini").style.background= "radial-gradient(#1E88E5, #1E88E5)"
+           document.getElementById(id+"_ini").style.background= 'url("src/dados/imgs_Embarcacoes/azul.png")'
 
             posicoesMarcas.forEach((nome, indice)=>{
                 if(nome == id){
@@ -94,7 +94,7 @@ const marcarCelula = (div) =>{
         if(contadorMarcas == qtdTirosNormais_usu){
             pintarCelulasTiro(posicoesMarcas,"_ini")
             adicionarPosicoesExplodidas(posicoesMarcas,"_ini")
-            verificarSeEmbarcacaoCompleta("_ini")
+           verificarSeEmbarcacaoCompleta("_ini") 
             verificarFinalizarPartida()
             //ativar vez do inimigo
             
@@ -150,7 +150,6 @@ const iniciarBatalha=()=>{
     instanciarlocaisDisponiveis()
 
     adicionarQtdEmbarcacoesBatalha()
-    Embarcacoes_ini = Embarcacoes;
 }
 
 
@@ -231,12 +230,14 @@ const pintarCelulasTiro = (sequencia, _extensao) =>{
         if(sequencia[i]!= "00"){
              if(auxPosicoesOcupadas.includes(sequencia[i])){
                  //encontrou navio
-                 document.getElementById(sequencia[i]+_extensao).style.background= "radial-gradient(#000, #000)"
+                 desenharEmbarcacaoNaBatalha(sequencia[i], _extensao)
                  
                  _extensao =="_ini"?pontos_jogador_usu.innerHTML = pontosJogador_usu += 500: pontos_jogador_ini.innerHTML = pontosJogador_ini+= 500
                  
              }else{
-                document.getElementById(sequencia[i]+ _extensao).style.background= "radial-gradient(red, red)"
+                 //nao encontrou navio
+                document.getElementById(sequencia[i]+ _extensao).style.background= 'url("src/dados/imgs_Embarcacoes/explosao.png")'
+
              }
              document.getElementById(sequencia[i]+_extensao).innerHTML = ""
         }
@@ -254,6 +255,78 @@ const adicionarPosicoesExplodidas = (posicoes, _extensao)=>{
         }
         
     }
+}
+
+const desenharEmbarcacaoNaBatalha=(celula, _extensao) =>{
+    let tipo
+    tipo = _extensao=="_ini"? tipo = 1: tipo = 0;
+    
+    if(verificarSePosicaoNaEmbarcacao(celula,_extensao, Embarcacoes[tipo].porta_aviao, 5))return;
+    if(verificarSePosicaoNaEmbarcacao(celula,_extensao, Embarcacoes[tipo].navio_tanque, 4))return;
+    if(verificarSePosicaoNaEmbarcacao(celula,_extensao, Embarcacoes[tipo].contra_torpedeiro, 3))return;
+    if(verificarSePosicaoNaEmbarcacao(celula,_extensao, Embarcacoes[tipo].submarino_, 2))return;
+
+}
+
+const verificarSePosicaoNaEmbarcacao=(celula,_extensao, Embarcacao, tamanho)=>{
+    let encontrouPos = -1;
+    let orientacao = []
+    for(let i = 0; i < Embarcacao.length; i ++){
+        let posicao = Embarcacao[i].indexOf(celula);
+        if(posicao != -1){
+            encontrouPos = posicao
+            orientacao[0] = Embarcacao[i][0].split("")[0]
+            orientacao[1] = Embarcacao[i][1].split("")[0]
+            console.log("Embarcacao" + Embarcacao[i])
+        }
+    }
+    
+    if(encontrouPos!=-1){
+        console.log(Embarcacao)
+        console.log("encontrou em :" +encontrouPos)
+        desenhaCelula(celula, _extensao, encontrouPos, tamanho, orientacao)
+        return true;
+    }
+    return false
+}
+
+desenhaCelula=(celula, _extensao, posicao, tamanho, orientacao)=>{
+    console.log(celula, _extensao, posicao, tamanho)
+    console.log("no url:" +(parseInt(posicao) + 1))
+    if(orientacao[0] === orientacao[1]){
+        //horizontal
+        switch(tamanho){
+            case 5:
+                document.getElementById(celula + _extensao).style.background= 'url("src/dados/imgs_Embarcacoes/portaaviao'+(parseInt(posicao) + 1) +'.png")'
+                break;
+            case 4:
+                document.getElementById(celula + _extensao).style.background= 'url("src/dados/imgs_Embarcacoes/naviotanque'+(parseInt(posicao) + 1) +'.png")'
+                break;
+            case 3:
+                document.getElementById(celula + _extensao).style.background= 'url("src/dados/imgs_Embarcacoes/contratorpedeiro'+(parseInt(posicao) + 1) +'.png")'
+                break;
+            case 2:
+                document.getElementById(celula + _extensao).style.background= 'url("src/dados/imgs_Embarcacoes/submarino'+(parseInt(posicao) + 1) +'.png")'
+                break;
+        }
+    }else{
+        //vertical
+        switch(tamanho){
+            case 5:
+                document.getElementById(celula + _extensao).style.background= 'url("src/dados/imgs_Embarcacoes/v_portaaviao'+(parseInt(posicao) + 1) +'.png")'
+                break;
+            case 4:
+                document.getElementById(celula + _extensao).style.background= 'url("src/dados/imgs_Embarcacoes/v_naviotanque'+(parseInt(posicao) + 1) +'.png")'
+                break;
+            case 3:
+                document.getElementById(celula + _extensao).style.background= 'url("src/dados/imgs_Embarcacoes/v_contratorpedeiro'+(parseInt(posicao) + 1) +'.png")'
+                break;
+            case 2:
+                document.getElementById(celula + _extensao).style.background= 'url("src/dados/imgs_Embarcacoes/v_submarino'+(parseInt(posicao) + 1) +'.png")'
+                break;
+        }
+    }
+    
 }
 
 
@@ -304,7 +377,6 @@ const verificarPorTipoEmbarcacao = (Embarcacao,tipo) =>{
    }
 }
 const diminuirEmbarcacaoNaBatalhaInimigo = (tamanho) =>{
-    console.log(tamanho +"Diminuido")
     if(tamanho == 5 && portaAviaoRestante_usu > 0){
        qtdPortaAviaoBatalha_usu.innerHTML = --portaAviaoRestante_usu
        return
@@ -359,9 +431,11 @@ const verificarFinalizarPartida = ()=>{
         },1000);
     }
     if(embarcacoesRestantesInimigo <= 0){
-        alert(`A Maquina ganhou!! que pena nao foi dessa vez!`)
-        resetarJogo()
-        return;
+        setTimeout(function(){
+            alert(`A Maquina ganhou!! que pena nao foi dessa vez!`)
+            resetarJogo()
+            return;
+        },1000);
     }
     //fazzer a finaliacao com cronometro tbm
 }
@@ -396,7 +470,7 @@ const adicionarUsuarioAoRanking = () =>{
 
 const resetarJogo = () =>{
     voltarTelaInicial()
-    pintaCelulas(posicoesExplodidas_ini, "#1E88E5")
+    pintaCelula(posicoesExplodidas_ini)
     posicoesExplodidas_ini= []
     posicoesExplodidasUsadas = []
     qtdTiroEspecial_ini = 1

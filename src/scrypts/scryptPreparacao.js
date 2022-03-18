@@ -79,7 +79,7 @@ const adicionaEmbarcacao= (tipoEmbarcacao)=>{
     
         let sequencia = gerarSequencia(posInicial, posFinal,10)
         
-        pintaCelulas(sequencia, "#000")
+        desenharEmbarcacaoPreparacao(sequencia)//trocar por pintarCelulas
         adicionaEmbarcacaoNaLista(sequencia, 0)
         sequencia.forEach((valor)=>posicoesOcupadas_usu.push(valor))
         //todas as embarcacoes foram colocadas na tabela
@@ -169,7 +169,7 @@ const resetEmbarcacoes = () =>{
     qtd_contratorpedeiro.innerHTML= qtdEmbarcacoes[3]
     qtd_submarino.innerHTML= qtdEmbarcacoes[4]
 
-    pintaCelulas(posicoesOcupadas_usu, "#1E88E5")
+    pintaCelula(posicoesOcupadas_usu)
 
     posicoesOcupadas_usu = []
     Embarcacoes[0].porta_aviao = []
@@ -258,12 +258,14 @@ const pegarDadosCampo = (tipoEmbarcacao) =>{
     return [posInicial, posFinal, tamanhoEmbarcacao]
 }
 
-const pintaCelulas = (sequencia, cor) =>{
+const pintaCelula = (sequencia) =>{
     sequencia = sequencia.map(e => e + "_usu")
     for(let pos of sequencia){
-        document.getElementById(pos).style.background= "radial-gradient("+cor+","+ cor+")"
+        document.getElementById(pos).style.background= 'url("src/dados/imgs_Embarcacoes/azul.png")'
    }
 }
+
+
 
 
 const verificaParametroIguais = (posInicial, posFinal) =>{
@@ -341,4 +343,66 @@ const adicionaEmbarcacaoNaLista = (embarcacao, extensao) => {
             Embarcacoes[extensao].submarino_.push(embarcacao)
             break
     }
+}
+
+const desenharEmbarcacaoPreparacao = (sequencia) =>{ 
+    let orientacao = []
+    orientacao[0] = sequencia[0].split("")[0]
+    orientacao[1] = sequencia[1].split("")[0]
+    sequencia = sequencia.map(e => e + "_usu")
+
+    if(orientacao[0] === orientacao[1]){
+        //horizontal
+        switch(sequencia.length){
+            case 5:
+                document.getElementById(sequencia[0]).style.background= 'url("src/dados/imgs_Embarcacoes/portaaviao1.png")'
+                document.getElementById(sequencia[1]).style.background= 'url("src/dados/imgs_Embarcacoes/portaaviao2.png")'
+                document.getElementById(sequencia[2]).style.background= 'url("src/dados/imgs_Embarcacoes/portaaviao3.png")'
+                document.getElementById(sequencia[3]).style.background= 'url("src/dados/imgs_Embarcacoes/portaaviao4.png")'
+                document.getElementById(sequencia[4]).style.background= 'url("src/dados/imgs_Embarcacoes/portaaviao5.png")'
+                break;
+            case 4:
+                document.getElementById(sequencia[0]).style.background= 'url("src/dados/imgs_Embarcacoes/naviotanque1.png")'
+                document.getElementById(sequencia[1]).style.background= 'url("src/dados/imgs_Embarcacoes/naviotanque2.png")'
+                document.getElementById(sequencia[2]).style.background= 'url("src/dados/imgs_Embarcacoes/naviotanque3.png")'
+                document.getElementById(sequencia[3]).style.background= 'url("src/dados/imgs_Embarcacoes/naviotanque4.png")'
+                break;
+            case 3:
+                document.getElementById(sequencia[0]).style.background= 'url("src/dados/imgs_Embarcacoes/contratorpedeiro1.png")'
+                document.getElementById(sequencia[1]).style.background= 'url("src/dados/imgs_Embarcacoes/contratorpedeiro2.png")'
+                document.getElementById(sequencia[2]).style.background= 'url("src/dados/imgs_Embarcacoes/contratorpedeiro3.png")'
+                break;
+            case 2:
+                document.getElementById(sequencia[0]).style.background= 'url("src/dados/imgs_Embarcacoes/submarino1.png")'
+                document.getElementById(sequencia[1]).style.background= 'url("src/dados/imgs_Embarcacoes/submarino2.png")'
+                break;
+        }
+    }else{
+        //vertical
+        switch(sequencia.length){
+            case 5:
+                document.getElementById(sequencia[0]).style.background= 'url("src/dados/imgs_Embarcacoes/v_portaaviao1.png")'
+                document.getElementById(sequencia[1]).style.background= 'url("src/dados/imgs_Embarcacoes/v_portaaviao2.png")'
+                document.getElementById(sequencia[2]).style.background= 'url("src/dados/imgs_Embarcacoes/v_portaaviao3.png")'
+                document.getElementById(sequencia[3]).style.background= 'url("src/dados/imgs_Embarcacoes/v_portaaviao4.png")'
+                document.getElementById(sequencia[4]).style.background= 'url("src/dados/imgs_Embarcacoes/v_portaaviao5.png")'
+                break;
+            case 4:
+                document.getElementById(sequencia[0]).style.background= 'url("src/dados/imgs_Embarcacoes/v_naviotanque1.png")'
+                document.getElementById(sequencia[1]).style.background= 'url("src/dados/imgs_Embarcacoes/v_naviotanque2.png")'
+                document.getElementById(sequencia[2]).style.background= 'url("src/dados/imgs_Embarcacoes/v_naviotanque3.png")'
+                document.getElementById(sequencia[3]).style.background= 'url("src/dados/imgs_Embarcacoes/v_naviotanque4.png")'
+                break;
+            case 3:
+                document.getElementById(sequencia[0]).style.background= 'url("src/dados/imgs_Embarcacoes/v_contratorpedeiro1.png")'
+                document.getElementById(sequencia[1]).style.background= 'url("src/dados/imgs_Embarcacoes/v_contratorpedeiro2.png")'
+                document.getElementById(sequencia[2]).style.background= 'url("src/dados/imgs_Embarcacoes/v_contratorpedeiro3.png")'
+                break;
+            case 2:
+                document.getElementById(sequencia[0]).style.background= 'url("src/dados/imgs_Embarcacoes/v_submarino1.png")'
+                document.getElementById(sequencia[1]).style.background= 'url("src/dados/imgs_Embarcacoes/v_submarino2.png")'
+                break;
+        }
+    }
+    
 }
