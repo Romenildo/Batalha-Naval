@@ -1,8 +1,8 @@
 let posicoesOcupadas_usu = []
 let posicoesOcupadas_ini = []
-let linhas;
-let colunas;
-let tamanhoTabela = 10;
+let LINHAS;
+let COLUNAS;
+let TAMANHO_TABELA;
 
 let Embarcacoes = [
     {//usuario
@@ -22,13 +22,13 @@ let Embarcacoes = [
 //criacao da tabela com html e js (tamanhos 10 ou 15)
 const criarTabela = (tamanho, local, _extensao)=>{
    
-    tamanhoTabela = tamanho;
-    if(tamanhoTabela == 10){
-        linhas = ["A","B","C","D","E","F","G","H","I","J"]
-        colunas = ["1","2","3","4","5","6","7","8","9","10"]
+    TAMANHO_TABELA = tamanho;
+    if(TAMANHO_TABELA == 10){
+        LINHAS = ["A","B","C","D","E","F","G","H","I","J"]
+        COLUNAS = ["1","2","3","4","5","6","7","8","9","10"]
     }else{
-        linhas = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O"]
-        colunas = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"]
+        LINHAS = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O"]
+        COLUNAS = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"]
         reformularTelaPara15x15()
     }
     let ativaOnclick = ""
@@ -37,10 +37,10 @@ const criarTabela = (tamanho, local, _extensao)=>{
     }
 
     let tabela = '<table>'
-    for(let i = 0; i< tamanhoTabela; i++){
-        tabela+= '<tr linha="'+linhas[i]+'">'
-        for(let j = 0; j<tamanhoTabela; j++){
-             tabela+= '<td coluna="'+colunas[j]+'" title="Local: '+linhas[i]+colunas[j]+'"id="'+linhas[i]+colunas[j]+_extensao+'" '+ativaOnclick+'></td>'
+    for(let i = 0; i< TAMANHO_TABELA; i++){
+        tabela+= '<tr linha="'+LINHAS[i]+'">'
+        for(let j = 0; j<TAMANHO_TABELA; j++){
+             tabela+= '<td coluna="'+COLUNAS[j]+'" title="Local: '+LINHAS[i]+COLUNAS[j]+'"id="'+LINHAS[i]+COLUNAS[j]+_extensao+'" '+ativaOnclick+'></td>'
          }
          tabela+= '</tr>'
     }
@@ -158,8 +158,12 @@ const verificaQtdEmbarcacoes= (tipoEmbarcacao)=>{
     return true
 }
 
-//botao reset preparacao
+//botao reset preparacao(resetar os dados escolhidos pelo usuario)
 const resetEmbarcacoes = () =>{
+    portaAviao = 1
+    navioTanque = 2;
+    contratorpedeiro = 3;
+    submarino = 4;
     qtd_portaAviao.innerHTML= qtdEmbarcacoes[1]
     qtd_navioTanque.innerHTML= qtdEmbarcacoes[2]
     qtd_contratorpedeiro.innerHTML= qtdEmbarcacoes[3]
@@ -174,6 +178,7 @@ const resetEmbarcacoes = () =>{
     Embarcacoes[0].submarino_ = []
     setAlert(0)
 }
+
 //botao voltar
 const voltarEscolherTamanho = () =>{
     resetEmbarcacoes()
@@ -181,7 +186,6 @@ const voltarEscolherTamanho = () =>{
 }
 
 //botao iniciar
-
 const iniciarPartida= () =>{
     iniciarBatalha()
     if(totalEmbarcacoes > 0){
@@ -193,7 +197,8 @@ const iniciarPartida= () =>{
 }
 
 
-//FUNÇÕES QUE NGM LIGA COMO SAO FEITAS
+
+//FUNÇÕES ADICIONAIS
 
 //Recebe a posciao inicial A1 e final A5 depois de filtrada e gera um array: A1 A2 A3 A4 A5
 const gerarSequencia = (posInicial, posFinal) => {
@@ -211,8 +216,8 @@ const gerarSequencia = (posInicial, posFinal) => {
     }
     if(posInicial[1]==posFinal[1]){
         //vertical
-        for(let i = linhas.indexOf(posInicial[0]);i <= linhas.indexOf(posFinal[0]);i++){
-            resultado.push(linhas[i]+posInicial[1])
+        for(let i = LINHAS.indexOf(posInicial[0]);i <= LINHAS.indexOf(posFinal[0]);i++){
+            resultado.push(LINHAS[i]+posInicial[1])
         }
         return resultado;
     }
@@ -228,7 +233,7 @@ const gerarPosicao = (posicao)=>{
 }
 
 const pegarDadosCampo = (tipoEmbarcacao) =>{
-
+    //pegar os dados do input visual
     switch(tipoEmbarcacao){
         case 1://Porta-Aviao
             posInicial = document.getElementById('campoPortaAviao1').value.toUpperCase()
@@ -261,8 +266,7 @@ const pintaCelula = (sequencia) =>{
    }
 }
 
-
-
+//VERIFICACOES
 
 const verificaParametroIguais = (posInicial, posFinal) =>{
     if(posInicial.toString() == posFinal.toString()){
@@ -272,8 +276,8 @@ const verificaParametroIguais = (posInicial, posFinal) =>{
     return false;
 }
 
-const verificaParametroAceitavel = (posInicial, posFinal, tamanhoTabela) =>{
-    if(posInicial[1]>tamanhoTabela || posFinal[1]>tamanhoTabela || linhas.includes(posInicial[0])!=true || linhas.includes(posFinal[0])!=true){
+const verificaParametroAceitavel = (posInicial, posFinal, TAMANHO_TABELA) =>{
+    if(posInicial[1]>TAMANHO_TABELA || posFinal[1]>TAMANHO_TABELA || LINHAS.includes(posInicial[0])!=true || LINHAS.includes(posFinal[0])!=true){
         //verifica se ta dentro dos parametros da  tabela
         setAlert(1,"ERRO!!! Parametro maior que o tamanho da Tabela")
         return true
@@ -281,7 +285,7 @@ const verificaParametroAceitavel = (posInicial, posFinal, tamanhoTabela) =>{
     return false
 }
 const verificaParametroMaior= (posInicial, posFinal) =>{
-    if(linhas.indexOf(posInicial[0]) > linhas.indexOf(posFinal[0])){
+    if(LINHAS.indexOf(posInicial[0]) > LINHAS.indexOf(posFinal[0])){
         setAlert(1, "ERRO!!! Inicio maior ou igual ao Final")
         return true
     }
@@ -322,6 +326,8 @@ const verificaTamanhoValido = (posicoes, tamanhoEmbarcacao)=>{
     return false
 
 }
+
+//FIM
 
 const adicionaEmbarcacaoNaLista = (embarcacao, extensao) => {
     //1 inimigo, 0 aliado

@@ -41,6 +41,7 @@ const mostrarTelaPreparacao = (tamanhoTabela) =>{
     telaJogar.style.display = "none"
     telaPreparacao.style.display = "block"
     setAlert(0)
+    setAlert(0,"",0)
     
 }
 
@@ -48,6 +49,7 @@ const voltarTelaEscolherTamanho = () =>{
     telaPreparacao.style.display = "none"
     telaJogar.style.display = "block"
     reformularTelaParaNormal()
+    setAlert(0,"",0)
 }
 const mostrarTelaBatalha = () =>{
     document.getElementById('tabuleiro-jogador').innerHTML = ""
@@ -63,6 +65,7 @@ const voltarTelaInicial = () =>{
     telaPreparacao.style.display = "none"
     telaBatalha.style.display = "none"
     telaInicial.style.display = "block"
+    setAlert(0,"",0)
     reformularTelaParaNormal()
 }
 

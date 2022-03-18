@@ -1,12 +1,20 @@
 
 //inimigo
 let tiroEspecial_ini = false
-
 let qtdTiroEspecial_ini = 1
-let pontosJogador_ini = 0
 const qtdTirosNormais_ini = 3
+
+let pontosJogador_ini = 0
 let posicoesExplodidas_usu = [];
 
+let portaAviaoRestante_usu;
+let navioTanqueRestante_usu;
+let contratorpedeiroRestante_usu;
+let submarinoRestante_usu;
+
+let Embarcacoes_ini
+
+//parte visual
 const tiros_especiais_ini = document.getElementById("qtdTirosEspeciais_ini")
 tiros_especiais_ini.innerHTML = qtdTiroEspecial_ini
 
@@ -22,40 +30,41 @@ const qtdNavioTanqueBatalha_usu = document.getElementById("qtdNavioTanque_usu")
 const qtdContratorpedeiroBatalha_usu = document.getElementById("qtdContratorpedeiro_usu")
 const qtdSubmarinoBatalha_usu = document.getElementById("qtdSubmarino_usu")
 
-let Embarcacoes_ini
+
 const gerarPosicaoAleatoria = (orientacao, tamanhoEmbarcacao) =>{
-   letra = linhas[gerarNumAleatorio(0,tamanhoTabela-1)]
-   numero = colunas[gerarNumAleatorio(0, tamanhoTabela -1)]
+   letra = LINHAS[gerarNumAleatorio(0,TAMANHO_TABELA-1)]
+   numero = COLUNAS[gerarNumAleatorio(0, TAMANHO_TABELA-1)]
    posInicial = gerarPosicao(letra+numero)
 
    let ultimaPosicao =(parseInt(posInicial[1]) + tamanhoEmbarcacao)
-       if((ultimaPosicao > parseInt(tamanhoTabela)-1) == true){
-         return null;
-       }
+   if((ultimaPosicao > parseInt(TAMANHO_TABELA)-1) == true){
+      //verifica se a posicao cabe dentro da tabela
+      return null;
+   }
+
    return gerarSequenciaInimigo(posInicial,tamanhoEmbarcacao, orientacao);
 }
 
 const gerarSequenciaInimigo =(posInicial, tamanhoEmbarcacao, orientacao)=>{
+   //recebe a posicao inicial e retorna as posicoes dependendo do tamanho A1 tamanho 3 => A1, A2, A3
    let resultado=[];
-
 
    if(orientacao == 0){
        //horizontal
-       for(let i = posInicial[1]; i<=parseInt(posInicial[1])+ tamanhoEmbarcacao; i++){
-           resultado.push(posInicial[0]+i)
+      for(let i = posInicial[1]; i<=parseInt(posInicial[1])+ tamanhoEmbarcacao; i++){
+         resultado.push(posInicial[0]+i)
        }
        return resultado;
    }
    if(orientacao == 1){
        //vertical
-       if(linhas.indexOf(posInicial[0])+ tamanhoEmbarcacao > tamanhoTabela-1)return null;
-       for(let i = linhas.indexOf(posInicial[0]);i <= linhas.indexOf(posInicial[0])+ tamanhoEmbarcacao;i++){
-           resultado.push(linhas[i]+posInicial[1])
-       }
+       if(LINHAS.indexOf(posInicial[0])+ tamanhoEmbarcacao > TAMANHO_TABELA-1)return null;
 
+      for(let i = LINHAS.indexOf(posInicial[0]);i <= LINHAS.indexOf(posInicial[0])+ tamanhoEmbarcacao;i++){
+         resultado.push(LINHAS[i]+posInicial[1])
+      }
        return resultado;
    }
-   
 }
 
 const colocarEmbarcacaoInimiga = () =>{
@@ -81,23 +90,16 @@ const colocarEmbarcacaoInimiga = () =>{
    }
 }
 
-
-
-
-
-
-
-let posicoesDescobertas = []
-let locaisDisponiveis = []
+let posicoesDescobertas = []//posicoes que o inimigo ja sabe que tem navio
+let locaisDisponiveis = []//todos os locais disponiveis para atirar
 
 const instanciarlocaisDisponiveis = ( )=>{
-   for(let i = 0; i < linhas.length;i++){
-      for(let j = 0; j < colunas.length; j++){
-         locaisDisponiveis.push(linhas[i]+ colunas[j])
+   for(let i = 0; i < LINHAS.length;i++){
+      for(let j = 0; j < COLUNAS.length; j++){
+         locaisDisponiveis.push(LINHAS[i]+ COLUNAS[j])
       }
    }
    Embarcacoes_ini =  JSON.parse(JSON.stringify(Embarcacoes));
- 
 }
 
 const marcarCelulaInimiga = ()=>{
@@ -119,27 +121,26 @@ const marcarCelulaInimiga = ()=>{
    for(let i = qtdTiros ; i <3; i++){
       do{
          //gerar uma posicao aceitavel
-         valor = gerarNumAleatorio(0, tamanhoTabela*tamanhoTabela)
+         valor = gerarNumAleatorio(0, TAMANHO_TABELA*TAMANHO_TABELA)
          locaisDisponiveis.includes(locaisDisponiveis[valor])? posicao = locaisDisponiveis[valor]: posicao = null
       }while(posicao == null)
  
       posicoesMarcadas[i]=posicao
       locaisDisponiveis.splice(locaisDisponiveis.indexOf(posicao), 1, null);
       posicoesDescobertas.splice(posicoesDescobertas.indexOf(posicao), 1);
-
    }
     
-    for(let pos= 0; pos< 3; pos++){
+   for(let pos= 0; pos< 3; pos++){
       verificarSeTiroAcertouEmbarcacao(Embarcacoes_ini[0].submarino_, Embarcacoes_ini[0].submarino_.length, posicoesMarcadas[pos])
       verificarSeTiroAcertouEmbarcacao(Embarcacoes_ini[0].contra_torpedeiro, Embarcacoes_ini[0].contra_torpedeiro.length, posicoesMarcadas[pos])
       verificarSeTiroAcertouEmbarcacao(Embarcacoes_ini[0].navio_tanque, Embarcacoes_ini[0].navio_tanque.length, posicoesMarcadas[pos])
       verificarSeTiroAcertouEmbarcacao(Embarcacoes_ini[0].porta_aviao, Embarcacoes_ini[0].porta_aviao.length, posicoesMarcadas[pos])
-    }
+   }
+
     pintarCelulasTiro(posicoesMarcadas,"_usu")
     adicionarPosicoesExplodidas(posicoesMarcadas,"_usu")
     verificarSeEmbarcacaoCompleta("_usu")
 
-  
     //colocar uma certa % de chance de ativar o tiro especial
     //gerar delay
     iniciarFuncoesBatalha = true
@@ -162,5 +163,17 @@ function gerarNumAleatorio(inicio, fim) {
    return Math.floor((Math.random() * fim) + inicio);
 }
 
+const resetEmbarcacoes_inimigo = () =>{
+   
+   pintaCelula(posicoesOcupadas_ini)
+
+   posicoesOcupadas_ini = []
+   Embarcacoes[1].porta_aviao = []
+   Embarcacoes[1].navio_tanque = []
+   Embarcacoes[1].contra_torpedeiro = []
+   Embarcacoes[1].submarino_ = []
+   setAlert(0)
+   console.log("resetou inimigo")
+}
 
 

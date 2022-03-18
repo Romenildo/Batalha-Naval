@@ -1,17 +1,22 @@
-
-
+//usuario
 let contadorMarcas = 0;
 let posicoesMarcas = [0,0,0]
 let iniciarFuncoesBatalha = false
 
 let tiroEspecial_usu = false
-//visual
 let qtdTiroEspecial_usu = 1
-let pontosJogador_usu = 0
 const qtdTirosNormais_usu = 3
+
+let pontosJogador_usu = 0
 let posicoesExplodidas_ini = [];
 
 
+let portaAviaoRestante_ini;
+let navioTanqueRestante_ini;
+let contratorpedeiroRestante_ini;
+let submarinoRestante_ini;
+
+//parte visual
 const tiros_especiais_usu = document.getElementById("qtdTirosEspeciais_usu")
 tiros_especiais_usu.innerHTML = qtdTiroEspecial_usu
 
@@ -27,23 +32,12 @@ const qtdNavioTanqueBatalha_ini = document.getElementById("qtdNavioTanque_ini")
 const qtdContratorpedeiroBatalha_ini = document.getElementById("qtdContratorpedeiro_ini")
 const qtdSubmarinoBatalha_ini = document.getElementById("qtdSubmarino_ini")
 
-let portaAviaoRestante_ini;
-let navioTanqueRestante_ini;
-let contratorpedeiroRestante_ini;
-let submarinoRestante_ini;
-
-let portaAviaoRestante_usu;
-let navioTanqueRestante_usu;
-let contratorpedeiroRestante_usu;
-let submarinoRestante_usu;
-
-
 const marcarCelula = (div) =>{
     if(iniciarFuncoesBatalha==false){
         return 
     }
 
-    let id = div.id.split("_")[0]//transformar A1_ini em A1 para faer os calculos
+    let id = div.id.split("_")[0]//transformar A1_ini em A1 para fazer os calculos
     //caso clicar na celula ja vermelha explodida
     if(posicoesExplodidas_ini.includes(id)){
         return
@@ -57,17 +51,17 @@ const marcarCelula = (div) =>{
         adicionarPosicoesExplodidas(sequenciaBombaEspecial,"_ini")
         verificarSeEmbarcacaoCompleta("_ini")
         tiros_especiais_usu.innerHTML = --qtdTiroEspecial_usu
+
         efeitoTiroEspecial(0)
-        verificarFinalizarPartida()
         //ativar vez do oponente
         marcarCelulaInimiga()
+        verificarFinalizarPartida()
         
     }else{
         //tiro normal
         efeitoTiroEspecial(0)
         document.getElementById(id+"_ini").style.background= 'url("src/dados/imgs_Embarcacoes/tiroMarcacao.png")'
         
-        //somar os 3 cliques das bombas
         if(posicoesMarcas.includes(id)){
             //caso clicar no mesmo novamente
            document.getElementById(id+"_ini").style.background= 'url("src/dados/imgs_Embarcacoes/azul.png")'
@@ -90,40 +84,37 @@ const marcarCelula = (div) =>{
             tiros_Normais_usu.innerHTML = qtdTirosNormais_usu - contadorMarcas
         }
         
-        //atirar nos 3
+        //atirar nas 3 marcas
         if(contadorMarcas == qtdTirosNormais_usu){
             pintarCelulasTiro(posicoesMarcas,"_ini")
             adicionarPosicoesExplodidas(posicoesMarcas,"_ini")
-           verificarSeEmbarcacaoCompleta("_ini") 
-            verificarFinalizarPartida()
-            //ativar vez do inimigo
-            
-            marcarCelulaInimiga()
-
-            //resetar
+            verificarSeEmbarcacaoCompleta("_ini") 
             resetarMarcas()
+
+            //ativar vez do inimigo
+            marcarCelulaInimiga()
+            
+            verificarFinalizarPartida()
         }
     }
 }
-
-
 
 const posicoesBombaEspecial= (id)=>{//OK
     //sequencia ao redor da explosao
     //           X  X  X 
     //           X  O  X
     //           X  X  X 
-    linhas.push("0")
-    linhas.unshift("0")
+    LINHAS.push("0")
+    LINHAS.unshift("0")
     
     let posicoes = gerarPosicao(id)
     let posicoesBomba = []
 
-    for(let i = 0; i< linhas.length; i++){
-        if(linhas[i]==posicoes[0]){
+    for(let i = 0; i< LINHAS.length; i++){
+        if(LINHAS[i]==posicoes[0]){
             for(let j = i-1; j<i+2;j++){
                 for(let k = posicoes[1]-1;k<parseInt(posicoes[1])+2;k++){
-                    posicoesBomba.push(linhas[j]+k)
+                    posicoesBomba.push(LINHAS[j]+k)
                 }
             }
             break
@@ -137,26 +128,25 @@ const posicoesBombaEspecial= (id)=>{//OK
 const iniciarBatalha=()=>{
     mostrarTelaBatalha()
     iniciarFuncoesBatalha = true
-    criarTabela(tamanhoTabela,2, "_ini")
-    criarTabela(tamanhoTabela,3,"_usu")
+    criarTabela(TAMANHO_TABELA,2, "_ini")
+    criarTabela(TAMANHO_TABELA,3,"_usu")
 
+    //cronometro tela 10x10(20min) 15x15(30min)
     window.clearInterval(cronometro_timer);
-    if(tamanhoTabela == 10){
+    if(TAMANHO_TABELA == 10){
         cronometro(19)
     }else{
         cronometro(29)
     }
+    //instanciar inimigo
     colocarEmbarcacaoInimiga()
     instanciarlocaisDisponiveis()
-
     adicionarQtdEmbarcacoesBatalha()
-    console.log(Embarcacoes)
 }
 
 
 
 const adicionarQtdEmbarcacoesBatalha = ()=>{
-
     //restante do inimigo
     portaAviaoRestante_ini = Embarcacoes[1].porta_aviao.length
     navioTanqueRestante_ini= Embarcacoes[1].navio_tanque.length
@@ -178,8 +168,8 @@ const adicionarQtdEmbarcacoesBatalha = ()=>{
     qtdNavioTanqueBatalha_usu.innerHTML = navioTanqueRestante_usu
     qtdContratorpedeiroBatalha_usu.innerHTML = contratorpedeiroRestante_usu
     qtdSubmarinoBatalha_usu.innerHTML =  submarinoRestante_usu
-    
 }
+
 //FUNCOES ADICIONAIS
 
 const resetarMarcas = ()=>{
@@ -214,7 +204,7 @@ const filtrarPosicoesBombaEspecial = (sequencia)=>{
     {
         let posicoes = gerarPosicao(e)
         //fazer a troca para o tabuleiro 15
-        if(posicoes[0] == 0 || posicoes[0] == tamanhoTabela+1 || posicoes[1]== 0 || posicoes[1] == tamanhoTabela+1){
+        if(posicoes[0] == 0 || posicoes[0] == TAMANHO_TABELA+1 || posicoes[1]== 0 || posicoes[1] == TAMANHO_TABELA+1){
             return "00"
         }
         return e 
@@ -232,13 +222,10 @@ const pintarCelulasTiro = (sequencia, _extensao) =>{
              if(auxPosicoesOcupadas.includes(sequencia[i])){
                  //encontrou navio
                  desenharEmbarcacaoNaBatalha(sequencia[i], _extensao)
-                 
                  _extensao =="_ini"?pontos_jogador_usu.innerHTML = pontosJogador_usu += 500: pontos_jogador_ini.innerHTML = pontosJogador_ini+= 500
-                 
              }else{
                  //nao encontrou navio
                 document.getElementById(sequencia[i]+ _extensao).style.background= 'url("src/dados/imgs_Embarcacoes/explosao.png")'
-
              }
              document.getElementById(sequencia[i]+_extensao).innerHTML = ""
         }
@@ -246,7 +233,6 @@ const pintarCelulasTiro = (sequencia, _extensao) =>{
 }
 
 const adicionarPosicoesExplodidas = (posicoes, _extensao)=>{
-    let auxiliarPosicoes;
     
     for(let n = 0; n < posicoes.length; n++){
         if(_extensao == "_ini"){
@@ -254,7 +240,6 @@ const adicionarPosicoesExplodidas = (posicoes, _extensao)=>{
         }else{
             posicoesExplodidas_usu.push(posicoes[n])
         }
-        
     }
 }
 
@@ -282,8 +267,6 @@ const verificarSePosicaoNaEmbarcacao=(celula,_extensao, Embarcacao, tamanho)=>{
     }
     
     if(encontrouPos!=-1){
-        console.log(Embarcacao)
-        console.log("encontrou em :" +encontrouPos)
         desenhaCelula(celula, _extensao, encontrouPos, tamanho, orientacao)
         return true;
     }
@@ -292,8 +275,7 @@ const verificarSePosicaoNaEmbarcacao=(celula,_extensao, Embarcacao, tamanho)=>{
 }
 
 desenhaCelula=(celula, _extensao, posicao, tamanho, orientacao)=>{
-    console.log(celula, _extensao, posicao, tamanho)
-    console.log("no url:" +(parseInt(posicao) + 1))
+
     if(orientacao[0] === orientacao[1]){
         //horizontal
         switch(tamanho){
@@ -331,7 +313,7 @@ desenhaCelula=(celula, _extensao, posicao, tamanho, orientacao)=>{
 }
 
 
-// Diminuir a quantidade de embarcacoes restantes ao emcontralar na partida
+// Diminuir a quantidade de embarcacoes restantes ao emcontra-la completa na partida
 const verificarSeEmbarcacaoCompleta = (_extensao) =>{
     let tipo;
     _extensao == "_ini"?tipo = 1: tipo = 0
@@ -345,6 +327,7 @@ const verificarSeEmbarcacaoCompleta = (_extensao) =>{
 
 let posicoesExplodidasUsadas_ini = []
 let posicoesExplodidasUsadas_usu = []
+
 const verificarPorTipoEmbarcacao = (Embarcacao,tipo) =>{
     let AuxPosicoesExplodidas;
     
@@ -377,6 +360,7 @@ const verificarPorTipoEmbarcacao = (Embarcacao,tipo) =>{
         }
    }
 }
+
 const diminuirEmbarcacaoNaBatalhaInimigo = (tamanho) =>{
     if(tamanho == 5 && portaAviaoRestante_usu > 0){
        qtdPortaAviaoBatalha_usu.innerHTML = --portaAviaoRestante_usu
@@ -416,8 +400,6 @@ const diminuirEmbarcacaoNaBatalha = (tamanho) =>{
      
 }
 
-
-
 //finalizar partida
 const verificarFinalizarPartida = ()=>{
     let embarcacoesRestantes = portaAviaoRestante_ini+ navioTanqueRestante_ini + contratorpedeiroRestante_ini + submarinoRestante_ini
@@ -436,9 +418,9 @@ const verificarFinalizarPartida = ()=>{
             alert(`A Maquina ganhou!! que pena nao foi dessa vez!`)
             resetarJogo()
             return;
-        },1000);
+        },500);
     }
-    //fazzer a finaliacao com cronometro tbm
+
 }
 
 
@@ -457,7 +439,7 @@ const adicionarUsuarioAoRanking = () =>{
         pontos : pontosFinal,
         data: dataFinal,
         hora: horaFinal,
-        tempoRestante : "15:00"
+        tempoRestante : ""
     }
     for(let i = 0; i<5;i++){
         if(rankingDados[i].pontos<= usuarioFinal.pontos){
@@ -473,17 +455,26 @@ const resetarJogo = () =>{
     voltarTelaInicial()
     pintaCelula(posicoesExplodidas_ini)
     posicoesExplodidas_ini= []
-    posicoesExplodidasUsadas = []
+    posicoesExplodidasUsadas_ini = []
     qtdTiroEspecial_ini = 1
     pontosJogador_usu = 0
-    qtdTirosNormais_usu = 3
     tiroEspecial_usu = false
     
     //resetar tudo do inimigo
+    pintaCelula(posicoesExplodidas_usu)
+    posicoesExplodidas_usu= []
+    posicoesExplodidasUsadas_usu = []
+    qtdTiroEspecial_usu = 1
+    pontosJogador_ini = 0
+    tiroEspecial_ini = false
+
     resetEmbarcacoes()
+    resetEmbarcacoes_inimigo()
     resetarMarcas();
     iniciarFuncoesBatalha = false
     document.getElementById('tabuleiro-jogador').innerHTML = ""
     document.getElementById('tabuleiroBatalha1').innerHTML = ""
     document.getElementById('tabuleiroBatalha2').innerHTML = ""
+    setAlert(0,"",0)
 }
+
