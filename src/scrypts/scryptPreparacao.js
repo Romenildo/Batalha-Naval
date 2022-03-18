@@ -164,6 +164,7 @@ const resetEmbarcacoes = () =>{
     navioTanque = 2;
     contratorpedeiro = 3;
     submarino = 4;
+    totalEmbarcacoes = portaAviao+navioTanque+contratorpedeiro+submarino;
     qtd_portaAviao.innerHTML= qtdEmbarcacoes[1]
     qtd_navioTanque.innerHTML= qtdEmbarcacoes[2]
     qtd_contratorpedeiro.innerHTML= qtdEmbarcacoes[3]
@@ -187,13 +188,14 @@ const voltarEscolherTamanho = () =>{
 
 //botao iniciar
 const iniciarPartida= () =>{
-    iniciarBatalha()
     if(totalEmbarcacoes > 0){
         setAlert(1,"ERRO!!! Todas as Embarcacoes devem ser colocadas")
     }else{
         setAlert(0)
         iniciarBatalha()
+        console.log(Embarcacoes)
     }
+
 }
 
 
