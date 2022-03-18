@@ -172,6 +172,8 @@ const resetEmbarcacoes_inimigo = () =>{
    Embarcacoes[1].navio_tanque = []
    Embarcacoes[1].contra_torpedeiro = []
    Embarcacoes[1].submarino_ = []
+   posicoesDescobertas = []
+   locaisDisponiveis = []
    setAlert(0)
    console.log("resetou inimigo")
 }

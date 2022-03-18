@@ -114,7 +114,7 @@ const verificaPosicaoDisponivel=(posInicial, posFinal,tamanhoEmbarcacao)=>{
 }
 
 
-//alterar quantidade disponivel de navios
+//alterar quantidade disponivel de navios (PREPARACAO)
 const qtdEmbarcacoes = ["x0", "x1", "x2", "x3", "x4"]
 
 let portaAviao = 1
@@ -408,5 +408,11 @@ const desenharEmbarcacaoPreparacao = (sequencia) =>{
                 break;
         }
     }
+    //mudar tamanho da imagem da embarcacao para cover
+    for(let i = 0; i <sequencia.length;i++){
+        console.log("A")
+        document.getElementById(sequencia[i]).style.backgroundSize = "cover"
+    }
+    
     
 }

@@ -309,6 +309,7 @@ desenhaCelula=(celula, _extensao, posicao, tamanho, orientacao)=>{
                 break;
         }
     }
+    document.getElementById(celula + _extensao).style.backgroundSize = "cover"
     
 }
 
@@ -459,6 +460,7 @@ const resetarJogo = () =>{
     qtdTiroEspecial_ini = 1
     pontosJogador_usu = 0
     tiroEspecial_usu = false
+    tiros_especiais_usu.innerHTML = qtdTiroEspecial_usu
     
     //resetar tudo do inimigo
     pintaCelula(posicoesExplodidas_usu)
@@ -467,6 +469,7 @@ const resetarJogo = () =>{
     qtdTiroEspecial_usu = 1
     pontosJogador_ini = 0
     tiroEspecial_ini = false
+    tiros_especiais_ini.innerHTML = qtdTiroEspecial_ini
 
     resetEmbarcacoes()
     resetEmbarcacoes_inimigo()
