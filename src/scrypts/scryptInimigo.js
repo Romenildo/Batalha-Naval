@@ -27,22 +27,23 @@ const gerarPosicaoAleatoria = (orientacao, tamanhoEmbarcacao) =>{
    letra = linhas[gerarNumAleatorio(0,tamanhoTabela-1)]
    numero = colunas[gerarNumAleatorio(0, tamanhoTabela -1)]
    posInicial = gerarPosicao(letra+numero)
-   
+
+   let ultimaPosicao =(parseInt(posInicial[1]) + tamanhoEmbarcacao)
+       if((ultimaPosicao > parseInt(tamanhoTabela)-1) == true){
+         return null;
+       }
    return gerarSequenciaInimigo(posInicial,tamanhoEmbarcacao, orientacao);
 }
 
 const gerarSequenciaInimigo =(posInicial, tamanhoEmbarcacao, orientacao)=>{
    let resultado=[];
-    console.log(tamanhoTabela)
-    console.log(linhas)
-    console.log(colunas)
+
+
    if(orientacao == 0){
        //horizontal
-       if(parseInt(posInicial[1]) + tamanhoEmbarcacao < tamanhoTabela-1)return null;
        for(let i = posInicial[1]; i<=parseInt(posInicial[1])+ tamanhoEmbarcacao; i++){
            resultado.push(posInicial[0]+i)
        }
-       console.log(resultado)
        return resultado;
    }
    if(orientacao == 1){
@@ -51,7 +52,6 @@ const gerarSequenciaInimigo =(posInicial, tamanhoEmbarcacao, orientacao)=>{
        for(let i = linhas.indexOf(posInicial[0]);i <= linhas.indexOf(posInicial[0])+ tamanhoEmbarcacao;i++){
            resultado.push(linhas[i]+posInicial[1])
        }
-       console.log(resultado)
 
        return resultado;
    }
@@ -72,15 +72,13 @@ const colocarEmbarcacaoInimiga = () =>{
          do{
             sequencia = gerarPosicaoAleatoria(orientacao, tamanhoEmbarcacao);
          }while(sequencia == null || verificaLocalDisponivel_ini(sequencia))
-        //teste console.log(sequencia)
+       
          sequencia.forEach((valor)=>posicoesOcupadas_ini.push(valor))
          adicionaEmbarcacaoNaLista(sequencia,1)
          sequencia = null;
       }
       quantidadeEmbarcacao++;
    }
-   //teste  console.log(posicoesOcupadas_ini)
-    // testeconsole.log(Embarcacoes[1])
 }
 
 
@@ -107,7 +105,7 @@ const marcarCelulaInimiga = ()=>{
     let posicoesMarcadas=[]//posicoes dos 3 tiros
     let qtdTiros = 0;
     let qtd=0;
-   
+
    if(posicoesDescobertas.length > 0){
       //caso a maquina ja saiba as posicoes de uma ou mais embarcacoes
       let tamanhoDescobertas = posicoesDescobertas.length

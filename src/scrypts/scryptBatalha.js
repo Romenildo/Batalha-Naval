@@ -150,6 +150,7 @@ const iniciarBatalha=()=>{
     instanciarlocaisDisponiveis()
 
     adicionarQtdEmbarcacoesBatalha()
+    console.log(Embarcacoes)
 }
 
 
@@ -277,7 +278,6 @@ const verificarSePosicaoNaEmbarcacao=(celula,_extensao, Embarcacao, tamanho)=>{
             encontrouPos = posicao
             orientacao[0] = Embarcacao[i][0].split("")[0]
             orientacao[1] = Embarcacao[i][1].split("")[0]
-            console.log("Embarcacao" + Embarcacao[i])
         }
     }
     
@@ -287,6 +287,7 @@ const verificarSePosicaoNaEmbarcacao=(celula,_extensao, Embarcacao, tamanho)=>{
         desenhaCelula(celula, _extensao, encontrouPos, tamanho, orientacao)
         return true;
     }
+
     return false
 }
 
