@@ -3,9 +3,6 @@ let posicoesOcupadas_ini = []
 let linhas;
 let colunas;
 let tamanhoTabela = 10;
-//remover dps
-//linhas = ["A","B","C","D","E","F","G","H","I","J"]
-//colunas = ["1","2","3","4","5","6","7","8","9","10"]
 
 let Embarcacoes = [
     {//usuario
@@ -22,7 +19,7 @@ let Embarcacoes = [
     }
 ]
 
-//criacao da tabela com html e js (tamnhos 10 ou 15)
+//criacao da tabela com html e js (tamanhos 10 ou 15)
 const criarTabela = (tamanho, local, _extensao)=>{
    
     tamanhoTabela = tamanho;
@@ -63,10 +60,9 @@ const criarTabela = (tamanho, local, _extensao)=>{
     
 }
 
-//adicionar as embarcacoes
 const adicionaEmbarcacao= (tipoEmbarcacao)=>{
-    //pega [1] posInicial [2] posFinal [3] tamanhoEmbarcacao
-    let dados =  pegarDadosCampo(tipoEmbarcacao)
+    
+    let dados =  pegarDadosCampo(tipoEmbarcacao)//pega [1] posInicial [2] posFinal [3] tamanhoEmbarcacao
     let posInicial= dados[0];
     let posFinal = dados[1]; 
     let tamanhoEmbarcacao= dados[2];
@@ -79,7 +75,7 @@ const adicionaEmbarcacao= (tipoEmbarcacao)=>{
     
         let sequencia = gerarSequencia(posInicial, posFinal,10)
         
-        desenharEmbarcacaoPreparacao(sequencia)//trocar por pintarCelulas
+        desenharEmbarcacaoPreparacao(sequencia)
         adicionaEmbarcacaoNaLista(sequencia, 0)
         sequencia.forEach((valor)=>posicoesOcupadas_usu.push(valor))
         //todas as embarcacoes foram colocadas na tabela
@@ -99,7 +95,7 @@ const verificaPosicaoDisponivel=(posInicial, posFinal,tamanhoEmbarcacao)=>{
         return true
     }
     //verificar se o valor passado esta dentro do tamanho da tabela
-    if(verificaParametroAceitavel(posInicial,posFinal)){        //verifica se ta na dentro dos parametros da  tabela
+    if(verificaParametroAceitavel(posInicial,posFinal)){      
         return true
     }
     //verificacao se o 1 parametro é maior que o segundo(j1 a1))
@@ -162,7 +158,7 @@ const verificaQtdEmbarcacoes= (tipoEmbarcacao)=>{
     return true
 }
 
-//botao reset
+//botao reset preparacao
 const resetEmbarcacoes = () =>{
     qtd_portaAviao.innerHTML= qtdEmbarcacoes[1]
     qtd_navioTanque.innerHTML= qtdEmbarcacoes[2]
