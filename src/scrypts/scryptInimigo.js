@@ -108,6 +108,35 @@ const marcarCelulaInimiga = ()=>{
     let qtdTiros = 0;
     let qtd=0;
 
+    let tiroEspecial = gerarNumAleatorio(0,3)
+    if(tiroEspecial == 1 && qtdTiroEspecial_ini > 0 && posicoesDescobertas.length <= 0){
+      //ativar tiro especial
+      do{
+         //gerar uma posicao aceitavel
+         valor = gerarNumAleatorio(0, TAMANHO_TABELA*TAMANHO_TABELA)
+         locaisDisponiveis.includes(locaisDisponiveis[valor])? posicao = locaisDisponiveis[valor]: posicao = null
+      }while(posicao == null)
+
+      //gera sequencia para as explosoes do tiro especial 3x3
+      let sequenciaBombaEspecial = posicoesBombaEspecial(posicao)
+
+      for(let i = 0; i < sequenciaBombaEspecial.length; i++){
+         if(sequenciaBombaEspecial[i]!="00"){
+            locaisDisponiveis.splice(locaisDisponiveis.indexOf(sequenciaBombaEspecial[i]), 1, null);
+            posicoesDescobertas.splice(posicoesDescobertas.indexOf(sequenciaBombaEspecial[i]), 1);
+            verificarSeTiroAcertouEmbarcacao(Embarcacoes_ini[0].submarino_, Embarcacoes_ini[0].submarino_.length, sequenciaBombaEspecial[i])
+            verificarSeTiroAcertouEmbarcacao(Embarcacoes_ini[0].contra_torpedeiro, Embarcacoes_ini[0].contra_torpedeiro.length, sequenciaBombaEspecial[i])
+            verificarSeTiroAcertouEmbarcacao(Embarcacoes_ini[0].navio_tanque, Embarcacoes_ini[0].navio_tanque.length, sequenciaBombaEspecial[i])
+            verificarSeTiroAcertouEmbarcacao(Embarcacoes_ini[0].porta_aviao, Embarcacoes_ini[0].porta_aviao.length, sequenciaBombaEspecial[i])
+         }  
+      }
+      pintarCelulasTiro(sequenciaBombaEspecial,"_usu")
+      adicionarPosicoesExplodidas(sequenciaBombaEspecial,"_usu")
+      verificarSeEmbarcacaoCompleta("_usu")
+      tiros_especiais_ini.innerHTML = --qtdTiroEspecial_ini
+
+  }else{
+   //tiro normal sequencia 3x
    if(posicoesDescobertas.length > 0){
       //caso a maquina ja saiba as posicoes de uma ou mais embarcacoes
       let tamanhoDescobertas = posicoesDescobertas.length
@@ -118,31 +147,29 @@ const marcarCelulaInimiga = ()=>{
       }
    }
    qtdTiros = qtd;
-   for(let i = qtdTiros ; i <3; i++){
-      do{
-         //gerar uma posicao aceitavel
-         valor = gerarNumAleatorio(0, TAMANHO_TABELA*TAMANHO_TABELA)
-         locaisDisponiveis.includes(locaisDisponiveis[valor])? posicao = locaisDisponiveis[valor]: posicao = null
-      }while(posicao == null)
- 
-      posicoesMarcadas[i]=posicao
-      locaisDisponiveis.splice(locaisDisponiveis.indexOf(posicao), 1, null);
-      posicoesDescobertas.splice(posicoesDescobertas.indexOf(posicao), 1);
-   }
-    
-   for(let pos= 0; pos< 3; pos++){
-      verificarSeTiroAcertouEmbarcacao(Embarcacoes_ini[0].submarino_, Embarcacoes_ini[0].submarino_.length, posicoesMarcadas[pos])
-      verificarSeTiroAcertouEmbarcacao(Embarcacoes_ini[0].contra_torpedeiro, Embarcacoes_ini[0].contra_torpedeiro.length, posicoesMarcadas[pos])
-      verificarSeTiroAcertouEmbarcacao(Embarcacoes_ini[0].navio_tanque, Embarcacoes_ini[0].navio_tanque.length, posicoesMarcadas[pos])
-      verificarSeTiroAcertouEmbarcacao(Embarcacoes_ini[0].porta_aviao, Embarcacoes_ini[0].porta_aviao.length, posicoesMarcadas[pos])
-   }
+      for(let i = qtdTiros ; i <3; i++){
+         do{
+            //gerar uma posicao aceitavel
+            valor = gerarNumAleatorio(0, TAMANHO_TABELA*TAMANHO_TABELA)
+            locaisDisponiveis.includes(locaisDisponiveis[valor])? posicao = locaisDisponiveis[valor]: posicao = null
+         }while(posicao == null)
+   
+         posicoesMarcadas[i]=posicao
+         locaisDisponiveis.splice(locaisDisponiveis.indexOf(posicao), 1, null);
+         posicoesDescobertas.splice(posicoesDescobertas.indexOf(posicao), 1);
+      }
+      
+      for(let pos= 0; pos< 3; pos++){
+         verificarSeTiroAcertouEmbarcacao(Embarcacoes_ini[0].submarino_, Embarcacoes_ini[0].submarino_.length, posicoesMarcadas[pos])
+         verificarSeTiroAcertouEmbarcacao(Embarcacoes_ini[0].contra_torpedeiro, Embarcacoes_ini[0].contra_torpedeiro.length, posicoesMarcadas[pos])
+         verificarSeTiroAcertouEmbarcacao(Embarcacoes_ini[0].navio_tanque, Embarcacoes_ini[0].navio_tanque.length, posicoesMarcadas[pos])
+         verificarSeTiroAcertouEmbarcacao(Embarcacoes_ini[0].porta_aviao, Embarcacoes_ini[0].porta_aviao.length, posicoesMarcadas[pos])
+      }
 
-    pintarCelulasTiro(posicoesMarcadas,"_usu")
-    adicionarPosicoesExplodidas(posicoesMarcadas,"_usu")
-    verificarSeEmbarcacaoCompleta("_usu")
-
-    //colocar uma certa % de chance de ativar o tiro especial
-    //gerar delay
+      pintarCelulasTiro(posicoesMarcadas,"_usu")
+      adicionarPosicoesExplodidas(posicoesMarcadas,"_usu")
+      verificarSeEmbarcacaoCompleta("_usu")
+  }
     iniciarFuncoesBatalha = true
 }
 
