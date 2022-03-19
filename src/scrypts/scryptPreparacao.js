@@ -38,10 +38,13 @@ const criarTabela = (tamanho, local, _extensao)=>{
 
     let tabela = '<table>'
     for(let i = 0; i< TAMANHO_TABELA; i++){
-        tabela+= '<tr linha="'+LINHAS[i]+'">'
-        for(let j = 0; j<TAMANHO_TABELA; j++){
-             tabela+= '<td coluna="'+COLUNAS[j]+'" title="Local: '+LINHAS[i]+COLUNAS[j]+'"id="'+LINHAS[i]+COLUNAS[j]+_extensao+'" '+ativaOnclick+'></td>'
-         }
+        tabela+= '<tr linha="'+LINHAS[i]+'&nbsp;">'
+        for(let j = 0; j<9; j++){
+            tabela+= '<td coluna="'+COLUNAS[j]+'&nbsp;" title="Local: '+LINHAS[i]+COLUNAS[j]+'"id="'+LINHAS[i]+COLUNAS[j]+_extensao+'" '+ativaOnclick+'></td>'
+        }
+        for(let j = 9; j<TAMANHO_TABELA; j++){
+            tabela+= '<td coluna="'+COLUNAS[j]+'" title="Local: '+LINHAS[i]+COLUNAS[j]+'"id="'+LINHAS[i]+COLUNAS[j]+_extensao+'" '+ativaOnclick+'></td>'
+        }
          tabela+= '</tr>'
     }
     tabela+= '</table>'

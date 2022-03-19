@@ -223,31 +223,6 @@ main{
     width: 50vw;
     display: none;
 }
-.letras{
-    background-color: darkgoldenrod;
-    position: relative;
-    top: 60px;
-    left: 93px;
-    font-size: 23px;
-}
-.numeros{
-    background-color: darkorchid;
-    position: absolute;
-    top: 190px;
-    left: 40px;
-    font-size: 27px;
-    width: 15px;
-    line-height: 42px;
-}
-.numeros2{
-    background-color: darkorchid;
-    position: absolute;
-    top: 190px;
-    left: 785px;
-    font-size: 27px;
-    width: 15px;
-    line-height: 42px;
-}
 
 table{
     position: relative;
@@ -257,7 +232,7 @@ table{
 }
 td {
     background: url("../dados/imgs_Embarcacoes/azul.png");
- 
+   
     cursor: crosshair; 
     height: 35px;
 
@@ -266,6 +241,7 @@ td {
 tr, td {
     border-collapse: collapse;
     border: 1px white solid;
+    font-family: consolas;
 }
 
 tr:before {

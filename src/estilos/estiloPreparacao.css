@@ -65,6 +65,7 @@
     transition:0.5s;
     cursor:pointer;
     animation: piscaVermelho 3s infinite;
+    z-index: 3;
   }
   @keyframes piscaVermelho{
     0%{
