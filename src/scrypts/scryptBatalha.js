@@ -61,7 +61,8 @@ const marcarCelula = (div) =>{
         //tiro normal
         efeitoTiroEspecial(0)
         document.getElementById(id+"_ini").style.background= 'url("src/dados/imgs_Embarcacoes/tiroMarcacao.png")'
-        
+        if(TAMANHO_TABELA==15){ document.getElementById(id+"_ini").style.backgroundSize = "42px 42px"}
+
         if(posicoesMarcas.includes(id)){
             //caso clicar no mesmo novamente
            document.getElementById(id+"_ini").style.background= 'url("src/dados/imgs_Embarcacoes/azul.png")'
@@ -276,6 +277,8 @@ const verificarSePosicaoNaEmbarcacao=(celula,_extensao, Embarcacao, tamanho)=>{
 
 desenhaCelula=(celula, _extensao, posicao, tamanho, orientacao)=>{
 
+    document.getElementById(celula + _extensao).style.backgroundSize = "cover"
+
     if(orientacao[0] === orientacao[1]){
         //horizontal
         switch(tamanho){
@@ -308,8 +311,11 @@ desenhaCelula=(celula, _extensao, posicao, tamanho, orientacao)=>{
                 document.getElementById(celula + _extensao).style.background= 'url("src/dados/imgs_Embarcacoes/v_submarino'+(parseInt(posicao) + 1) +'.png")'
                 break;
         }
+        if(TAMANHO_TABELA==15 ){
+            document.getElementById(celula + _extensao).style.backgroundSize = "35px 37px"
+        }
     }
-    document.getElementById(celula + _extensao).style.backgroundSize = "cover"
+   
     
 }
 

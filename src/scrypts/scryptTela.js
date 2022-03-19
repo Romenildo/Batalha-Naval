@@ -117,9 +117,11 @@ const reformularTelaPara15x15 = ()=>{
     document.getElementById('foo').style.marginTop = "105px"
     document.getElementById('tabuleiros').style.height = "592px"
 
-    document.getElementById('tabuleiroBatalha').style.height = "575px"
-    document.getElementById('tabuleiroBatalha1').style.height = "572px"
-    document.getElementById('tabuleiroBatalha2').style.height = "572px"
+    document.getElementById('tabuleiroBatalha').style.height = "608px"
+    document.getElementById('tabuleiroBatalha1').style.height = "603px"
+    document.getElementById('tabuleiroBatalha2').style.height = "603px"
+    document.getElementById('foo').style.marginTop = "122px"
+    document.getElementById('container').style.height = "846px"
         
 }
 const reformularTelaParaNormal = ()=>{

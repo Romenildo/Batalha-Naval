@@ -191,7 +191,6 @@ function gerarNumAleatorio(inicio, fim) {
 }
 
 const resetEmbarcacoes_inimigo = () =>{
-   
    pintaCelula(posicoesOcupadas_ini)
 
    posicoesOcupadas_ini = []
@@ -202,7 +201,6 @@ const resetEmbarcacoes_inimigo = () =>{
    posicoesDescobertas = []
    locaisDisponiveis = []
    setAlert(0)
-   console.log("resetou inimigo")
 }
 
 
