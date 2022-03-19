@@ -4,8 +4,8 @@
 }
 
 .container{
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
 
     background: linear-gradient(45deg, rgb(10, 48, 151),rgb(93, 187, 190),rgb(182, 230, 245),#fff);
     background-size: 300% 300%;
@@ -39,7 +39,7 @@ header{
     color: rgb(77, 75, 75);
 }
 main{
-    height: 600px;
+    height: 613px;
     display: flex;
     align-items: center;
 }
@@ -259,7 +259,7 @@ td {
     background: url("../dados/imgs_Embarcacoes/azul.png");
  
     cursor: crosshair; 
-    height: 32px;
+    height: 35px;
 
     width: 65px;
 }

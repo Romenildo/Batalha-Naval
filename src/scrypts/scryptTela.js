@@ -113,8 +113,8 @@ const cronometro = (tempo) =>{
 //reformular a tela para suportar o novo tamanho da tabela 15x15
 const reformularTelaPara15x15 = ()=>{
     document.getElementById('container').style.height = "830px"
-    document.getElementById('tabuleiro-jogador').style.height = "572px"
-    document.getElementById('foo').style.marginTop = "115px"
+    document.getElementById('tabuleiro-jogador').style.height = "615px"
+    document.getElementById('foo').style.marginTop = "105px"
     document.getElementById('tabuleiros').style.height = "580px"
 
     document.getElementById('tabuleiroBatalha').style.height = "575px"
