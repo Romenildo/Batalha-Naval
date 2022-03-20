@@ -123,7 +123,6 @@ const marcarCelulaInimiga = ()=>{
       for(let i = 0; i < sequenciaBombaEspecial.length; i++){
          if(sequenciaBombaEspecial[i]!="00"){
             locaisDisponiveis.splice(locaisDisponiveis.indexOf(sequenciaBombaEspecial[i]), 1, null);
-            posicoesDescobertas.splice(posicoesDescobertas.indexOf(sequenciaBombaEspecial[i]), 1);
             verificarSeTiroAcertouEmbarcacao(Embarcacoes_ini[0].submarino_, Embarcacoes_ini[0].submarino_.length, sequenciaBombaEspecial[i])
             verificarSeTiroAcertouEmbarcacao(Embarcacoes_ini[0].contra_torpedeiro, Embarcacoes_ini[0].contra_torpedeiro.length, sequenciaBombaEspecial[i])
             verificarSeTiroAcertouEmbarcacao(Embarcacoes_ini[0].navio_tanque, Embarcacoes_ini[0].navio_tanque.length, sequenciaBombaEspecial[i])
@@ -140,7 +139,7 @@ const marcarCelulaInimiga = ()=>{
    if(posicoesDescobertas.length > 0){
       //caso a maquina ja saiba as posicoes de uma ou mais embarcacoes
       let tamanhoDescobertas = posicoesDescobertas.length
-      for(qtd =0; qtd < tamanhoDescobertas; qtd++){
+      for(qtd =0; qtd < tamanhoDescobertas && qtd <3; qtd++){
          posicao= posicoesDescobertas.splice(0, 1).toString()
          posicoesMarcadas[qtd] =posicao
          locaisDisponiveis.splice(locaisDisponiveis.indexOf(posicao.toString()), 1, null);

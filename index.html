@@ -109,6 +109,7 @@
                <pre class="texto-regras">
      Existem ao todo 4 tipos distintos de embarcacoes disponiveis no jogo sendo elas:
      <img src="/src/dados/imgs_jogo/img_embarcacoes.png" class="img_embarcacoes"> 
+     <img src="/src/dados/imgs_jogo/img_embarcacoes2D.png" class="img_embarcacoes" style="padding-left: 25px;"> 
      Elas possuem uma determinada quantidade padrão sendo elas:
         - 1x  Porta-Aviao
         - 2x  Navio-Tanque
@@ -169,7 +170,7 @@
                 <div class="embarcacoes">
                     <div class="tipo-embarcacao" >
                         <p class="nome-navio">Porta-Aviao</p>
-                        <p class="estilo-navio">██ ██ ██ ██ ██</p>
+                        <p class="estilo-navio"><img src="/src/dados/imgs_jogo/porta_aviao.png" style="width: 150px; height: 25px; margin: -5px 0px -9px 0px;"></p>
                         <div class="navios-input-campo" >
                             <p class="quantidade-navios" id="qtd-portaAviao"></p>
 
@@ -182,7 +183,7 @@
                     </div>
                     <div class="tipo-embarcacao">
                         <p class="nome-navio">Navio-Tanque</p>
-                        <p class="estilo-navio">██ ██ ██ ██</p>
+                        <p class="estilo-navio"><img src="/src/dados/imgs_jogo/navio_tanque.png" style="width: 130px; height: 25px; margin: -5px 10px -9px 10px;"></p>
                         <div class="navios-input-campo">
                             <p class="quantidade-navios" id="qtd-navioTanque"></p>
 
@@ -195,7 +196,7 @@
                     </div>
                     <div class="tipo-embarcacao">
                         <p class="nome-navio"> Contratorpedeiro</p>
-                        <p class="estilo-navio">██ ██ ██</p>
+                        <p class="estilo-navio"><img src="/src/dados/imgs_jogo/contratorpedeiro.png" style="width: 100px; height: 25px; margin: -5px 0px -9px 0px;"></p>
                         <div class="navios-input-campo">
                             <p class="quantidade-navios" id="qtd-contratorpedeiro"></p>
 
@@ -208,7 +209,7 @@
                     </div>
                     <div class="tipo-embarcacao">
                         <p class="nome-navio" >Submarino</p>
-                        <p class="estilo-navio">██ ██</p>
+                        <p class="estilo-navio"><img src="/src/dados/imgs_jogo/submarino.png" style="width: 60px; height: 25px; margin: -5px 0px -9px 20px;"></p>
                         <div class="navios-input-campo">
                             <p class="quantidade-navios" id="qtd-submarino"></p>
 
@@ -249,8 +250,8 @@
                     </div>
                     <div class="panel-restantes">
                         <pre class="textoRestantes">EMBARCACOES INIMIGAS RESTANTES: </pre>
-                        <pre class="naviosRestantes"><span style="font-weight: normal; text-shadow: none; " id="qtdPortaAviao_ini"></span>x  -██ ██ ██ ██ ██    <span style="font-weight: normal; text-shadow: none;" id="qtdContratorpedeiro_ini"></span>x  -██ ██ ██</pre>
-                        <pre class="naviosRestantes"><span style="font-weight: normal; text-shadow: none; "id="qtdNavioTanque_ini"></span>x  -██ ██ ██ ██       <span style="font-weight: normal; text-shadow: none;" id="qtdSubmarino_ini"></span>x  -██ ██ </pre>
+                        <pre class="naviosRestantes"><span style="font-weight: normal; text-shadow: none; " id="qtdPortaAviao_ini"></span>x  -<img src="/src/dados/imgs_jogo/porta_aviao.png" style="width: 130px; height: 30px; margin: -5px 10px -9px 10px;">    <span style="font-weight: normal; text-shadow: none;" id="qtdContratorpedeiro_ini"></span>x  -<img src="/src/dados/imgs_jogo/contratorpedeiro.png" style="width: 70px; height: 30px; margin: -5px 10px -9px 10px;"></pre>
+                        <pre class="naviosRestantes"><span style="font-weight: normal; text-shadow: none; "id="qtdNavioTanque_ini"></span>x  -<img src="/src/dados/imgs_jogo/navio_tanque.png" style="width: 100px; height: 30px; margin: -5px 10px -9px 10px;">       <span style="font-weight: normal; text-shadow: none;" id="qtdSubmarino_ini"></span>x  -<img src="/src/dados/imgs_jogo/submarino.png" style="width: 50px; height: 30px; margin: -5px 10px -9px 10px;"> </pre>
                     </div>
     
                     <div class="panel-points" title="Mostra os pontos da partida">
@@ -266,8 +267,8 @@
                     </div>
                     <div class="panel-restantes">
                         <pre class="textoRestantes">SUAS EMBARCACOES RESTANTES: </pre>
-                        <pre class="naviosRestantes"><span style="font-weight: normal; text-shadow: none; " id="qtdPortaAviao_usu"></span>x  -██ ██ ██ ██ ██    <span style="font-weight: normal; text-shadow: none;" id="qtdContratorpedeiro_usu"></span>x  -██ ██ ██</pre>
-                        <pre class="naviosRestantes"><span style="font-weight: normal; text-shadow: none; "id="qtdNavioTanque_usu"></span>x  -██ ██ ██ ██       <span style="font-weight: normal; text-shadow: none;" id="qtdSubmarino_usu"></span>x  -██ ██ </pre>
+                        <pre class="naviosRestantes"><span style="font-weight: normal; text-shadow: none; " id="qtdPortaAviao_usu"></span>x  -<img src="/src/dados/imgs_jogo/porta_aviao.png" style="width: 130px; height: 30px; margin: -5px 10px -9px 10px;">     <span style="font-weight: normal; text-shadow: none;" id="qtdContratorpedeiro_usu"></span>x  -<img src="/src/dados/imgs_jogo/contratorpedeiro.png" style="width: 70px; height: 30px; margin: -5px 10px -9px 10px;"> </pre>
+                        <pre class="naviosRestantes"><span style="font-weight: normal; text-shadow: none; "id="qtdNavioTanque_usu"></span>x  -<img src="/src/dados/imgs_jogo/navio_tanque.png" style="width: 100px; height: 30px; margin: -5px 10px -9px 10px;">        <span style="font-weight: normal; text-shadow: none;" id="qtdSubmarino_usu"></span>x  -<img src="/src/dados/imgs_jogo/submarino.png" style="width: 50px; height: 30px; margin: -5px 10px -9px 10px;">  </pre>
                     </div>
     
                     <div class="panel-points">

@@ -191,13 +191,14 @@ const voltarEscolherTamanho = () =>{
 
 //botao iniciar
 const iniciarPartida= () =>{
+    iniciarBatalha()
     if(totalEmbarcacoes > 0){
         setAlert(1,"ERRO!!! Todas as Embarcacoes devem ser colocadas")
     }else{
         setAlert(0)
-        iniciarBatalha()
+        
+        
     }
-
 }
 
 
@@ -357,10 +358,7 @@ const desenharEmbarcacaoPreparacao = (sequencia) =>{
     orientacao[1] = sequencia[1].split("")[0]
     sequencia = sequencia.map(e => e + "_usu")
 
-    //mudar tamanho da imagem da embarcacao para cover
-    for(let i = 0; i <sequencia.length;i++){
-        document.getElementById(sequencia[i]).style.backgroundSize = "cover"
-    }
+    
 
     if(orientacao[0] === orientacao[1]){
         //horizontal
@@ -387,6 +385,10 @@ const desenharEmbarcacaoPreparacao = (sequencia) =>{
                 document.getElementById(sequencia[0]).style.background= 'url("src/dados/imgs_Embarcacoes/submarino1.png")'
                 document.getElementById(sequencia[1]).style.background= 'url("src/dados/imgs_Embarcacoes/submarino2.png")'
                 break;
+        }
+        //mudar tamanho da imagem da embarcacao para cover
+        for(let i = 0; i <sequencia.length;i++){
+            document.getElementById(sequencia[i]).style.backgroundSize = "cover"
         }
         if(TAMANHO_TABELA==15 ){
 
@@ -424,6 +426,10 @@ const desenharEmbarcacaoPreparacao = (sequencia) =>{
                 document.getElementById(sequencia[0]).style.background= 'url("src/dados/imgs_Embarcacoes/v_submarino1.png")'
                 document.getElementById(sequencia[1]).style.background= 'url("src/dados/imgs_Embarcacoes/v_submarino2.png")'
                 break;
+        }
+        //mudar tamanho da imagem da embarcacao para cover
+        for(let i = 0; i <sequencia.length;i++){
+            document.getElementById(sequencia[i]).style.backgroundSize = "cover"
         }
         if(TAMANHO_TABELA==15 ){
             for(let i = 0; i <sequencia.length;i++){

@@ -49,12 +49,13 @@ const marcarCelula = (div) =>{
 
         pintarCelulasTiro(sequenciaBombaEspecial,"_ini")
         adicionarPosicoesExplodidas(sequenciaBombaEspecial,"_ini")
-        verificarSeEmbarcacaoCompleta("_ini")
+        
         tiros_especiais_usu.innerHTML = --qtdTiroEspecial_usu
 
         efeitoTiroEspecial(0)
         //ativar vez do oponente
         marcarCelulaInimiga()
+        verificarSeEmbarcacaoCompleta("_ini")
         verificarFinalizarPartida()
         
     }else{
@@ -89,12 +90,12 @@ const marcarCelula = (div) =>{
         if(contadorMarcas == qtdTirosNormais_usu){
             pintarCelulasTiro(posicoesMarcas,"_ini")
             adicionarPosicoesExplodidas(posicoesMarcas,"_ini")
-            verificarSeEmbarcacaoCompleta("_ini") 
+            
             resetarMarcas()
 
             //ativar vez do inimigo
             marcarCelulaInimiga()
-            
+            verificarSeEmbarcacaoCompleta("_ini") 
             verificarFinalizarPartida()
         }
     }
@@ -277,8 +278,6 @@ const verificarSePosicaoNaEmbarcacao=(celula,_extensao, Embarcacao, tamanho)=>{
 
 desenhaCelula=(celula, _extensao, posicao, tamanho, orientacao)=>{
 
-    document.getElementById(celula + _extensao).style.backgroundSize = "cover"
-
     if(orientacao[0] === orientacao[1]){
         //horizontal
         switch(tamanho){
@@ -295,6 +294,7 @@ desenhaCelula=(celula, _extensao, posicao, tamanho, orientacao)=>{
                 document.getElementById(celula + _extensao).style.background= 'url("src/dados/imgs_Embarcacoes/submarino'+(parseInt(posicao) + 1) +'.png")'
                 break;
         }
+        document.getElementById(celula + _extensao).style.backgroundSize = "cover"
     }else{
         //vertical
         switch(tamanho){
@@ -311,6 +311,7 @@ desenhaCelula=(celula, _extensao, posicao, tamanho, orientacao)=>{
                 document.getElementById(celula + _extensao).style.background= 'url("src/dados/imgs_Embarcacoes/v_submarino'+(parseInt(posicao) + 1) +'.png")'
                 break;
         }
+        document.getElementById(celula + _extensao).style.backgroundSize = "cover"
         if(TAMANHO_TABELA==15 ){
             document.getElementById(celula + _extensao).style.backgroundSize = "35px 37px"
         }
@@ -336,7 +337,8 @@ let posicoesExplodidasUsadas_ini = []
 let posicoesExplodidasUsadas_usu = []
 
 const verificarPorTipoEmbarcacao = (Embarcacao,tipo) =>{
-    let AuxPosicoesExplodidas;
+    let AuxPosicoesExplodidas
+    let embarcacaoAtual
     
     if(tipo == 1){
         AuxPosicoesExplodidas = posicoesExplodidas_ini.slice()
@@ -350,7 +352,8 @@ const verificarPorTipoEmbarcacao = (Embarcacao,tipo) =>{
         }
     }
     
-   let embarcacaoAtual = []
+    embarcacaoAtual = []
+   
    for(let i =0; i< Embarcacao.length;i++){
         let quant = 0;
         for(let j = 0; j< Embarcacao[i].length;j++){
@@ -359,7 +362,9 @@ const verificarPorTipoEmbarcacao = (Embarcacao,tipo) =>{
                 embarcacaoAtual.push(Embarcacao[i][j])
             }
         }
+        
         if(quant == Embarcacao[i].length){
+            console.log(embarcacaoAtual)
             tipo == 1?diminuirEmbarcacaoNaBatalha(quant):diminuirEmbarcacaoNaBatalhaInimigo(quant)
             for(let k = 0; k < embarcacaoAtual.length;k++){
                 tipo ==1?posicoesExplodidasUsadas_ini.push(embarcacaoAtual[k]):posicoesExplodidasUsadas_usu.push(embarcacaoAtual[k])
@@ -411,22 +416,25 @@ const diminuirEmbarcacaoNaBatalha = (tamanho) =>{
 const verificarFinalizarPartida = ()=>{
     let embarcacoesRestantes = portaAviaoRestante_ini+ navioTanqueRestante_ini + contratorpedeiroRestante_ini + submarinoRestante_ini
     let embarcacoesRestantesInimigo = portaAviaoRestante_usu+ navioTanqueRestante_usu + contratorpedeiroRestante_usu + submarinoRestante_usu
-    if(embarcacoesRestantes <= 0){
+   
+    if(embarcacoesRestantes <= 0 || posicoesExplodidas_ini.length > (TAMANHO_TABELA*TAMANHO_TABELA -2)){
         setTimeout(function(){
             alert(`Parabens!!! ${nomeUsuarioAtual} Você ganhou  a batalha!`)
         
              adicionarUsuarioAoRanking()
              resetarJogo()
+             console.log("resetado")
              return
-        },1000);
+        },800);
     }
-    if(embarcacoesRestantesInimigo <= 0){
+    if(embarcacoesRestantesInimigo <= 0 || posicoesExplodidas_usu.length > (TAMANHO_TABELA*TAMANHO_TABELA -2)){
         setTimeout(function(){
             alert(`A Maquina ganhou!! que pena nao foi dessa vez!`)
             resetarJogo()
             return;
         },500);
     }
+    
 
 }
 
@@ -463,22 +471,22 @@ const resetarJogo = () =>{
     pintaCelula(posicoesExplodidas_ini)
     posicoesExplodidas_ini= []
     posicoesExplodidasUsadas_ini = []
-    qtdTiroEspecial_ini = 1
+    qtdTiroEspecial_usu = 1
     pontosJogador_usu = 0
     tiroEspecial_usu = false
     tiros_especiais_usu.innerHTML = qtdTiroEspecial_usu
+    resetEmbarcacoes()
     
     //resetar tudo do inimigo
-    pintaCelula(posicoesExplodidas_usu)
     posicoesExplodidas_usu= []
     posicoesExplodidasUsadas_usu = []
-    qtdTiroEspecial_usu = 1
+    qtdTiroEspecial_ini = 1
     pontosJogador_ini = 0
     tiroEspecial_ini = false
     tiros_especiais_ini.innerHTML = qtdTiroEspecial_ini
 
-    resetEmbarcacoes()
     resetEmbarcacoes_inimigo()
+    posicoesOcupadas_ini = []
     resetarMarcas();
     iniciarFuncoesBatalha = false
     document.getElementById('tabuleiro-jogador').innerHTML = ""
