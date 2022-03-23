@@ -131,7 +131,7 @@ const marcarCelulaInimiga = ()=>{
       }
       pintarCelulasTiro(sequenciaBombaEspecial,"_usu")
       adicionarPosicoesExplodidas(sequenciaBombaEspecial,"_usu")
-      verificarSeEmbarcacaoCompleta("_usu")
+      verificarSeEmbarcacaoCompletaInimigo()
       tiros_especiais_ini.innerHTML = --qtdTiroEspecial_ini
 
   }else{
@@ -167,7 +167,7 @@ const marcarCelulaInimiga = ()=>{
 
       pintarCelulasTiro(posicoesMarcadas,"_usu")
       adicionarPosicoesExplodidas(posicoesMarcadas,"_usu")
-      verificarSeEmbarcacaoCompleta("_usu")
+      verificarSeEmbarcacaoCompletaInimigo()
   }
     iniciarFuncoesBatalha = true
 }
@@ -200,6 +200,65 @@ const resetEmbarcacoes_inimigo = () =>{
    posicoesDescobertas = []
    locaisDisponiveis = []
    setAlert(0)
+}
+
+const verificarSeEmbarcacaoCompletaInimigo = () =>{
+   let tipo=0;
+   verificarPorTipoEmbarcacaoInimigo(Embarcacoes[tipo].porta_aviao)
+   verificarPorTipoEmbarcacaoInimigo(Embarcacoes[tipo].navio_tanque)
+   verificarPorTipoEmbarcacaoInimigo(Embarcacoes[tipo].contra_torpedeiro)
+   verificarPorTipoEmbarcacaoInimigo(Embarcacoes[tipo].submarino_)
+}
+
+const verificarPorTipoEmbarcacaoInimigo = (Embarcacao) =>{
+   let AuxPosicoesExplodidas
+   let embarcacaoAtual
+   
+   AuxPosicoesExplodidas = posicoesExplodidas_usu.slice()
+   for(let i =0; i < posicoesExplodidasUsadas_usu.length;i++){
+      AuxPosicoesExplodidas.splice(AuxPosicoesExplodidas.indexOf(posicoesExplodidasUsadas_usu[i]), 1);
+   }
+   
+   embarcacaoAtual = []
+  
+   for(let i =0; i< Embarcacao.length;i++){
+      let quant = 0;
+      for(let j = 0; j< Embarcacao[i].length;j++){
+         if(AuxPosicoesExplodidas.includes(Embarcacao[i][j])){
+            quant++
+            embarcacaoAtual.push(Embarcacao[i][j])
+         }
+      }
+       
+      if(quant == Embarcacao[i].length){
+         diminuirEmbarcacaoNaBatalhaInimigo(quant)
+         for(let k = 0; k < embarcacaoAtual.length;k++){
+            posicoesExplodidasUsadas_usu.push(embarcacaoAtual[k])
+         }
+       }
+   }
+  
+}
+
+const diminuirEmbarcacaoNaBatalhaInimigo = (tamanho) =>{
+   console.log("diminuido", tamanho, "inimigo")
+   if(tamanho == 5 && portaAviaoRestante_usu > 0){
+      qtdPortaAviaoBatalha_usu.innerHTML = --portaAviaoRestante_usu
+      return
+   }
+   if(tamanho == 4 && navioTanqueRestante_usu > 0){
+      qtdNavioTanqueBatalha_usu.innerHTML = --navioTanqueRestante_usu
+      return
+   }
+   if(tamanho == 3 && contratorpedeiroRestante_usu > 0){
+      qtdContratorpedeiroBatalha_usu.innerHTML = --contratorpedeiroRestante_usu
+      return
+   }
+   if(tamanho == 2 && submarinoRestante_usu > 0){
+      qtdSubmarinoBatalha_usu.innerHTML = --submarinoRestante_usu
+      return
+   }
+   
 }
 
 

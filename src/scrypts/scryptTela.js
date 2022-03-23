@@ -137,19 +137,6 @@ const reformularTelaParaNormal = ()=>{
 }
 
 
-
-/*
-function mudarCor(local) {
-    let r = Math.random() * 255;
-    let g = Math.random() * 255;
-    let b = Math.random() * 255;
-    let opacidade = 1.0
-
-    document.getElementById(local).style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${opacidade})`
- }
-
- */
-
  const adicionarPosicoesRanking = () =>{
      //atualizar os dados ao finalizar o jogo
     let camposRanking = document.getElementsByClassName("ranking-pos")

@@ -49,13 +49,13 @@ const marcarCelula = (div) =>{
 
         pintarCelulasTiro(sequenciaBombaEspecial,"_ini")
         adicionarPosicoesExplodidas(sequenciaBombaEspecial,"_ini")
+        verificarSeEmbarcacaoCompletaUsuario()
         
         tiros_especiais_usu.innerHTML = --qtdTiroEspecial_usu
 
         efeitoTiroEspecial(0)
         //ativar vez do oponente
         marcarCelulaInimiga()
-        verificarSeEmbarcacaoCompleta("_ini")
         verificarFinalizarPartida()
         
     }else{
@@ -90,12 +90,12 @@ const marcarCelula = (div) =>{
         if(contadorMarcas == qtdTirosNormais_usu){
             pintarCelulasTiro(posicoesMarcas,"_ini")
             adicionarPosicoesExplodidas(posicoesMarcas,"_ini")
+            verificarSeEmbarcacaoCompletaUsuario()
             
             resetarMarcas()
 
             //ativar vez do inimigo
             marcarCelulaInimiga()
-            verificarSeEmbarcacaoCompleta("_ini") 
             verificarFinalizarPartida()
         }
     }
@@ -322,34 +322,24 @@ desenhaCelula=(celula, _extensao, posicao, tamanho, orientacao)=>{
 
 
 // Diminuir a quantidade de embarcacoes restantes ao emcontra-la completa na partida
-const verificarSeEmbarcacaoCompleta = (_extensao) =>{
-    let tipo;
-    _extensao == "_ini"?tipo = 1: tipo = 0
-   
-    verificarPorTipoEmbarcacao(Embarcacoes[tipo].porta_aviao, tipo)
-    verificarPorTipoEmbarcacao(Embarcacoes[tipo].navio_tanque, tipo)
-    verificarPorTipoEmbarcacao(Embarcacoes[tipo].contra_torpedeiro, tipo)
-    verificarPorTipoEmbarcacao(Embarcacoes[tipo].submarino_, tipo)
-   
+const verificarSeEmbarcacaoCompletaUsuario = () =>{
+    let tipo=1;
+    verificarPorTipoEmbarcacaoUsuario(Embarcacoes[tipo].porta_aviao)
+    verificarPorTipoEmbarcacaoUsuario(Embarcacoes[tipo].navio_tanque)
+    verificarPorTipoEmbarcacaoUsuario(Embarcacoes[tipo].contra_torpedeiro)
+    verificarPorTipoEmbarcacaoUsuario(Embarcacoes[tipo].submarino_)
 }
 
 let posicoesExplodidasUsadas_ini = []
 let posicoesExplodidasUsadas_usu = []
 
-const verificarPorTipoEmbarcacao = (Embarcacao,tipo) =>{
+const verificarPorTipoEmbarcacaoUsuario = (Embarcacao) =>{
     let AuxPosicoesExplodidas
     let embarcacaoAtual
     
-    if(tipo == 1){
-        AuxPosicoesExplodidas = posicoesExplodidas_ini.slice()
-        for(let i =0; i < posicoesExplodidasUsadas_ini.length;i++){
-            AuxPosicoesExplodidas.splice(AuxPosicoesExplodidas.indexOf(posicoesExplodidasUsadas_ini[i]), 1);
-        }
-    }else{
-        AuxPosicoesExplodidas = posicoesExplodidas_usu.slice()
-        for(let i =0; i < posicoesExplodidasUsadas_usu.length;i++){
-            AuxPosicoesExplodidas.splice(AuxPosicoesExplodidas.indexOf(posicoesExplodidasUsadas_usu[i]), 1);
-        }
+    AuxPosicoesExplodidas = posicoesExplodidas_ini.slice()
+    for(let i =0; i < posicoesExplodidasUsadas_ini.length;i++){
+        AuxPosicoesExplodidas.splice(AuxPosicoesExplodidas.indexOf(posicoesExplodidasUsadas_ini[i]), 1);
     }
     
     embarcacaoAtual = []
@@ -362,37 +352,18 @@ const verificarPorTipoEmbarcacao = (Embarcacao,tipo) =>{
                 embarcacaoAtual.push(Embarcacao[i][j])
             }
         }
-        
         if(quant == Embarcacao[i].length){
-            console.log(embarcacaoAtual)
-            tipo == 1?diminuirEmbarcacaoNaBatalha(quant):diminuirEmbarcacaoNaBatalhaInimigo(quant)
+            diminuirEmbarcacaoNaBatalha(quant)
             for(let k = 0; k < embarcacaoAtual.length;k++){
-                tipo ==1?posicoesExplodidasUsadas_ini.push(embarcacaoAtual[k]):posicoesExplodidasUsadas_usu.push(embarcacaoAtual[k])
+                posicoesExplodidasUsadas_ini.push(embarcacaoAtual[k])
             }
         }
    }
+   
 }
 
-const diminuirEmbarcacaoNaBatalhaInimigo = (tamanho) =>{
-    if(tamanho == 5 && portaAviaoRestante_usu > 0){
-       qtdPortaAviaoBatalha_usu.innerHTML = --portaAviaoRestante_usu
-       return
-    }
-    if(tamanho == 4 && navioTanqueRestante_usu > 0){
-       qtdNavioTanqueBatalha_usu.innerHTML = --navioTanqueRestante_usu
-       return
-    }
-    if(tamanho == 3 && contratorpedeiroRestante_usu > 0){
-       qtdContratorpedeiroBatalha_usu.innerHTML = --contratorpedeiroRestante_usu
-       return
-    }
-    if(tamanho == 2 && submarinoRestante_usu > 0){
-       qtdSubmarinoBatalha_usu.innerHTML = --submarinoRestante_usu
-       return
-    }
-    
- }
 const diminuirEmbarcacaoNaBatalha = (tamanho) =>{
+    console.log("diminuido", tamanho)
      if(tamanho == 5 && portaAviaoRestante_ini > 0){
         qtdPortaAviaoBatalha_ini.innerHTML = --portaAviaoRestante_ini
         return
@@ -423,7 +394,6 @@ const verificarFinalizarPartida = ()=>{
         
              adicionarUsuarioAoRanking()
              resetarJogo()
-             console.log("resetado")
              return
         },800);
     }
